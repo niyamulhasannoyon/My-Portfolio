@@ -1,5 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
 
 const testimonials = [
   {
@@ -26,23 +28,26 @@ export function TestimonialsSection() {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeading
-          eyebrow="Client love"
-          title="What founders & agencies say"
-          align="center"
-        />
+        <FadeInUp>
+          <SectionHeading
+            eyebrow="Client love"
+            title="What founders & agencies say"
+            align="center"
+          />
+        </FadeInUp>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure
+          {testimonials.map((t, i) => (
+            <StaggerCard
               key={t.name}
-              className="flex flex-col rounded-2xl border border-ink/10 bg-white p-6 shadow-card"
+              index={i}
+              className="flex flex-col rounded-2xl border border-ink/10 bg-white p-6 shadow-card hover:shadow-glow"
             >
-              <blockquote className="text-sm leading-7 text-ink">“{t.quote}”</blockquote>
+              <blockquote className="text-sm leading-7 text-ink">&#x201C;{t.quote}&#x201D;</blockquote>
               <figcaption className="mt-5">
                 <p className="text-sm font-semibold text-ink">{t.name}</p>
                 <p className="text-xs text-ink-muted">{t.role}</p>
               </figcaption>
-            </figure>
+            </StaggerCard>
           ))}
         </div>
       </Container>

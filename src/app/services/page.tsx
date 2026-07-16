@@ -5,6 +5,8 @@ import { PricingSection } from "@/components/pricing/pricing-section";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
 
 export const metadata: Metadata = buildMetadata({
   title: "Services",
@@ -25,22 +27,28 @@ export default function ServicesPage() {
   return (
     <>
       <Container className="py-16">
-        <SectionHeading
-          eyebrow="Services"
-          title="How we'll work together"
-          description="A focused, transparent process built for high-ticket outcomes."
-        />
+        <FadeInUp>
+          <SectionHeading
+            eyebrow="Services"
+            title="How we'll work together"
+            description="A focused, transparent process built for high-ticket outcomes."
+          />
+        </FadeInUp>
       </Container>
       <ServicesSection />
       <PricingSection />
       <Container className="py-16">
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {process.map((p) => (
-            <div key={p.step} className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card">
+          {process.map((p, i) => (
+            <StaggerCard
+              key={p.step}
+              index={i}
+              className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card hover:shadow-glow"
+            >
               <p className="text-sm font-bold text-brand-600">{p.step}</p>
               <h3 className="mt-2 text-lg font-semibold text-ink">{p.title}</h3>
               <p className="mt-2 text-sm text-ink-muted">{p.desc}</p>
-            </div>
+            </StaggerCard>
           ))}
         </div>
       </Container>

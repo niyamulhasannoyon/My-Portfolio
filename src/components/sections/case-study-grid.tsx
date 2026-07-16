@@ -4,6 +4,8 @@ import type { CaseStudyMeta } from "@/lib/content";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
 
 const projects = [
   {
@@ -39,28 +41,35 @@ const projects = [
 ];
 
 export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
+  const displayItems = items.length > 0 ? items : projects;
+
   return (
     <section className="bg-slate-950 py-24 text-slate-50">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading
-            eyebrow="Selected Work"
-            title="Case studies that drive measurable growth"
-            description="Each engagement is built around clarity, credibility, and conversion-focused design."
-          />
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-1 text-sm font-medium text-emerald-300 transition hover:text-emerald-200"
-          >
-            View all <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          <FadeInUp>
+            <SectionHeading
+              eyebrow="Selected Work"
+              title="Case studies that drive measurable growth"
+              description="Each engagement is built around clarity, credibility, and conversion-focused design."
+            />
+          </FadeInUp>
+          <FadeInUp delay={0.15}>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1 text-sm font-medium text-emerald-300 transition hover:text-emerald-200"
+            >
+              View all <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </FadeInUp>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <article
+          {displayItems.map((project, index) => (
+            <StaggerCard
               key={project.title}
-              className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 transition-all duration-300 hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)]"
+              index={index}
+              className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)]"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] opacity-0 transition duration-300 group-hover:opacity-100" />
               <div className="relative">
@@ -121,7 +130,7 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
                   </a>
                 </div>
               </div>
-            </article>
+            </StaggerCard>
           ))}
         </div>
       </Container>

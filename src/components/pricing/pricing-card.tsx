@@ -3,17 +3,19 @@ import { Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { type PricingTier, formatPrice } from "./pricing-data";
+import { StaggerCard } from "@/components/ui/stagger-card";
 
-export function PricingCard({ tier }: { tier: PricingTier }) {
+export function PricingCard({ tier, index = 0 }: { tier: PricingTier; index?: number }) {
   const priceLabel =
     tier.priceTo && tier.priceTo > tier.priceFrom
       ? `${formatPrice(tier.priceFrom)}–${formatPrice(tier.priceTo)}`
       : formatPrice(tier.priceFrom);
 
   return (
-    <div
+    <StaggerCard
+      index={index}
       className={cn(
-        "relative flex flex-col rounded-2xl border bg-white p-6 shadow-card transition-shadow",
+        "relative flex flex-col rounded-2xl border bg-white p-6 shadow-card",
         tier.popular
           ? "border-brand-500 shadow-glow lg:-mt-4 lg:mb-4"
           : "border-ink/10 hover:shadow-glow",
@@ -54,6 +56,6 @@ export function PricingCard({ tier }: { tier: PricingTier }) {
           <Link href={tier.cta.href}>{tier.cta.label}</Link>
         </Button>
       </div>
-    </div>
+    </StaggerCard>
   );
 }

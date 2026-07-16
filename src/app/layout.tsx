@@ -3,6 +3,7 @@ import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import { personSchema } from "@/lib/person-schema";
+import { professionalServiceSchema } from "@/lib/professional-service-schema";
 import { buildMetadata } from "@/lib/seo";
 import { Analytics } from "@/lib/analytics";
 import { Header } from "@/components/layout/header";
@@ -31,6 +32,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema()) }}
         />
         <Header />
         <main>{children}</main>

@@ -1,6 +1,8 @@
 import { Code2, ShoppingCart, Globe, Gauge, Database, Palette } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
 
 const services = [
   {
@@ -39,23 +41,26 @@ export function ServicesSection() {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeading
-          eyebrow="What I do"
-          title="Services built for conversion, not just code"
-          description="Every engagement is scoped to move a metric that matters to your business."
-        />
+        <FadeInUp>
+          <SectionHeading
+            eyebrow="What I do"
+            title="Services built for conversion, not just code"
+            description="Every engagement is scoped to move a metric that matters to your business."
+          />
+        </FadeInUp>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <div
+          {services.map((s, i) => (
+            <StaggerCard
               key={s.title}
-              className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card transition-shadow hover:shadow-glow"
+              index={i}
+              className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card hover:shadow-glow"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                 <s.icon className="h-5 w-5" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-ink">{s.title}</h3>
               <p className="mt-2 text-sm text-ink-muted">{s.desc}</p>
-            </div>
+            </StaggerCard>
           ))}
         </div>
       </Container>
