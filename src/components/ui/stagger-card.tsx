@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { ElementType, HTMLAttributes } from "react";
 
-type ValidTag = "div" | "article" | "section" | "span" | "li" | "header" | "footer" | "nav" | "main" | "aside";
+type ValidTag = "div" | "article" | "section" | "span" | "li" | "figure" | "header" | "footer" | "nav" | "main" | "aside";
 
 interface StaggerCardProps extends HTMLAttributes<HTMLElement> {
   children: React.ReactNode;

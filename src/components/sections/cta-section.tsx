@@ -11,13 +11,10 @@ export function CtaSection({
   description?: string;
 }) {
   return (
-    <section className="bg-[#09090b] py-20">
+    <section className="bg-brand-bg py-20">
       <Container>
         <FadeInUp>
-          <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/80 to-zinc-950/90 px-8 py-16 text-center text-white shadow-2xl shadow-black/40 backdrop-blur-sm sm:px-16">
-            {/* Subtle glow */}
-            <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[100px]" />
-
+          <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/80 to-zinc-950/90 px-8 py-16 text-center text-white shadow-2xl shadow-black/40 backdrop-blur-sm before:pointer-events-none before:absolute before:-top-40 before:left-1/2 before:h-80 before:w-80 before:-translate-x-1/2 before:rounded-full before:bg-emerald-500/5 before:blur-[100px] before:content-[''] sm:px-16">
             <h2 className="relative mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
               {title}
             </h2>

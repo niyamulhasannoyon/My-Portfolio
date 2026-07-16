@@ -39,13 +39,13 @@ export default function AboutPage() {
           <FadeInUp delay={0.2}>
             <div className="mt-8">
               <p className="text-sm font-semibold text-ink">Tech I work with</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <ul className="mt-3 flex flex-wrap gap-2">
                 {stack.map((s) => (
-                  <span key={s} className="rounded-full border border-ink/10 bg-white px-3 py-1 text-sm text-ink-muted">
+                  <li key={s} className="rounded-full border border-ink/10 bg-white px-3 py-1 text-sm text-ink-muted">
                     {s}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </FadeInUp>
           <FadeInUp delay={0.3}>

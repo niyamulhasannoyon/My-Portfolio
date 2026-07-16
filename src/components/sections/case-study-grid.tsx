@@ -13,12 +13,12 @@ function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
   return meta.map((m) => ({
     title: m.title,
     category: m.category,
-    problem: m.description,
-    solution: m.description,
+    problem: m.problem ?? m.description,
+    solution: (m.solution ?? m.problem) ?? m.description,
     tech: m.techStack ?? [],
     outcome: m.results?.map((r) => `${r.metric} ${r.value}`).join(" · ") || "Measurable results",
     outcomeDescription: "Proven performance gains across key business metrics.",
-    demo: m.demoUrl ?? "https://example.com",
+    demo: m.demoUrl ?? "",
     github: m.githubUrl ?? null,
   }));
 }
@@ -47,49 +47,49 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
           </FadeInUp>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {displayItems.map((project, index) => (
-            <StaggerCard
-              key={project.title}
-              index={index}
-              hoverReveal
-              as="article"
-              className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)]"
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-              <div className="relative">
+            <li key={project.title}>
+              <StaggerCard
+                index={index}
+                hoverReveal
+                as="article"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] before:opacity-0 before:transition before:duration-500 before:content-[''] group-hover:border-emerald-400/40 group-hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)] group-hover:before:opacity-100"
+              >
                 <div className="flex items-center justify-between gap-3">
                   <Badge className="border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
                     {project.category}
                   </Badge>
                   <span className="rounded-full border border-slate-800 bg-slate-950/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.25em] text-slate-400" aria-hidden="true">
-                    0{index + 1}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 <h3 className="mt-5 text-xl font-semibold text-white">{project.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-400">{project.problem}</p>
 
-                <div className="mt-6 space-y-4 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+                <dl className="mt-6 space-y-4 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Problem</p>
-                    <p className="mt-1 text-sm text-slate-300">{project.problem}</p>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Problem</dt>
+                    <dd className="mt-1 text-sm text-slate-300">{project.problem}</dd>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Solution</p>
-                    <p className="mt-1 text-sm text-slate-300">{project.solution}</p>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Solution</dt>
+                    <dd className="mt-1 text-sm text-slate-300">{project.solution}</dd>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Technologies</p>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <span key={tech} className="rounded-full border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-300">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Technologies</dt>
+                    <dd>
+                      <ul className="mt-2 flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <li key={tech} className="rounded-full border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-300">
+                            {tech}
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
                   </div>
-                </div>
+                </dl>
 
                 <div className="mt-6 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-4">
                   <p className="text-sm font-semibold text-emerald-300">{project.outcome}</p>
@@ -97,15 +97,17 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View live demo of ${project.title} (opens in a new tab)`}
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-200 hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    Live Demo <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
+                  {project.demo ? (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View live demo of ${project.title} (opens in a new tab)`}
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-200 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      Live Demo <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  ) : null}
                   {project.github ? (
                     <a
                       href={project.github}
@@ -118,10 +120,10 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
                     </a>
                   ) : null}
                 </div>
-              </div>
-            </StaggerCard>
+              </StaggerCard>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );

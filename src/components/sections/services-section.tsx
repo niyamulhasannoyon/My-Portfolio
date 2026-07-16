@@ -38,7 +38,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="bg-[#030712] py-16 sm:py-20">
+    <section className="bg-[#030712] py-16 md:py-24">
       <Container>
         <FadeInUp>
           <div className="max-w-3xl">
@@ -52,21 +52,22 @@ export function ServicesSection() {
           </div>
         </FadeInUp>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {services.map((s, i) => (
-            <StaggerCard
-              key={s.title}
-              index={i}
-              className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02]"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-900/20 text-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.12)] transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-400/40 group-hover:bg-emerald-500/15">
-                <s.icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
-            </StaggerCard>
+            <li key={s.title}>
+              <StaggerCard
+                index={i}
+                className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02] hover:shadow-xl"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-900/20 text-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.12)] transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-400/40 group-hover:bg-emerald-500/15">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
+              </StaggerCard>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );

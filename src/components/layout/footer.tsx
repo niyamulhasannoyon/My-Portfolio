@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 
 const footerNav = [
@@ -22,8 +25,9 @@ const footerNav = [
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const pathname = usePathname();
   return (
-    <footer className="border-t border-white/[0.06] bg-[#09090b]">
+    <footer className="border-t border-white/[0.06] bg-brand-bg">
       <div className="container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
         <div className="md:col-span-2">
           <Link href="/" className="flex items-center gap-2 text-lg font-bold text-white transition-opacity hover:opacity-80">
@@ -44,13 +48,20 @@ export function Footer() {
           <div key={col.title}>
             <h3 className="text-sm font-semibold text-zinc-200">{col.title}</h3>
             <ul className="mt-4 space-y-2">
-              {col.links.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-zinc-500 transition-all duration-200 hover:text-emerald-400 hover:translate-x-0.5 inline-block">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+              {col.links.map((l) => {
+                const isActive = pathname === l.href;
+                return (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      aria-current={isActive ? "page" : undefined}
+                      className="text-sm text-zinc-500 transition-all duration-200 hover:text-emerald-400 hover:translate-x-0.5 inline-block"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}

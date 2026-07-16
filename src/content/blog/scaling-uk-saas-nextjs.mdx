@@ -24,8 +24,12 @@ results:
     value: "+23%"
   - metric: "Lighthouse"
     value: "98"
+problem: "A London-based B2B SaaS was bleeding trial signups because its legacy React SPA shipped 1.4MB of JavaScript on first paint, driving a 4.2s LCP and heavy bounce from cold LinkedIn and paid traffic."
+solution: "I re-platformed the marketing site and dashboard onto the Next.js App Router with server components, streaming, and a re-indexed MongoDB aggregation layer — plus edge caching and image optimization that removed the heaviest render paths."
 featured: true
 draft: false
+demoUrl: "https://niyamul-dev.vercel.app/work"
+githubUrl: "https://github.com/niyamulhasannoyon/uk-saas-rebuild"
 ---
 
 ## The challenge

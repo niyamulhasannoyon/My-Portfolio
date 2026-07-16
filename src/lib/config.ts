@@ -16,9 +16,6 @@ export const siteConfig = {
     region: ["US", "GB", "EU"],
     countryName: "United States, United Kingdom, Europe",
   },
-  languages: {
-    en: "/",
-  },
   social: {
     linkedin: "https://www.linkedin.com/in/niyamulhasan",
     github: "https://github.com/niyamulhasannoyon",

@@ -21,7 +21,7 @@ export const projects: ProjectItem[] = [
     tech: ["Next.js", "MongoDB", "Cloudinary"],
     outcome: "40% sales uplift",
     outcomeDescription: "Measurable lift in conversion rate within the first quarter post-launch.",
-    demo: "https://example.com/project-1",
+    demo: "https://niyamul-dev.vercel.app/work",
     github: "https://github.com/niyamulhasannoyon/ecommerce-storefront",
   },
   {
@@ -34,7 +34,7 @@ export const projects: ProjectItem[] = [
     tech: ["React", "Node.js", "Cloudflare"],
     outcome: "100% Core Web Vitals",
     outcomeDescription: "Perfect Lighthouse scores across all dimensions on desktop and mobile.",
-    demo: "https://example.com/project-2",
+    demo: "https://niyamul-dev.vercel.app/work",
     github: "https://github.com/niyamulhasannoyon/ops-dashboard",
   },
   {
@@ -47,7 +47,7 @@ export const projects: ProjectItem[] = [
     tech: ["WordPress", "Elementor", "Custom CSS"],
     outcome: "35% lower bounce rate",
     outcomeDescription: "Visitors stayed longer and engaged deeper with the new content structure.",
-    demo: "https://example.com/project-3",
+    demo: "https://niyamul-dev.vercel.app/work",
     github: null,
   },
 ];

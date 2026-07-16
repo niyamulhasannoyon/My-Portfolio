@@ -31,7 +31,7 @@ const metrics = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#09090b] text-white">
+    <section className="relative min-h-screen overflow-hidden bg-brand-bg text-white">
       {/* Subtle background effects */}
       <div className="pointer-events-none absolute inset-0">
         {/* Primary emerald glow */}
@@ -103,7 +103,7 @@ export function Hero() {
                   className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Book a Free 10-Min Strategy Call
+                    Book a Free 10-Minute Strategy Call
                     <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                   </span>
                   <span className="absolute inset-0 -z-0 translate-y-full rounded-full bg-emerald-400 transition-transform duration-300 group-hover:translate-y-0" />
@@ -171,9 +171,9 @@ export function Hero() {
                 </div>
 
                 {/* Metric cards */}
-                <div className="space-y-0.5 p-4 sm:p-6">
+                <ul className="space-y-0.5 p-4 sm:p-6">
                   {metrics.map((item) => (
-                    <div
+                    <li
                       key={item.title}
                       className="group/card rounded-xl border border-white/[0.04] bg-gradient-to-r from-white/[0.02] to-transparent p-4 transition-all duration-300 hover:border-white/[0.08] hover:from-emerald-500/[0.03] hover:to-transparent sm:p-5"
                     >
@@ -191,9 +191,9 @@ export function Hero() {
                         </div>
                         <Zap className="mt-1 h-3.5 w-3.5 shrink-0 text-zinc-700 transition-all duration-300 group-hover/card:text-emerald-500/50 group-hover/card:translate-x-0.5" />
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 {/* Card footer */}
                 <div className="border-t border-white/[0.06] px-6 py-4 sm:px-8">

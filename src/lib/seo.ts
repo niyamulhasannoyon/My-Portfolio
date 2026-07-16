@@ -16,7 +16,7 @@ interface SeoProps {
 
 /**
  * Central SEO helper. Builds absolute URLs, Open Graph, Twitter, canonical,
- * robots and hreflang metadata. Always call from page-level `generateMetadata`.
+ * robots and metadata. Always call from page-level `generateMetadata`.
  */
 export function buildMetadata({
   title,
@@ -43,7 +43,6 @@ export function buildMetadata({
     applicationName: siteConfig.shortName,
     alternates: {
       canonical: url,
-      languages: siteConfig.languages,
     },
     robots: noIndex
       ? { index: false, follow: false }

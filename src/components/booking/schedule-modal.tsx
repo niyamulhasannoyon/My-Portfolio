@@ -66,7 +66,7 @@ export function ScheduleModal({
               <Calendar className="h-4 w-4" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">Book a Free 10-Min Strategy Call</p>
+              <p className="text-sm font-semibold text-white">Book a Free 10-Minute Strategy Call</p>
               <p className="text-xs text-slate-400">A quick conversation to explore your growth goals.</p>
             </div>
           </div>

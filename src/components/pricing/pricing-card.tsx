@@ -15,10 +15,10 @@ export function PricingCard({ tier, index = 0 }: { tier: PricingTier; index?: nu
     <StaggerCard
       index={index}
       className={cn(
-        "relative flex flex-col rounded-2xl border bg-white p-6 shadow-card",
+        "relative flex flex-col rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 ease-in-out",
         tier.popular
-          ? "border-brand-500 shadow-glow lg:-mt-4 lg:mb-4"
-          : "border-ink/10 hover:shadow-glow",
+          ? "border-brand-500 shadow-glow hover:-translate-y-1 lg:-mt-4 lg:mb-4"
+          : "border-ink/10 hover:-translate-y-1 hover:shadow-glow",
       )}
     >
       {tier.popular && (

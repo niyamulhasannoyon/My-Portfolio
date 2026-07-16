@@ -11,7 +11,7 @@ const highlights = [
 
 export function AboutPreview() {
   return (
-    <section className="bg-[#09090b] py-20">
+    <section className="bg-brand-bg py-20">
       <Container>
         <div className="grid gap-8 rounded-2xl border border-white/[0.06] bg-zinc-900/60 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-sm sm:rounded-[2rem] sm:p-8 md:grid-cols-[1.1fr_0.9fr] lg:p-10">
           <div>
@@ -22,13 +22,13 @@ export function AboutPreview() {
               align="left"
             />
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <ul className="mt-6 flex flex-wrap gap-3">
               {highlights.map((item) => (
-                <span key={item} className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-sm text-zinc-300">
+                <li key={item} className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-sm text-zinc-300">
                   {item}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -46,8 +46,8 @@ export function AboutPreview() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
+          <ul className="grid gap-4 sm:grid-cols-2">
+            <li className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
                 <Code2 className="h-5 w-5" />
               </div>
@@ -55,8 +55,8 @@ export function AboutPreview() {
               <p className="mt-2 text-sm leading-7 text-zinc-400">
                 I care about clean architecture, maintainable code, and a strong foundation for growth.
               </p>
-            </div>
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
+            </li>
+            <li className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
                 <Zap className="h-5 w-5" />
               </div>
@@ -64,8 +64,8 @@ export function AboutPreview() {
               <p className="mt-2 text-sm leading-7 text-zinc-400">
                 Lighthouse-ready builds, lighter pages, and better conversion paths from the start.
               </p>
-            </div>
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04] sm:col-span-2">
+            </li>
+            <li className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04] sm:col-span-2">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
                 <Sparkles className="h-5 w-5" />
               </div>
@@ -73,8 +73,8 @@ export function AboutPreview() {
               <p className="mt-2 text-sm leading-7 text-zinc-400">
                 Whether it’s a premium marketing site, a product dashboard, or an e-commerce storefront, I help turn your ideas into trustworthy digital experiences.
               </p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </Container>
     </section>

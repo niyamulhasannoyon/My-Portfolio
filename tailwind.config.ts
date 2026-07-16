@@ -13,19 +13,24 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Unified accent scale — emerald/mint is the single brand color.
+        // (Previously a blue scale that clashed with the rest of the UI.)
         brand: {
-          50: "#eef4ff",
-          100: "#d9e6ff",
-          200: "#bcd2ff",
-          300: "#8eb4ff",
-          400: "#598bff",
-          500: "#3366ff",
-          600: "#1f47f5",
-          700: "#1735e1",
-          800: "#192db6",
-          900: "#1a2c8f",
-          950: "#141b57",
+          50: "#ecfdf5",
+          100: "#d1fae5",
+          200: "#a7f3d0",
+          300: "#6ee7b7",
+          400: "#34d399",
+          500: "#10b981",
+          600: "#059669",
+          700: "#047857",
+          800: "#065f46",
+          900: "#064e3b",
+          950: "#022c22",
         },
+        // Semantic tokens for one-line branding updates.
+        "brand-accent": "#10b981",
+        "brand-bg": "#09090b",
         ink: {
           DEFAULT: "#0b0f1a",
           muted: "#5b6478",
@@ -41,7 +46,7 @@ module.exports = {
       },
       boxShadow: {
         card: "0 1px 2px rgba(11,15,26,0.04), 0 8px 24px rgba(11,15,26,0.06)",
-        glow: "0 0 0 1px rgba(51,102,255,0.12), 0 12px 40px rgba(51,102,255,0.18)",
+        glow: "0 0 0 1px rgba(16,185,129,0.12), 0 12px 40px rgba(16,185,129,0.18)",
       },
       keyframes: {
         "fade-up": {

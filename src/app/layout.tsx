@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="min-h-screen bg-[#09090b] font-sans text-zinc-100 antialiased">
+      <body className="min-h-screen bg-brand-bg font-sans text-zinc-100 antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}

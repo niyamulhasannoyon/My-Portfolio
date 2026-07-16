@@ -21,6 +21,8 @@ export interface CaseStudyFrontmatter {
   draft?: boolean;
   demoUrl?: string;
   githubUrl?: string;
+  problem?: string;
+  solution?: string;
 }
 
 export interface CaseStudy extends CaseStudyFrontmatter {
