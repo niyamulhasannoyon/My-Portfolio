@@ -54,7 +54,7 @@ export function ScheduleModal({
       role="presentation"
     >
       <div
-        className={`relative flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950 shadow-2xl shadow-black/40 transition-all duration-300 ${isVisible ? "translate-y-0 scale-100" : "translate-y-3 scale-98"}`}
+        className={`relative flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl shadow-black/40 transition-transform duration-300 ${isVisible ? "translate-y-0 scale-100" : "translate-y-3 scale-98"}`}
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"

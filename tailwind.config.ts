@@ -31,6 +31,7 @@ module.exports = {
         // Semantic tokens for one-line branding updates.
         "brand-accent": "#10b981",
         "brand-bg": "#09090b",
+        "brand-surface": "#030712",
         ink: {
           DEFAULT: "#0b0f1a",
           muted: "#5b6478",
@@ -43,6 +44,12 @@ module.exports = {
       borderRadius: {
         xl: "0.875rem",
         "2xl": "1.25rem",
+        "3xl": "2rem",
+      },
+      letterSpacing: {
+        "brand-wide": "0.25em",
+        "brand-wider": "0.35em",
+        "brand-widest": "0.3em",
       },
       boxShadow: {
         card: "0 1px 2px rgba(11,15,26,0.04), 0 8px 24px rgba(11,15,26,0.06)",

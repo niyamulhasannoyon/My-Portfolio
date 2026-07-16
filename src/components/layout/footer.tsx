@@ -55,7 +55,7 @@ export function Footer() {
                     <Link
                       href={l.href}
                       aria-current={isActive ? "page" : undefined}
-                      className="text-sm text-zinc-500 transition-all duration-200 hover:text-emerald-400 hover:translate-x-0.5 inline-block"
+                      className="text-sm text-zinc-500 transition-[transform,colors] duration-200 hover:text-emerald-400 hover:translate-x-0.5 inline-block"
                     >
                       {l.label}
                     </Link>

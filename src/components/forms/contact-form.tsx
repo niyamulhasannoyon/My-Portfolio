@@ -34,7 +34,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="rounded-[2rem] border border-slate-800 bg-slate-950/90 p-6 shadow-2xl shadow-black/30 sm:p-8 lg:p-10">
+    <div className="rounded-3xl border border-slate-800 bg-slate-950/90 p-6 shadow-2xl shadow-black/30 sm:p-8 lg:p-10">
       <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-emerald-300">
         <Sparkles className="h-4 w-4" />
         <span>Free 5-Minute Website &amp; SEO Audit</span>

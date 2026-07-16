@@ -30,7 +30,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-500",
+        "fixed top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-500",
         scrolled
           ? "bg-zinc-950/80 backdrop-blur-xl shadow-[0_1px_0_0_rgba(255,255,255,0.06)]"
           : "bg-transparent",
@@ -44,7 +44,7 @@ export function Header() {
           aria-label="Niyamul Dev — Home"
         >
           <span className="relative flex h-9 w-9 items-center justify-center">
-            <span className="absolute inset-0 rounded-xl bg-emerald-500/20 blur-sm transition-all duration-300 group-hover:bg-emerald-500/30 group-hover:blur-md" />
+            <span className="absolute inset-0 rounded-xl bg-emerald-500/20 blur-sm transition-[background-color,filter] duration-300 group-hover:bg-emerald-500/30 group-hover:blur-md" />
             <svg
               viewBox="0 0 64 64"
               className="relative h-7 w-7"
@@ -66,7 +66,7 @@ export function Header() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
             </span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
+            <span className="text-[10px] uppercase tracking-brand-widest text-zinc-500">
               Full-Stack
             </span>
           </span>
@@ -85,7 +85,7 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+                  "relative rounded-lg px-3 py-2 text-sm font-medium transition-[transform,colors] duration-200",
                   isActive
                     ? "text-white"
                     : "text-zinc-400 hover:text-white",
@@ -104,7 +104,7 @@ export function Header() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-300 transition-all duration-300 hover:border-emerald-400/60 hover:bg-emerald-500/20 hover:text-emerald-200"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-300 transition-[transform,colors] duration-300 hover:border-emerald-400/60 hover:bg-emerald-500/20 hover:text-emerald-200"
           >
             <Calendar className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-rotate-6" />
             <span>Book a call</span>
@@ -114,7 +114,7 @@ export function Header() {
 
         {/* Mobile menu button */}
         <button
-          className="relative z-50 flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-all duration-200 hover:border-white/20 hover:text-white md:hidden"
+          className="relative z-50 flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-[transform,colors] duration-200 hover:border-white/20 hover:text-white md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
@@ -144,7 +144,7 @@ export function Header() {
                     onClick={() => setOpen(false)}
                     aria-current={isActive ? "page" : undefined}
                     className={cn(
-                      "rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+                      "rounded-xl px-4 py-3 text-sm font-medium transition-[transform,colors] duration-200",
                       isActive
                         ? "bg-emerald-500/10 text-emerald-300"
                         : "text-zinc-400 hover:bg-white/5 hover:text-white",
@@ -158,7 +158,7 @@ export function Header() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-zinc-950 transition-all duration-200 hover:bg-emerald-400"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-zinc-950 transition-[transform,colors] duration-200 hover:bg-emerald-400"
                 >
                   <Calendar className="h-4 w-4" />
                   Book a call

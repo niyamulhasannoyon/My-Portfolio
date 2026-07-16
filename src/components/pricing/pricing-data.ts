@@ -1,19 +1,6 @@
-export interface PricingTier {
-  id: string;
-  name: string;
-  tagline: string;
-  priceFrom: number;
-  priceTo?: number;
-  priceNote?: string;
-  popular?: boolean;
-  cta: {
-    label: string;
-    href: string;
-  };
-  features: string[];
-}
+import type { PricingTier, PricingList } from "@/types/portfolio";
 
-export const pricingTiers: PricingTier[] = [
+export const pricingTiers: PricingList = [
   {
     id: "landing",
     name: "Landing Page",

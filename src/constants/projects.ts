@@ -1,16 +1,6 @@
-export interface ProjectItem {
-  title: string;
-  category: string;
-  problem: string;
-  solution: string;
-  tech: string[];
-  outcome: string;
-  outcomeDescription: string;
-  demo: string;
-  github: string | null;
-}
+import type { ProjectItem, ProjectList } from "@/types/portfolio";
 
-export const projects: ProjectItem[] = [
+export const projects: ProjectList = [
   {
     title: "Modern Commerce Storefront",
     category: "E-commerce",

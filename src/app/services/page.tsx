@@ -26,11 +26,11 @@ const process = [
 
 export default function ServicesPage() {
   return (
-    <div className="bg-[#030712] text-white">
+    <div className="bg-brand-surface text-white">
       <Container className="relative py-16 md:py-24 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
         <FadeInUp>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">Services</p>
+            <p className="text-sm font-semibold uppercase tracking-brand-wider text-emerald-400">Services</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               How we’ll work together
             </h1>
@@ -48,7 +48,7 @@ export default function ServicesPage() {
       <Container className="py-16 md:py-20">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">What I do</p>
+            <p className="text-sm font-semibold uppercase tracking-brand-wider text-emerald-400">What I do</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               A premium delivery experience from day one
             </h2>
@@ -66,9 +66,9 @@ export default function ServicesPage() {
             <li key={p.step}>
               <StaggerCard
                 index={i}
-                className="flex h-full flex-col rounded-2xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02] hover:shadow-xl"
+                className="flex h-full flex-col rounded-2xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-[transform,colors,box-shadow] duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02] hover:shadow-xl"
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400">{p.step}</p>
+                <p className="text-sm font-semibold uppercase tracking-brand-widest text-emerald-400">{p.step}</p>
                 <h3 className="mt-3 text-lg font-semibold text-white">{p.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-zinc-400">{p.desc}</p>
               </StaggerCard>

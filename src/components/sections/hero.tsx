@@ -100,17 +100,17 @@ export function Hero() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/contact"
-                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/25 transition-[transform,colors,box-shadow] duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     Book a Free 10-Minute Strategy Call
-                    <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                    <ArrowRight className="h-4 w-4 transition-[transform] duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                   </span>
                   <span className="absolute inset-0 -z-0 translate-y-full rounded-full bg-emerald-400 transition-transform duration-300 group-hover:translate-y-0" />
                 </Link>
                 <Link
                   href="/work"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700/60 bg-zinc-900/60 px-7 py-3.5 text-base font-semibold text-zinc-100 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-800/60 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700/60 bg-zinc-900/60 px-7 py-3.5 text-base font-semibold text-zinc-100 shadow-sm backdrop-blur-sm transition-[transform,colors] duration-300 hover:border-emerald-500/40 hover:bg-zinc-800/60 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
                 >
                   View Case Studies
                 </Link>
