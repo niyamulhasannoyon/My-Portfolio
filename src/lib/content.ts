@@ -19,6 +19,8 @@ export interface CaseStudyFrontmatter {
   results: { metric: string; value: string }[];
   featured?: boolean;
   draft?: boolean;
+  demoUrl?: string;
+  githubUrl?: string;
 }
 
 export interface CaseStudy extends CaseStudyFrontmatter {

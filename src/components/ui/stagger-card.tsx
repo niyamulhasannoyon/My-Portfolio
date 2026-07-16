@@ -2,8 +2,11 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import type { ElementType, HTMLAttributes } from "react";
 
-interface StaggerCardProps {
+type ValidTag = "div" | "article" | "section" | "span" | "li" | "header" | "footer" | "nav" | "main" | "aside";
+
+interface StaggerCardProps extends HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   className?: string;
   /** Zero-based index for stagger delay calculation (default 0) */
@@ -17,6 +20,8 @@ interface StaggerCardProps {
    * Works best on grids of project/case-study cards (default false).
    */
   hoverReveal?: boolean;
+  /** HTML element type to render as (default "div") */
+  as?: ValidTag;
 }
 
 /**
@@ -42,11 +47,14 @@ export function StaggerCard({
   hoverScale = 1.02,
   animateOnMount = true,
   hoverReveal = false,
+  as = "div",
 }: StaggerCardProps) {
   const prefersReducedMotion = useReducedMotion();
+  const MotionTag = motion(as as ValidTag);
+  const Tag = as as ValidTag;
 
   if (prefersReducedMotion) {
-    return <div className={cn(className)}>{children}</div>;
+    return <Tag className={cn(className)}>{children}</Tag>;
   }
 
   const mountAnim = animateOnMount
@@ -58,7 +66,7 @@ export function StaggerCard({
     : { initial: "rest" as const };
 
   return (
-    <motion.div
+    <MotionTag
       whileHover="hover"
       {...mountAnim}
       transition={{
@@ -96,6 +104,6 @@ export function StaggerCard({
       ) : (
         children
       )}
-    </motion.div>
+    </MotionTag>
   );
 }

@@ -6,50 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 import { StaggerCard } from "@/components/ui/stagger-card";
-
-interface ProjectItem {
-  title: string;
-  category: string;
-  problem: string;
-  solution: string;
-  tech: string[];
-  outcome: string;
-  demo: string;
-  github: string;
-}
-
-const projects: ProjectItem[] = [
-  {
-    title: "Modern Commerce Storefront",
-    category: "E-commerce",
-    problem: "A growing retail brand needed a storefront that felt premium, loaded fast, and made product discovery effortless.",
-    solution: "I rebuilt the experience around a faster Next.js frontend, rich product storytelling, and a MongoDB-backed catalog with Cloudinary media delivery.",
-    tech: ["Next.js", "MongoDB", "Cloudinary"],
-    outcome: "Boosted sales by 40%",
-    demo: "https://www.vercel.com",
-    github: "https://github.com",
-  },
-  {
-    title: "Operations Dashboard for a Growing Team",
-    category: "SaaS / Operations",
-    problem: "The team needed a real-time view of inventory, sales, and stock movement without relying on scattered tools.",
-    solution: "I shipped a React + Node.js dashboard with clear reporting, smoother workflows, and a Cloudflare-optimized delivery layer.",
-    tech: ["React", "Node.js", "Cloudflare"],
-    outcome: "100% Core Web Vitals score",
-    demo: "https://www.cloudflare.com",
-    github: "https://github.com",
-  },
-  {
-    title: "Premium Niche Business Website",
-    category: "WordPress",
-    problem: "A niche business wanted a more trustworthy, high-end online presence that converted visitors into qualified leads.",
-    solution: "I delivered a polished WordPress experience with Elementor and custom CSS to improve credibility, content hierarchy, and inquiry flow.",
-    tech: ["WordPress", "Elementor", "Custom CSS"],
-    outcome: "Reduced bounce rate by 35%",
-    demo: "https://wordpress.org",
-    github: "https://github.com",
-  },
-];
+import { projects, type ProjectItem } from "@/constants/projects";
 
 /** Map CaseStudyMeta to the grid display shape (enables the /work route). */
 function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
@@ -57,11 +14,12 @@ function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
     title: m.title,
     category: m.category,
     problem: m.description,
-    solution: m.description.replace(/performance|conversion|load times|Lighthouse/gi, (match) => match),
+    solution: m.description,
     tech: m.techStack ?? [],
     outcome: m.results?.map((r) => `${r.metric} ${r.value}`).join(" · ") || "Measurable results",
-    demo: "https://www.vercel.com",
-    github: "https://github.com",
+    outcomeDescription: "Proven performance gains across key business metrics.",
+    demo: m.demoUrl ?? "https://example.com",
+    github: m.githubUrl ?? null,
   }));
 }
 
@@ -95,15 +53,16 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
               key={project.title}
               index={index}
               hoverReveal
+              as="article"
               className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)]"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] opacity-0 transition duration-500 group-hover:opacity-100" />
               <div className="relative">
                 <div className="flex items-center justify-between gap-3">
                   <Badge className="border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
                     {project.category}
                   </Badge>
-                  <span className="rounded-full border border-slate-800 bg-slate-950/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.25em] text-slate-400">
+                  <span className="rounded-full border border-slate-800 bg-slate-950/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.25em] text-slate-400" aria-hidden="true">
                     0{index + 1}
                   </span>
                 </div>
@@ -134,26 +93,30 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
 
                 <div className="mt-6 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-4">
                   <p className="text-sm font-semibold text-emerald-300">{project.outcome}</p>
-                  <p className="mt-1 text-sm text-slate-300">A measurable lift in performance, trust, and conversion.</p>
+                  <p className="mt-1 text-sm text-slate-300">{project.outcomeDescription}</p>
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
                     href={project.demo}
                     target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+                    rel="noopener noreferrer"
+                    aria-label={`View live demo of ${project.title} (opens in a new tab)`}
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-200 hover:-translate-y-0.5 active:translate-y-0"
                   >
-                    Live Demo <ArrowUpRight className="h-4 w-4" />
+                    Live Demo <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-emerald-400/40 hover:text-emerald-200"
-                  >
-                    GitHub <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} source code on GitHub (opens in a new tab)`}
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-200 transition-all duration-300 hover:border-emerald-400/40 hover:text-emerald-200 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      GitHub <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </StaggerCard>

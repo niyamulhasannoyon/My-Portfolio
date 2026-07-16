@@ -39,17 +39,18 @@ export function Hero() {
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full bg-emerald-500 px-7 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400"
+                  className="group rounded-full bg-emerald-500 px-7 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:bg-emerald-400 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30 active:translate-y-0"
                 >
                   <Link href="/contact">
-                    Book a Free 10-Min Strategy Call <ArrowRight className="h-4 w-4" />
+                    Book a Free 10-Min Strategy Call{" "}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="rounded-full border-slate-700 bg-slate-900/70 px-7 py-3 text-base font-semibold text-slate-100 hover:border-emerald-400/50 hover:bg-slate-800"
+                  className="group rounded-full border-slate-700 bg-slate-900/70 px-7 py-3 text-base font-semibold text-slate-100 transition-all duration-300 hover:border-emerald-400/50 hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <Link href="/work">View Case Studies</Link>
                 </Button>

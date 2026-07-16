@@ -53,12 +53,12 @@ export function ServicesSection() {
             <StaggerCard
               key={s.title}
               index={i}
-              className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card hover:shadow-glow"
+              className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-glow hover:-translate-y-1"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <s.icon className="h-5 w-5" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-100 group-hover:text-brand-700">
+                <s.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink">{s.title}</h3>
+              <h3 className="mt-4 text-lg font-semibold text-ink transition-colors duration-300 group-hover:text-brand-700">{s.title}</h3>
               <p className="mt-2 text-sm text-ink-muted">{s.desc}</p>
             </StaggerCard>
           ))}

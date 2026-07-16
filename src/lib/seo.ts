@@ -88,7 +88,6 @@ export function buildMetadata({
     other: {
       "geo.region": siteConfig.geo.region.join(","),
       "geo.placename": siteConfig.geo.countryName,
-      "og:locale:alternate": "en_GB,en_US",
     },
   };
 }

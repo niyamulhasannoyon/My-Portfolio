@@ -36,21 +36,25 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                pathname === item.href
-                  ? "text-brand-600"
-                  : "text-ink-muted hover:text-ink",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+                  isActive
+                    ? "text-brand-600"
+                    : "text-ink-muted hover:text-ink",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden md:block">
@@ -70,21 +74,30 @@ export function Header() {
 
       {open && (
         <div className="border-t border-ink/5 bg-white md:hidden">
-          <nav className="container flex flex-col py-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-sm font-medium text-ink-muted hover:bg-ink/5 hover:text-ink"
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav className="container flex flex-col py-2" aria-label="Mobile navigation">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "rounded-lg px-3 py-3 text-sm font-medium transition-all duration-200",
+                    isActive
+                      ? "text-brand-600"
+                      : "text-ink-muted hover:bg-ink/5 hover:text-ink",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-lg bg-brand-600 px-3 py-3 text-center text-sm font-medium text-white"
+              className="mt-2 rounded-lg bg-brand-600 px-3 py-3 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-brand-700"
             >
               Book a call
             </Link>

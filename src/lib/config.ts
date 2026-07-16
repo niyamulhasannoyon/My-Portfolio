@@ -18,8 +18,6 @@ export const siteConfig = {
   },
   languages: {
     en: "/",
-    "en-US": "/",
-    "en-GB": "/",
   },
   social: {
     linkedin: "https://www.linkedin.com/in/niyamulhasan",

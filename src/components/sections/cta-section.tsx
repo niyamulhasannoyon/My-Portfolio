@@ -6,7 +6,7 @@ import { FadeInUp } from "@/components/ui/fade-in-up";
 
 export function CtaSection({
   title = "Ready to turn traffic into revenue?",
-  description = "Book a free 20-minute strategy call. I'll audit your site and show you exactly where the conversions are leaking.",
+  description = "Book a free 10-minute strategy call. I'll audit your site and show you exactly where the conversions are leaking.",
 }: {
   title?: string;
   description?: string;
