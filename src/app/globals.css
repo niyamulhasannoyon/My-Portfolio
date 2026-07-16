@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Sora", var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Minimal article typography (no tailwindcss/typography dependency required) */
+.prose-ink h2 {
+  @apply mt-10 scroll-mt-24 text-2xl font-semibold tracking-tight text-ink;
+}
+.prose-ink h3 {
+  @apply mt-8 text-xl font-semibold tracking-tight text-ink;
+}
+.prose-ink p {
+  @apply mt-4 leading-7 text-ink-muted;
+}
+.prose-ink ul {
+  @apply mt-4 list-disc space-y-2 pl-6 text-ink-muted;
+}
+.prose-ink a {
+  @apply font-medium text-brand-600 underline-offset-4 hover:underline;
+}
+.prose-ink blockquote {
+  @apply mt-6 border-l-2 border-brand-500 pl-4 italic text-ink;
+}
+.prose-ink code {
+  @apply rounded bg-ink/5 px-1.5 py-0.5 font-mono text-sm;
+}

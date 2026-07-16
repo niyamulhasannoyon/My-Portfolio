@@ -1,0 +1,48 @@
+---
+title: "Scaling a UK SaaS to 40k Users with Next.js & MongoDB"
+description: "How a performance rebuild cut load times 68% and lifted trial conversions for a London-based B2B SaaS."
+publishedAt: "2026-06-12"
+updatedAt: "2026-06-20"
+category: "SaaS"
+client: "Confidential (UK B2B SaaS)"
+industry: "B2B Software"
+services:
+  - "Next.js migration"
+  - "MongoDB schema optimization"
+  - "Core Web Vitals tuning"
+coverImage: "/case-studies/uk-saas-cover.png"
+techStack:
+  - "Next.js"
+  - "React"
+  - "Node.js"
+  - "MongoDB"
+  - "Tailwind CSS"
+results:
+  - metric: "Load time"
+    value: "-68%"
+  - metric: "Trial conversion"
+    value: "+23%"
+  - metric: "Lighthouse"
+    value: "98"
+featured: true
+draft: false
+---
+
+## The challenge
+
+The client's legacy React SPA was shipping 1.4MB of JavaScript on first paint,
+causing a 4.2s LCP and a high bounce rate from cold LinkedIn traffic.
+
+## What I built
+
+I re-platformed the marketing site and dashboard onto the **Next.js App Router**
+with server components, streaming, and a re-indexed MongoDB aggregation layer.
+Edge caching and image optimization removed the heaviest render paths.
+
+## Outcomes
+
+- Page load dropped from 4.2s to **1.3s**
+- Trial signups from paid cold traffic rose **23%**
+- Lighthouse performance scored **98** across key landing pages
+
+> "The rebuild paid for itself in the first month of ad spend." — Founder, UK SaaS
