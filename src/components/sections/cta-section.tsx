@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 
 export function CtaSection({
@@ -12,27 +11,31 @@ export function CtaSection({
   description?: string;
 }) {
   return (
-    <section className="py-20">
+    <section className="bg-[#09090b] py-20">
       <Container>
         <FadeInUp>
-          <div className="relative overflow-hidden rounded-2xl bg-ink px-8 py-16 text-center text-white sm:px-16">
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/80 to-zinc-950/90 px-8 py-16 text-center text-white shadow-2xl shadow-black/40 backdrop-blur-sm sm:px-16">
+            {/* Subtle glow */}
+            <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[100px]" />
+
+            <h2 className="relative mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
               {title}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/70">{description}</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/contact">
-                  Book a free call <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="bg-white/10 text-white hover:bg-white/20"
+            <p className="relative mx-auto mt-4 max-w-xl text-zinc-400">{description}</p>
+            <div className="relative mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Link href="/work">See results</Link>
-              </Button>
+                Book a free call{" "}
+                <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                href="/work"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-7 py-3.5 text-base font-semibold text-zinc-200 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.06] hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+              >
+                See results
+              </Link>
             </div>
           </div>
         </FadeInUp>

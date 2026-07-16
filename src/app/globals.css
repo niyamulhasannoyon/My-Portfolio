@@ -21,25 +21,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Minimal article typography (no tailwindcss/typography dependency required) */
+/* Dark-mode article typography */
 .prose-ink h2 {
-  @apply mt-10 scroll-mt-24 text-2xl font-semibold tracking-tight text-ink;
+  @apply mt-10 scroll-mt-24 text-2xl font-semibold tracking-tight text-white;
 }
 .prose-ink h3 {
-  @apply mt-8 text-xl font-semibold tracking-tight text-ink;
+  @apply mt-8 text-xl font-semibold tracking-tight text-white;
 }
 .prose-ink p {
-  @apply mt-4 leading-7 text-ink-muted;
+  @apply mt-4 leading-7 text-zinc-400;
 }
 .prose-ink ul {
-  @apply mt-4 list-disc space-y-2 pl-6 text-ink-muted;
+  @apply mt-4 list-disc space-y-2 pl-6 text-zinc-400;
 }
 .prose-ink a {
-  @apply font-medium text-brand-600 underline-offset-4 hover:underline;
+  @apply font-medium text-emerald-400 underline-offset-4 hover:text-emerald-300 hover:underline;
 }
 .prose-ink blockquote {
-  @apply mt-6 border-l-2 border-brand-500 pl-4 italic text-ink;
+  @apply mt-6 border-l-2 border-emerald-500/50 pl-4 italic text-zinc-300;
 }
 .prose-ink code {
-  @apply rounded bg-ink/5 px-1.5 py-0.5 font-mono text-sm;
+  @apply rounded bg-white/5 px-1.5 py-0.5 font-mono text-sm text-zinc-200;
 }

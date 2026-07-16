@@ -1,107 +1,206 @@
 import Link from "next/link";
-import { ArrowRight, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import {
+  ArrowRight,
+  Star,
+  Zap,
+  Target,
+  BarChart3,
+  Gauge,
+  Sparkles,
+} from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 
+const metrics = [
+  {
+    icon: Gauge,
+    title: "Faster site speed",
+    desc: "Reduce friction and keep visitors engaged.",
+  },
+  {
+    icon: Target,
+    title: "Clear conversion paths",
+    desc: "Guide each visitor toward the next best action.",
+  },
+  {
+    icon: BarChart3,
+    title: "Built to scale",
+    desc: "A strong foundation for landing pages, blogs, and product growth.",
+  },
+];
+
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-slate-950 text-slate-50">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.2),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(99,102,241,0.2),_transparent_30%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+    <section className="relative min-h-screen overflow-hidden bg-[#09090b] text-white">
+      {/* Subtle background effects */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Primary emerald glow */}
+        <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[120px]" />
+        {/* Secondary glow */}
+        <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-emerald-400/3 blur-[100px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24 sm:px-8 lg:px-12 lg:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Ultra-soft grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-32 sm:px-8 lg:px-12 lg:pb-32 lg:pt-40">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          {/* Left Column — Content */}
           <div className="max-w-3xl">
-            <FadeInUp delay={0.05}>
-              <Badge className="w-fit border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+            {/* Availability badge */}
+            <FadeInUp delay={0.05} y={20}>
+              <div className="group relative inline-flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.04] px-4 py-1.5 text-xs font-medium text-emerald-300/90 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.07]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-pulse-glow rounded-full bg-emerald-400" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
                 {siteConfig.availability}
-              </Badge>
-            </FadeInUp>
-
-            <FadeInUp delay={0.12}>
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-7xl">
-                I help businesses increase sales and build trust with fast, modern
-                websites that convert visitors into customers.
-              </h1>
-            </FadeInUp>
-
-            <FadeInUp delay={0.2}>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Built with <span className="font-semibold text-emerald-300">Next.js, React, Node.js, MongoDB</span>{" "}
-                to create sleek, scalable experiences that feel premium and perform beautifully.
-              </p>
-            </FadeInUp>
-
-            <FadeInUp delay={0.28}>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button
-                  asChild
-                  size="lg"
-                  className="group rounded-full bg-emerald-500 px-7 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:bg-emerald-400 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30 active:translate-y-0"
-                >
-                  <Link href="/contact">
-                    Book a Free 10-Min Strategy Call{" "}
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="group rounded-full border-slate-700 bg-slate-900/70 px-7 py-3 text-base font-semibold text-slate-100 transition-all duration-300 hover:border-emerald-400/50 hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0"
-                >
-                  <Link href="/work">View Case Studies</Link>
-                </Button>
               </div>
             </FadeInUp>
 
-            <FadeInUp delay={0.36}>
+            {/* Headline */}
+            <FadeInUp delay={0.1} y={20}>
+              <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
+                I help businesses increase sales and{" "}
+                <span className="bg-gradient-to-r from-emerald-200 via-emerald-300 to-emerald-400 bg-clip-text text-transparent">
+                  build trust
+                </span>{" "}
+                with fast, modern websites that convert visitors into customers.
+              </h1>
+            </FadeInUp>
+
+            {/* Sub-headline with tech stack badges */}
+            <FadeInUp delay={0.16} y={20}>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg sm:leading-8">
+                Built with{" "}
+                {["Next.js", "React", "Node.js", "MongoDB"].map((tech, i) => (
+                  <span key={tech}>
+                    <span className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/80 px-2.5 py-0.5 text-sm font-medium text-zinc-200 transition-colors duration-200 hover:border-emerald-500/30 hover:text-emerald-300">
+                      {tech}
+                    </span>
+                    {i < 3 ? ", " : ""}
+                  </span>
+                ))}{" "}
+                to create sleek, scalable experiences that feel premium and
+                perform beautifully.
+              </p>
+            </FadeInUp>
+
+            {/* CTA Buttons */}
+            <FadeInUp delay={0.22} y={20}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Book a Free 10-Min Strategy Call
+                    <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                  </span>
+                  <span className="absolute inset-0 -z-0 translate-y-full rounded-full bg-emerald-400 transition-transform duration-300 group-hover:translate-y-0" />
+                </Link>
+                <Link
+                  href="/work"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700/60 bg-zinc-900/60 px-7 py-3.5 text-base font-semibold text-zinc-100 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-800/60 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  View Case Studies
+                </Link>
+              </div>
+            </FadeInUp>
+
+            {/* Trust badges */}
+            <FadeInUp delay={0.28} y={20}>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-300">
+                <div className="flex items-center gap-2 rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3.5 py-2 text-sm text-zinc-400 backdrop-blur-sm">
                   <div className="flex">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-emerald-400 text-emerald-400" />
+                      <Star
+                        key={i}
+                        className="h-3.5 w-3.5 fill-emerald-400 text-emerald-400"
+                      />
                     ))}
                   </div>
-                  <span>4.9/5 average client rating</span>
+                  <span>4.9/5 client rating</span>
                 </div>
-                <span className="rounded-full border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-300">
+                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3.5 py-2 text-sm text-zinc-400 backdrop-blur-sm">
                   Fast launch timelines
                 </span>
-                <span className="rounded-full border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-300">
+                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3.5 py-2 text-sm text-zinc-400 backdrop-blur-sm">
                   SEO + CRO baked in
                 </span>
               </div>
             </FadeInUp>
           </div>
 
-          <FadeInUp delay={0.15} y={40}>
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-4 shadow-2xl shadow-black/30 backdrop-blur sm:p-6">
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-semibold text-emerald-300">Growth-first web design</p>
-                    <p className="mt-1 text-sm text-slate-400">Modern messaging, higher trust, better conversion.</p>
-                  </div>
-                  <div className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-emerald-300">
-                    Premium
+          {/* Right Column — Bento Grid Card */}
+          <FadeInUp delay={0.12} y={30}>
+            <div className="group relative">
+              {/* Glow behind card */}
+              <div className="absolute -inset-4 rounded-3xl bg-emerald-500/5 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/80 to-zinc-950/90 shadow-2xl shadow-black/40 backdrop-blur-xl transition-all duration-500 hover:border-white/[0.10] hover:shadow-[0_0_40px_-12px_rgba(16,185,129,0.3)]">
+                {/* Card header */}
+                <div className="border-b border-white/[0.06] px-6 py-5 sm:px-8">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/10">
+                          <Sparkles className="h-3.5 w-3.5 text-emerald-300" />
+                        </span>
+                        <p className="text-sm font-semibold text-white">
+                          Growth-first web design
+                        </p>
+                      </div>
+                      <p className="mt-1.5 text-sm text-zinc-500">
+                        Modern messaging, higher trust, better conversion.
+                      </p>
+                    </div>
+                    <span className="hidden shrink-0 rounded-full border border-emerald-500/20 bg-emerald-500/[0.06] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300/80 sm:inline-flex">
+                      Premium
+                    </span>
                   </div>
                 </div>
 
-                <div className="mt-6 space-y-3">
-                  <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                    <p className="text-sm font-medium text-white">Faster site speed</p>
-                    <p className="mt-1 text-sm text-slate-400">Reduce friction and keep visitors engaged.</p>
-                  </div>
-                  <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                    <p className="text-sm font-medium text-white">Clear conversion paths</p>
-                    <p className="mt-1 text-sm text-slate-400">Guide each visitor toward the next best action.</p>
-                  </div>
-                  <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                    <p className="text-sm font-medium text-white">Built to scale</p>
-                    <p className="mt-1 text-sm text-slate-400">A strong foundation for landing pages, blogs, and product growth.</p>
+                {/* Metric cards */}
+                <div className="space-y-0.5 p-4 sm:p-6">
+                  {metrics.map((item) => (
+                    <div
+                      key={item.title}
+                      className="group/card rounded-xl border border-white/[0.04] bg-gradient-to-r from-white/[0.02] to-transparent p-4 transition-all duration-300 hover:border-white/[0.08] hover:from-emerald-500/[0.03] hover:to-transparent sm:p-5"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/60 transition-colors duration-300 group-hover/card:bg-emerald-500/10">
+                          <item.icon className="h-4 w-4 text-zinc-400 transition-colors duration-300 group-hover/card:text-emerald-300" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium text-white transition-colors duration-300 group-hover/card:text-emerald-100">
+                            {item.title}
+                          </p>
+                          <p className="mt-0.5 text-sm text-zinc-500">
+                            {item.desc}
+                          </p>
+                        </div>
+                        <Zap className="mt-1 h-3.5 w-3.5 shrink-0 text-zinc-700 transition-all duration-300 group-hover/card:text-emerald-500/50 group-hover/card:translate-x-0.5" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Card footer */}
+                <div className="border-t border-white/[0.06] px-6 py-4 sm:px-8">
+                  <div className="flex items-center justify-between text-xs text-zinc-600">
+                    <span>Optimized for conversion rate</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/60" />
+                      Live
+                    </span>
                   </div>
                 </div>
               </div>

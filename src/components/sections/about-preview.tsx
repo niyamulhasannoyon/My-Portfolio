@@ -11,9 +11,9 @@ const highlights = [
 
 export function AboutPreview() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-[#09090b] py-20">
       <Container>
-        <div className="grid gap-8 rounded-[2rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-2xl shadow-slate-200/70 lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
+        <div className="grid gap-8 rounded-[2rem] border border-white/[0.06] bg-zinc-900/60 p-8 text-white shadow-2xl shadow-black/40 backdrop-blur-sm lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
           <div>
             <SectionHeading
               eyebrow="About"
@@ -24,7 +24,7 @@ export function AboutPreview() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               {highlights.map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-sm text-slate-200">
+                <span key={item} className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-sm text-zinc-300">
                   {item}
                 </span>
               ))}
@@ -33,13 +33,13 @@ export function AboutPreview() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:bg-emerald-400 hover:-translate-y-0.5 active:translate-y-0"
               >
-                Let’s talk <ArrowRight className="h-4 w-4" />
+                Let’s talk <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-200 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.06] hover:text-white hover:-translate-y-0.5 active:translate-y-0"
               >
                 See my work
               </Link>
@@ -47,30 +47,30 @@ export function AboutPreview() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-300">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
                 <Code2 className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold">Developer-first approach</h3>
-              <p className="mt-2 text-sm leading-7 text-slate-300">
+              <h3 className="mt-4 text-lg font-semibold text-white">Developer-first approach</h3>
+              <p className="mt-2 text-sm leading-7 text-zinc-400">
                 I care about clean architecture, maintainable code, and a strong foundation for growth.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
                 <Zap className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold">Fast by default</h3>
-              <p className="mt-2 text-sm leading-7 text-slate-300">
+              <h3 className="mt-4 text-lg font-semibold text-white">Fast by default</h3>
+              <p className="mt-2 text-sm leading-7 text-zinc-400">
                 Lighthouse-ready builds, lighter pages, and better conversion paths from the start.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-5 sm:col-span-2">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/15 text-amber-300">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04] sm:col-span-2">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
                 <Sparkles className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold">Built for founders, startups, and modern brands</h3>
-              <p className="mt-2 text-sm leading-7 text-slate-300">
+              <h3 className="mt-4 text-lg font-semibold text-white">Built for founders, startups, and modern brands</h3>
+              <p className="mt-2 text-sm leading-7 text-zinc-400">
                 Whether it’s a premium marketing site, a product dashboard, or an e-commerce storefront, I help turn your ideas into trustworthy digital experiences.
               </p>
             </div>

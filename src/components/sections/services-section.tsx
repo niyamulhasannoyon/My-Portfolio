@@ -39,7 +39,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-20">
+    <section className="py-20 bg-[#09090b]">
       <Container>
         <FadeInUp>
           <SectionHeading
@@ -53,13 +53,13 @@ export function ServicesSection() {
             <StaggerCard
               key={s.title}
               index={i}
-              className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-glow hover:-translate-y-1"
+              className="group rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] hover:-translate-y-1"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-100 group-hover:text-brand-700">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300 transition-all duration-300 group-hover:bg-emerald-500/20 group-hover:text-emerald-200">
                 <s.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink transition-colors duration-300 group-hover:text-brand-700">{s.title}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{s.desc}</p>
+              <h3 className="mt-4 text-lg font-semibold text-white transition-colors duration-300 group-hover:text-emerald-100">{s.title}</h3>
+              <p className="mt-2 text-sm text-zinc-400">{s.desc}</p>
             </StaggerCard>
           ))}
         </div>
