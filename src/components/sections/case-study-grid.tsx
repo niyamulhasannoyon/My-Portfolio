@@ -7,7 +7,18 @@ import { Badge } from "@/components/ui/badge";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 import { StaggerCard } from "@/components/ui/stagger-card";
 
-const projects = [
+interface ProjectItem {
+  title: string;
+  category: string;
+  problem: string;
+  solution: string;
+  tech: string[];
+  outcome: string;
+  demo: string;
+  github: string;
+}
+
+const projects: ProjectItem[] = [
   {
     title: "Full-Stack E-commerce Experience",
     category: "E-commerce",
@@ -40,8 +51,22 @@ const projects = [
   },
 ];
 
+/** Map CaseStudyMeta to the grid display shape (enables the /work route). */
+function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
+  return meta.map((m) => ({
+    title: m.title,
+    category: m.category,
+    problem: m.description,
+    solution: m.description,
+    tech: m.techStack ?? [],
+    outcome: m.results?.map((r) => `${r.metric} ${r.value}`).join(" · ") || "Measurable results",
+    demo: "",
+    github: "",
+  }));
+}
+
 export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
-  const displayItems = items.length > 0 ? items : projects;
+  const displayItems: ProjectItem[] = items.length > 0 ? toGridItems(items) : projects;
 
   return (
     <section className="bg-slate-950 py-24 text-slate-50">
@@ -69,6 +94,7 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
             <StaggerCard
               key={project.title}
               index={index}
+              hoverReveal
               className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)]"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] opacity-0 transition duration-300 group-hover:opacity-100" />

@@ -12,14 +12,13 @@ interface FadeInUpProps {
   y?: number;
   /** Animate only once (default true) */
   once?: boolean;
-  /** Semantic HTML tag (default "div") */
-  as?: "div" | "section" | "article" | "span" | "header" | "footer";
 }
 
 /**
  * FadeInUp — spring-powered scroll reveal.
  *
  * Wraps any element and animates it into view with a smooth fade + translateY.
+ * Uses spring physics (stiffness: 100, damping: 20, mass: 0.8) for a premium feel.
  * Respects `prefers-reduced-motion` via Framer Motion's useReducedMotion hook.
  *
  * @example
@@ -33,20 +32,15 @@ export function FadeInUp({
   delay = 0,
   y = 30,
   once = true,
-  as = "div",
 }: FadeInUpProps) {
   const prefersReducedMotion = useReducedMotion();
 
   if (prefersReducedMotion) {
-    const Tag = as;
-    return <Tag className={cn(className)}>{children}</Tag>;
+    return <div className={cn(className)}>{children}</div>;
   }
 
-  const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
-  const isSpan = as === "span";
-
   return (
-    <MotionTag
+    <motion.div
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: "-50px" }}
@@ -57,10 +51,9 @@ export function FadeInUp({
         mass: 0.8,
         delay,
       }}
-      className={cn(!isSpan && className)}
-      style={isSpan ? { display: "inline-block", ...(className ? {} : {}) } : undefined}
+      className={cn(className)}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }

@@ -12,6 +12,11 @@ interface StaggerCardProps {
   hoverScale?: number;
   /** Whether to apply the fade-in-up stagger on viewport entry (default true) */
   animateOnMount?: boolean;
+  /**
+   * When true, inner content shifts up subtly on hover for a polished reveal effect.
+   * Works best on grids of project/case-study cards (default false).
+   */
+  hoverReveal?: boolean;
 }
 
 /**
@@ -19,11 +24,12 @@ interface StaggerCardProps {
  *
  * - Fades in and slides up on viewport entry with a stagger delay based on `index`.
  * - On hover: subtle scale up, lift, and enhanced shadow.
- * - Children receive shared stagger animation context — ideal for project/case-study grids.
+ * - With `hoverReveal`: inner content slides up slightly for a polished reveal effect.
+ * - Respects `prefers-reduced-motion` via Framer Motion's useReducedMotion hook.
  *
  * @example
  * {items.map((item, i) => (
- *   <StaggerCard key={item.id} index={i} className="...">
+ *   <StaggerCard key={item.id} index={i} hoverReveal className="...">
  *     <h3>{item.title}</h3>
  *     <p>{item.desc}</p>
  *   </StaggerCard>
@@ -35,6 +41,7 @@ export function StaggerCard({
   index = 0,
   hoverScale = 1.02,
   animateOnMount = true,
+  hoverReveal = false,
 }: StaggerCardProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -42,15 +49,18 @@ export function StaggerCard({
     return <div className={cn(className)}>{children}</div>;
   }
 
+  const mountAnim = animateOnMount
+    ? {
+        initial: { opacity: 0, y: 24 } as const,
+        whileInView: { opacity: 1, y: 0 } as const,
+        viewport: { once: true, margin: "-40px" as const },
+      }
+    : { initial: "rest" as const };
+
   return (
     <motion.div
-      {...(animateOnMount
-        ? {
-            initial: { opacity: 0, y: 24 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, margin: "-40px" },
-          }
-        : {})}
+      whileHover="hover"
+      {...mountAnim}
       transition={{
         type: "spring",
         stiffness: 100,
@@ -58,18 +68,34 @@ export function StaggerCard({
         mass: 0.8,
         delay: index * 0.08,
       }}
-      whileHover={{
-        y: -6,
-        scale: hoverScale,
-        transition: { type: "spring", stiffness: 300, damping: 15 },
+      variants={{
+        rest: { y: 0, scale: 1 },
+        hover: {
+          y: -6,
+          scale: hoverScale,
+          transition: { type: "spring", stiffness: 300, damping: 15 },
+        },
       }}
       className={cn(
-        // Base hover shadow transition via CSS for smooth perf
         "transition-shadow duration-300 will-change-transform",
         className,
       )}
     >
-      {children}
+      {hoverReveal ? (
+        <motion.div
+          variants={{
+            rest: { y: 0 },
+            hover: {
+              y: -3,
+              transition: { type: "spring", stiffness: 250, damping: 18 },
+            },
+          }}
+        >
+          {children}
+        </motion.div>
+      ) : (
+        children
+      )}
     </motion.div>
   );
 }
