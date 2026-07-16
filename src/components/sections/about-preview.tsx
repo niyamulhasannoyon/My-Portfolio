@@ -13,7 +13,7 @@ export function AboutPreview() {
   return (
     <section className="bg-[#09090b] py-20">
       <Container>
-        <div className="grid gap-8 rounded-[2rem] border border-white/[0.06] bg-zinc-900/60 p-8 text-white shadow-2xl shadow-black/40 backdrop-blur-sm lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
+        <div className="grid gap-8 rounded-2xl border border-white/[0.06] bg-zinc-900/60 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-sm sm:rounded-[2rem] sm:p-8 md:grid-cols-[1.1fr_0.9fr] lg:p-10">
           <div>
             <SectionHeading
               eyebrow="About"

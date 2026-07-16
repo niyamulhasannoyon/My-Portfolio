@@ -50,8 +50,8 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-32 sm:px-8 lg:px-12 lg:pb-32 lg:pt-40">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32 lg:px-12 lg:pb-32 lg:pt-40">
+        <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           {/* Left Column — Content */}
           <div className="max-w-3xl">
             {/* Availability badge */}
@@ -80,14 +80,16 @@ export function Hero() {
             <FadeInUp delay={0.16} y={20}>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg sm:leading-8">
                 Built with{" "}
-                {["Next.js", "React", "Node.js", "MongoDB"].map((tech, i) => (
-                  <span key={tech}>
-                    <span className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/80 px-2.5 py-0.5 text-sm font-medium text-zinc-200 transition-colors duration-200 hover:border-emerald-500/30 hover:text-emerald-300">
-                      {tech}
+                <span className="mt-1.5 inline-flex flex-wrap gap-x-1.5 gap-y-1.5 sm:mt-0 sm:inline">
+                  {["Next.js", "React", "Node.js", "MongoDB"].map((tech, i) => (
+                    <span key={tech} className="inline-flex">
+                      <span className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/80 px-2.5 py-0.5 text-xs font-medium text-zinc-200 transition-colors duration-200 hover:border-emerald-500/30 hover:text-emerald-300 sm:text-sm">
+                        {tech}
+                      </span>
+                      {i < 3 ? <span className="hidden sm:inline">, </span> : ""}
                     </span>
-                    {i < 3 ? ", " : ""}
-                  </span>
-                ))}{" "}
+                  ))}
+                </span>{" "}
                 to create sleek, scalable experiences that feel premium and
                 perform beautifully.
               </p>
@@ -117,22 +119,22 @@ export function Hero() {
 
             {/* Trust badges */}
             <FadeInUp delay={0.28} y={20}>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3.5 py-2 text-sm text-zinc-400 backdrop-blur-sm">
+              <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm">
                   <div className="flex">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
-                        className="h-3.5 w-3.5 fill-emerald-400 text-emerald-400"
+                        className="h-3 w-3 fill-emerald-400 text-emerald-400 sm:h-3.5 sm:w-3.5"
                       />
                     ))}
                   </div>
                   <span>4.9/5 client rating</span>
                 </div>
-                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3.5 py-2 text-sm text-zinc-400 backdrop-blur-sm">
-                  Fast launch timelines
+                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:px-3.5 sm:py-2 sm:text-sm">
+                  Fast launch<span className="hidden sm:inline"> timelines</span>
                 </span>
-                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3.5 py-2 text-sm text-zinc-400 backdrop-blur-sm">
+                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:px-3.5 sm:py-2 sm:text-sm">
                   SEO + CRO baked in
                 </span>
               </div>

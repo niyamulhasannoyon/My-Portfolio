@@ -24,7 +24,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-white/[0.06] bg-[#09090b]">
-      <div className="container grid gap-10 py-14 md:grid-cols-4">
+      <div className="container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
         <div className="md:col-span-2">
           <Link href="/" className="flex items-center gap-2 text-lg font-bold text-white transition-opacity hover:opacity-80">
             <span className="relative flex h-8 w-8 items-center justify-center">
