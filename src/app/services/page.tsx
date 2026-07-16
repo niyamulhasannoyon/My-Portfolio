@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 import { ServicesSection } from "@/components/sections/services-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { PricingSection } from "@/components/pricing/pricing-section";
@@ -25,34 +26,59 @@ const process = [
 
 export default function ServicesPage() {
   return (
-    <>
-      <Container className="py-16">
+    <div className="bg-[#030712] text-white">
+      <Container className="relative py-20 sm:py-24">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <FadeInUp>
-          <SectionHeading
-            eyebrow="Services"
-            title="How we'll work together"
-            description="A focused, transparent process built for high-ticket outcomes."
-          />
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">Services</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              How we’ll work together
+            </h1>
+            <p className="mt-5 text-lg leading-relaxed text-zinc-400 sm:text-xl">
+              A focused, transparent process built for high-ticket outcomes — from discovery to launch and continued optimization.
+            </p>
+          </div>
         </FadeInUp>
       </Container>
+
+      <div className="mx-auto h-px w-full max-w-6xl bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
       <ServicesSection />
-      <PricingSection />
-      <Container className="py-16">
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+      <Container className="py-20 sm:py-24">
+        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">What I do</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              A premium delivery experience from day one
+            </h2>
+          </div>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-300 transition hover:text-emerald-300"
+          >
+            Start your project <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {process.map((p, i) => (
             <StaggerCard
               key={p.step}
               index={i}
-              className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card hover:shadow-glow"
+              className="flex h-full flex-col rounded-2xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02]"
             >
-              <p className="text-sm font-bold text-brand-600">{p.step}</p>
-              <h3 className="mt-2 text-lg font-semibold text-ink">{p.title}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{p.desc}</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400">{p.step}</p>
+              <h3 className="mt-3 text-lg font-semibold text-white">{p.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{p.desc}</p>
             </StaggerCard>
           ))}
         </div>
       </Container>
+
+      <PricingSection />
       <CtaSection />
-    </>
+    </div>
   );
 }

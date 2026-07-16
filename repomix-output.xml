@@ -1,0 +1,3504 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+public/
+  favicon.svg
+  icon-192.png
+  icon-512.png
+  icon.svg
+  logo.svg
+  README.md
+src/
+  app/
+    about/
+      page.tsx
+    api/
+      contact/
+        route.ts
+    blog/
+      [slug]/
+        page.tsx
+      page.tsx
+    contact/
+      page.tsx
+    privacy/
+      page.tsx
+    services/
+      page.tsx
+    work/
+      page.tsx
+    globals.css
+    layout.tsx
+    manifest.ts
+    not-found.tsx
+    page.tsx
+    robots.ts
+    sitemap.ts
+  components/
+    booking/
+      schedule-modal.tsx
+    forms/
+      contact-form.tsx
+    layout/
+      footer.tsx
+      header.tsx
+      social-links.tsx
+    mdx/
+      mdx-components.tsx
+    pricing/
+      pricing-card.tsx
+      pricing-data.ts
+      pricing-section.tsx
+    sections/
+      about-preview.tsx
+      case-study-grid.tsx
+      cta-section.tsx
+      hero.tsx
+      services-section.tsx
+      testimonials-section.tsx
+    ui/
+      badge.tsx
+      button.tsx
+      container.tsx
+      fade-in-up.tsx
+      page-transition.tsx
+      reveal.tsx
+      section-heading.tsx
+      stagger-card.tsx
+  constants/
+    projects.ts
+  content/
+    blog/
+      scaling-uk-saas-nextjs.mdx
+  lib/
+    analytics.tsx
+    config.ts
+    content.ts
+    person-schema.ts
+    professional-service-schema.ts
+    schema.ts
+    seo.ts
+    utils.ts
+  types/
+    mdx.d.ts
+.env.example
+.eslintrc.json
+.gitignore
+next-sitemap.config.js
+next.config.mjs
+package.json
+postcss.config.mjs
+README.md
+tailwind.config.ts
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="public/favicon.svg">
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#0F172A"/>
+  <path d="M16 16h10l12 16 12-16h10l-18 24 18 24h-10l-12-16-12 16H16l18-24-18-24Z" fill="#10B981"/>
+</svg>
+</file>
+
+<file path="public/icon.svg">
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="120" fill="#0F172A"/>
+  <path d="M138 132h66l72 96 72-96h66l-112 148 112 148h-66l-72-96-72 96h-66l112-148-112-148Z" fill="#10B981"/>
+  <path d="M192 132h56l42 56 42-56h56l-70 92 70 92h-56l-42-56-42 56h-56l70-92-70-92Z" fill="#8B5CF6"/>
+</svg>
+</file>
+
+<file path="public/logo.svg">
+<svg width="320" height="96" viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="8" width="80" height="80" rx="20" fill="#0F172A"/>
+  <path d="M28 28h12l12 16 12-16h12l-18 24 18 24h-12l-12-16-12 16H28l18-24-18-24Z" fill="#10B981"/>
+  <text x="108" y="58" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700" fill="#0F172A">Niyamul Dev</text>
+</svg>
+</file>
+
+<file path="public/README.md">
+# Public assets
+# Replace these placeholders with real files:
+#   og/default.png    (1200x630 social share image)
+#   logo.png          (for JSON-LD publisher logo)
+#   icon-192.png      (PWA icon)
+#   icon-512.png      (PWA icon)
+#   case-studies/*.png (cover images referenced in MDX frontmatter)
+</file>
+
+<file path="src/app/api/contact/route.ts">
+import { NextResponse } from "next/server";
+import { siteConfig } from "@/lib/config";
+
+export async function POST(request: Request) {
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+  }
+
+  const { name, email, message } = body as { name?: string; email?: string; message?: string };
+
+  if (!name || !email || !message) {
+    return NextResponse.json({ ok: false, error: "Missing fields" }, { status: 422 });
+  }
+
+  // TODO: wire to Resend / HubSpot / your CRM using env vars.
+  // Example: await fetch("https://api.resend.com/emails", {...})
+  console.log("[contact] new lead", { name, email, to: siteConfig.email });
+
+  return NextResponse.json({ ok: true });
+}
+</file>
+
+<file path="src/app/blog/[slug]/page.tsx">
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { compileMDX } from "next-mdx-remote/rsc";
+import { Container } from "@/components/ui/container";
+import { Badge } from "@/components/ui/badge";
+import { CtaSection } from "@/components/sections/cta-section";
+import { mdxComponents } from "@/components/mdx/mdx-components";
+import { getCaseStudyBySlug, getCaseStudySlugs } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
+import { articleSchema } from "@/lib/schema";
+
+export function generateStaticParams() {
+  return getCaseStudySlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getCaseStudyBySlug(slug);
+  if (!post) return buildMetadata({ noIndex: true });
+
+  return buildMetadata({
+    title: post.title,
+    description: post.description,
+    path: `/blog/${post.slug}`,
+    image: post.coverImage,
+    type: "article",
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt ?? post.publishedAt,
+    keywords: [...post.services, ...post.techStack],
+  });
+}
+
+export default async function CaseStudyPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getCaseStudyBySlug(slug);
+  if (!post) notFound();
+
+  const { content } = await compileMDX({
+    source: post.content,
+    components: mdxComponents,
+    options: { parseFrontmatter: false },
+  });
+
+  return (
+    <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            articleSchema({
+              title: post.title,
+              description: post.description,
+              slug: post.slug,
+              publishedTime: post.publishedAt,
+              modifiedTime: post.updatedAt ?? post.publishedAt,
+              image: post.coverImage,
+            }),
+          ),
+        }}
+      />
+      <Container className="py-12">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 text-sm text-ink-muted hover:text-brand-600"
+        >
+          <ArrowLeft className="h-4 w-4" /> All case studies
+        </Link>
+
+        <header className="mx-auto mt-6 max-w-3xl text-center">
+          <div className="flex items-center justify-center gap-2">
+            <Badge>{post.category}</Badge>
+            {post.client && <span className="text-xs text-ink-muted">{post.client}</span>}
+          </div>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            {post.title}
+          </h1>
+          <p className="mt-4 text-lg text-ink-muted">{post.description}</p>
+          <p className="mt-3 text-sm text-ink-muted">
+            {new Date(post.publishedAt).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}{" "}
+            · {post.readingMinutes} min read
+          </p>
+        </header>
+
+        <div className="mx-auto mt-10 grid max-w-5xl gap-10 lg:grid-cols-[1fr_280px]">
+          <div className="max-w-2xl">
+            <div className="prose-ink">{content}</div>
+          </div>
+
+          <aside className="space-y-6">
+            <div className="rounded-2xl border border-ink/10 bg-white p-5 shadow-card">
+              <p className="text-sm font-semibold text-ink">Results</p>
+              <ul className="mt-3 space-y-3">
+                {post.results.map((r) => (
+                  <li key={r.metric} className="flex items-baseline justify-between">
+                    <span className="text-sm text-ink-muted">{r.metric}</span>
+                    <span className="text-lg font-bold text-brand-600">{r.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-ink/10 bg-white p-5 shadow-card">
+              <p className="text-sm font-semibold text-ink">Tech stack</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {post.techStack.map((t) => (
+                  <span key={t} className="rounded-full bg-ink/5 px-3 py-1 text-xs text-ink-muted">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </Container>
+      <CtaSection title="Have a similar challenge?" description="Let's talk through your project." />
+    </article>
+  );
+}
+</file>
+
+<file path="src/app/blog/page.tsx">
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { getAllCaseStudies } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Blog & Case Studies",
+  description:
+    "Case studies, teardowns and playbooks on conversion-focused web development with Next.js, React and WordPress.",
+  path: "/blog",
+  keywords: ["web development blog", "Next.js case studies", "conversion playbook"],
+});
+
+export default function BlogPage() {
+  const posts = getAllCaseStudies();
+  return (
+    <Container className="py-16">
+      <SectionHeading
+        eyebrow="Blog"
+        title="Case studies & playbooks"
+        description="How I turn traffic into revenue — with the receipts."
+      />
+      <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="group flex flex-col rounded-2xl border border-ink/10 bg-white p-6 shadow-card transition-shadow hover:shadow-glow"
+          >
+            <div className="flex items-center gap-2">
+              <Badge>{post.category}</Badge>
+              <span className="text-xs text-ink-muted">
+                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  month: "short",
+                  year: "numeric",
+                })}
+              </span>
+            </div>
+            <h3 className="mt-3 text-lg font-semibold text-ink group-hover:text-brand-600">
+              {post.title}
+            </h3>
+            <p className="mt-2 line-clamp-3 text-sm text-ink-muted">{post.description}</p>
+            <span className="mt-4 text-sm font-medium text-brand-600">
+              {post.readingMinutes} min read →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </Container>
+  );
+}
+</file>
+
+<file path="src/app/contact/page.tsx">
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { ContactForm } from "@/components/forms/contact-form";
+import { siteConfig } from "@/lib/config";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Contact",
+  description:
+    "Book a free strategy call with a full-stack developer. Available for Next.js, React, Node.js and WordPress projects.",
+  path: "/contact",
+  keywords: ["hire freelance developer", "book a developer call"],
+});
+
+export default function ContactPage() {
+  return (
+    <Container className="py-16">
+      <div className="grid gap-12 lg:grid-cols-2">
+        <div>
+          <SectionHeading
+            eyebrow="Contact"
+            title="Book a free strategy call"
+            description="Tell me about your project and I'll reply within 24 hours with next steps and a rough scope."
+          />
+          <div className="mt-8 space-y-3 text-sm text-ink-muted">
+            <p>📍 {siteConfig.location}</p>
+            <p>✉️ <a href={`mailto:${siteConfig.email}`} className="text-brand-600 hover:underline">{siteConfig.email}</a></p>
+            <p>⚡ {siteConfig.availability}</p>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-ink/10 bg-white p-8 shadow-card">
+          <Suspense fallback={null}>
+            <ContactForm />
+          </Suspense>
+        </div>
+      </div>
+    </Container>
+  );
+}
+</file>
+
+<file path="src/app/work/page.tsx">
+import type { Metadata } from "next";
+import { CaseStudyGrid } from "@/components/sections/case-study-grid";
+import { CtaSection } from "@/components/sections/cta-section";
+import { getAllCaseStudies } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Case Studies",
+  description:
+    "Results-driven web development case studies: performance rebuilds, SaaS platforms and conversion-focused builds.",
+  path: "/work",
+  keywords: ["web development case studies", "Next.js portfolio", "freelance developer results"],
+});
+
+export default function WorkPage() {
+  const all = getAllCaseStudies();
+  return (
+    <>
+      <CaseStudyGrid items={all} />
+      <CtaSection title="Want results like these?" description="Let's scope your project." />
+    </>
+  );
+}
+</file>
+
+<file path="src/app/not-found.tsx">
+import Link from "next/link";
+import { Container } from "@/components/ui/container";
+
+export default function NotFound() {
+  return (
+    <Container className="flex flex-col items-center justify-center py-32 text-center">
+      <p className="text-sm font-semibold text-brand-600">404</p>
+      <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink">Page not found</h1>
+      <p className="mt-3 text-ink-muted">The page you&apos;re looking for doesn&apos;t exist or moved.</p>
+      <Link
+        href="/"
+        className="mt-6 inline-flex h-11 items-center rounded-xl bg-brand-600 px-5 text-sm font-medium text-white hover:bg-brand-700"
+      >
+        Back home
+      </Link>
+    </Container>
+  );
+}
+</file>
+
+<file path="src/app/robots.ts">
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/config";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: new URL("/sitemap.xml", siteConfig.url).toString(),
+    host: siteConfig.url,
+  };
+}
+</file>
+
+<file path="src/app/sitemap.ts">
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/config";
+import { getCaseStudySlugs } from "@/lib/content";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const routes = ["", "/services", "/work", "/blog", "/about", "/contact"].map((path) => ({
+    url: new URL(path, siteConfig.url).toString(),
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: path === "" ? 1 : 0.8,
+  }));
+
+  const posts = getCaseStudySlugs().map((slug) => ({
+    url: new URL(`/blog/${slug}`, siteConfig.url).toString(),
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...routes, ...posts];
+}
+</file>
+
+<file path="src/components/booking/schedule-modal.tsx">
+"use client";
+
+import { useEffect, useState } from "react";
+import { X, Calendar } from "lucide-react";
+
+export function ScheduleModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (!open) {
+      setIsVisible(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => setIsLoading(false), 600);
+    const showTimer = window.setTimeout(() => setIsVisible(true), 10);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(showTimer);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 px-4 py-6 backdrop-blur-xl transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}
+      onClick={onClose}
+      role="presentation"
+    >
+      <div
+        className={`relative flex h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950 shadow-2xl shadow-black/40 transition-all duration-300 ${isVisible ? "translate-y-0 scale-100" : "translate-y-3 scale-98"}`}
+        onClick={(event) => event.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Book a strategy call"
+      >
+        <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-4 py-3 sm:px-6">
+          <div className="flex items-center gap-3">
+            <div className="rounded-full bg-emerald-500/10 p-2 text-emerald-300">
+              <Calendar className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">Book a Free 10-Min Strategy Call</p>
+              <p className="text-xs text-slate-400">A quick conversation to explore your growth goals.</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-full border border-slate-700 bg-slate-950/80 p-2 text-slate-300 transition hover:border-emerald-400/50 hover:text-white"
+            aria-label="Close booking modal"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="relative flex-1 overflow-hidden bg-slate-950">
+          {isLoading ? (
+            <div className="flex h-full items-center justify-center bg-slate-950 p-6">
+              <div className="w-full max-w-xl space-y-4 rounded-3xl border border-slate-800 bg-slate-900/80 p-6">
+                <div className="h-4 w-32 animate-pulse rounded-full bg-slate-800" />
+                <div className="space-y-3">
+                  <div className="h-3 w-full animate-pulse rounded-full bg-slate-800" />
+                  <div className="h-3 w-5/6 animate-pulse rounded-full bg-slate-800" />
+                  <div className="h-3 w-3/4 animate-pulse rounded-full bg-slate-800" />
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="h-24 animate-pulse rounded-2xl bg-slate-800" />
+                  <div className="h-24 animate-pulse rounded-2xl bg-slate-800" />
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          <div className={isLoading ? "hidden" : "h-full w-full"}>
+            <iframe
+              src="https://cal.com/niyamulhasan/10min-strategy-call?overlayCalendar=true"
+              loading="lazy"
+              title="Book a strategy call"
+              className="h-full w-full min-h-[640px] border-0"
+              allow="clipboard-write; microphone; camera"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/forms/contact-form.tsx">
+"use client";
+
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { ShieldCheck, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+export function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const params = useSearchParams();
+  const plan = params.get("plan");
+  const defaultMessage = plan
+    ? `Hi! I'm interested in the ${plan} plan. Here are my goals: `
+    : "";
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("loading");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(Object.fromEntries(data)),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <div className="rounded-[2rem] border border-slate-800 bg-slate-950/90 p-6 shadow-2xl shadow-black/30 sm:p-8 lg:p-10">
+      <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-emerald-300">
+        <Sparkles className="h-4 w-4" />
+        <span>Free 5-Minute Website &amp; SEO Audit</span>
+      </div>
+      <div className="mt-4 flex items-start gap-3 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-4">
+        <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-300" />
+        <p className="text-sm leading-7 text-slate-300">
+          Valued at <span className="font-semibold text-white">$150</span>. I’ll review your site for clarity, speed, SEO, and conversion opportunities.
+        </p>
+      </div>
+
+      <form onSubmit={onSubmit} className="mt-8 grid gap-4">
+        <div className="grid gap-4 md:grid-cols-2">
+          <Field label="Name" name="name" placeholder="Jane Doe" required />
+          <Field label="Business Email" name="email" type="email" placeholder="jane@company.com" required />
+        </div>
+        <Field label="Current Website URL" name="website" type="url" placeholder="https://yourcompany.com" required />
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-slate-200">
+            What’s your biggest business challenge?
+          </label>
+          <textarea
+            name="message"
+            required
+            rows={5}
+            defaultValue={defaultMessage}
+            placeholder="Tell me about your goals, friction points, and growth priorities…"
+            className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20"
+          />
+        </div>
+
+        <Button
+          type="submit"
+          size="lg"
+          disabled={status === "loading"}
+          className="rounded-full bg-emerald-500 px-6 py-3 text-base font-semibold text-slate-950 transition hover:bg-emerald-400"
+        >
+          {status === "loading" ? "Sending…" : "Get My Free Audit"}
+        </Button>
+
+        {status === "success" && (
+          <p className="text-sm text-emerald-300">Thanks! I’ll reply within 24 hours with your personalized audit.</p>
+        )}
+        {status === "error" && (
+          <p className="text-sm text-rose-300">Something went wrong. Please email me directly instead.</p>
+        )}
+      </form>
+
+      <div className="mt-6 border-t border-slate-800 pt-5 text-sm text-slate-400">
+        <p className="font-medium text-slate-300">“I don’t just design websites — I help businesses turn attention into revenue.”</p>
+        <p className="mt-2">No spam. No fluff. Just actionable insight tailored to your business.</p>
+      </div>
+    </div>
+  );
+}
+
+function Field({
+  label,
+  name,
+  type = "text",
+  placeholder,
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  placeholder?: string;
+  required?: boolean;
+}) {
+  return (
+    <div>
+      <label className="mb-1.5 block text-sm font-medium text-slate-200">{label}</label>
+      <input
+        type={type}
+        name={name}
+        required={required}
+        placeholder={placeholder}
+        className="w-full rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20"
+      />
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/mdx/mdx-components.tsx">
+import type { MDXComponents } from "mdx/types";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+/**
+ * Shared MDX component overrides for case-study rendering.
+ * Keeps typography consistent and links internal by default.
+ */
+export const mdxComponents: MDXComponents = {
+  h2: ({ className, ...props }) => (
+    <h2 className={cn("mt-10 scroll-mt-24 text-2xl font-semibold tracking-tight", className)} {...props} />
+  ),
+  h3: ({ className, ...props }) => (
+    <h3 className={cn("mt-8 text-xl font-semibold tracking-tight", className)} {...props} />
+  ),
+  p: ({ className, ...props }) => (
+    <p className={cn("mt-4 leading-7 text-ink-muted", className)} {...props} />
+  ),
+  ul: ({ className, ...props }) => (
+    <ul className={cn("mt-4 list-disc space-y-2 pl-6 text-ink-muted", className)} {...props} />
+  ),
+  a: ({ className, href = "#", ...props }) => (
+    <Link href={href} className={cn("font-medium text-brand-600 underline-offset-4 hover:underline", className)} {...props} />
+  ),
+  blockquote: ({ className, ...props }) => (
+    <blockquote className={cn("mt-6 border-l-2 border-brand-500 pl-4 italic text-ink", className)} {...props} />
+  ),
+  code: ({ className, ...props }) => (
+    <code className={cn("rounded bg-ink/5 px-1.5 py-0.5 font-mono text-sm", className)} {...props} />
+  ),
+};
+</file>
+
+<file path="src/components/pricing/pricing-data.ts">
+export interface PricingTier {
+  id: string;
+  name: string;
+  tagline: string;
+  priceFrom: number;
+  priceTo?: number;
+  priceNote?: string;
+  popular?: boolean;
+  cta: {
+    label: string;
+    href: string;
+  };
+  features: string[];
+}
+
+export const pricingTiers: PricingTier[] = [
+  {
+    id: "landing",
+    name: "Landing Page",
+    tagline: "High-converting, lightning-fast single page.",
+    priceFrom: 200,
+    priceTo: 400,
+    cta: { label: "Get Started", href: "/contact?plan=landing" },
+    features: [
+      "Next.js + Tailwind, Lighthouse 95+",
+      "Conversion-focused copy & layout",
+      "Lead capture form + analytics",
+      "Mobile-first responsive design",
+      "SEO base + Open Graph setup",
+      "3-day delivery sprint",
+    ],
+  },
+  {
+    id: "business",
+    name: "Business Website",
+    tagline: "For local businesses ready to win clients.",
+    priceFrom: 500,
+    priceTo: 1000,
+    cta: { label: "Get Started", href: "/contact?plan=business" },
+    features: [
+      "Up to 6 polished pages",
+      "Dentists, Lawyers, Real Estate layouts",
+      "CMS so you edit content yourself",
+      "Local SEO + Google Business schema",
+      "Contact, booking & map integration",
+      "1–2 week delivery",
+    ],
+  },
+  {
+    id: "ecommerce",
+    name: "E-commerce Store",
+    tagline: "Sell online with a store built to convert.",
+    priceFrom: 1000,
+    priceTo: 3000,
+    popular: true,
+    cta: { label: "Let's Talk", href: "/contact?plan=ecommerce" },
+    features: [
+      "Headless or full-stack storefront",
+      "Cart, checkout & payments (Stripe)",
+      "Product, inventory & order mgmt",
+      "Performance & conversion optimization",
+      "High-end custom setups available",
+      "2–4 week delivery",
+    ],
+  },
+  {
+    id: "saas",
+    name: "Custom Dashboard / SaaS",
+    tagline: "Scalable Node.js & MongoDB architectures.",
+    priceFrom: 2000,
+    priceTo: 5000,
+    priceNote: "starting at",
+    cta: { label: "Let's Talk", href: "/contact?plan=saas" },
+    features: [
+      "React/Next.js app + Node.js API",
+      "MongoDB data layer & auth",
+      "Role-based dashboards & analytics",
+      "Scalable, secure architecture",
+      "CI/CD, tests & docs",
+      "Ongoing retainer options",
+    ],
+  },
+];
+
+export function formatPrice(value: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+</file>
+
+<file path="src/components/ui/badge.tsx">
+import { cn } from "@/lib/utils";
+
+export function Badge({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700",
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+</file>
+
+<file path="src/components/ui/button.tsx">
+import { Slot } from "@radix-ui/react-slot";
+import { cn } from "@/lib/utils";
+
+type Variant = "primary" | "secondary" | "ghost" | "outline";
+type Size = "sm" | "md" | "lg";
+
+const variants: Record<Variant, string> = {
+  primary: "bg-brand-600 text-white hover:bg-brand-700 shadow-sm",
+  secondary: "bg-ink text-white hover:bg-ink/90",
+  ghost: "bg-transparent text-ink hover:bg-ink/5",
+  outline: "border border-ink/15 bg-white text-ink hover:border-brand-400 hover:text-brand-600",
+};
+
+const sizes: Record<Size, string> = {
+  sm: "h-9 px-3 text-sm",
+  md: "h-11 px-5 text-sm",
+  lg: "h-12 px-7 text-base",
+};
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: Variant;
+  size?: Size;
+  asChild?: boolean;
+}
+
+export function Button({
+  className,
+  variant = "primary",
+  size = "md",
+  asChild = false,
+  ...props
+}: ButtonProps) {
+  const Comp = asChild ? Slot : "button";
+  return (
+    <Comp
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        variants[variant],
+        sizes[size],
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+</file>
+
+<file path="src/components/ui/container.tsx">
+import { cn } from "@/lib/utils";
+
+import type { ElementType, HTMLAttributes } from "react";
+
+interface ContainerProps extends HTMLAttributes<HTMLElement> {
+  as?: ElementType;
+}
+
+export function Container({ as: Tag = "div", className, ...props }: ContainerProps) {
+  const Comp = Tag as React.ElementType;
+  return <Comp className={cn("container", className)} {...props} />;
+}
+</file>
+
+<file path="src/components/ui/page-transition.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+
+/**
+ * PageTransition — wraps page content with a subtle fade + slide-up animation
+ * on route changes. Respects reduced-motion preferences via CSS.
+ */
+export function PageTransition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  return (
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 120,
+        damping: 20,
+        mass: 0.5,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/ui/reveal.tsx">
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+/**
+ * Reveal — lightweight fade-up scroll animation.
+ *
+ * Upgraded to use Framer Motion spring physics for a premium feel.
+ * Drop-in replacement for the previous CSS-based version.
+ * Respects `prefers-reduced-motion` via Framer Motion's useReducedMotion hook.
+ *
+ * @example
+ * <Reveal delay={150}>
+ *   <p>Content fades in on scroll</p>
+ * </Reveal>
+ */
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  /** Delay in milliseconds (default 0) */
+  delay?: number;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 22,
+        mass: 0.9,
+        delay: delay / 1000,
+      }}
+      className={cn(className)}
+    >
+      {children}
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/constants/projects.ts">
+export interface ProjectItem {
+  title: string;
+  category: string;
+  problem: string;
+  solution: string;
+  tech: string[];
+  outcome: string;
+  outcomeDescription: string;
+  demo: string;
+  github: string | null;
+}
+
+export const projects: ProjectItem[] = [
+  {
+    title: "Modern Commerce Storefront",
+    category: "E-commerce",
+    problem:
+      "A growing retail brand needed a storefront that felt premium, loaded fast, and made product discovery effortless.",
+    solution:
+      "Rebuilt the experience around a faster Next.js frontend with App Router, rich product storytelling pages, and a MongoDB-backed catalog powered by Cloudinary media delivery for instant image optimization.",
+    tech: ["Next.js", "MongoDB", "Cloudinary"],
+    outcome: "40% sales uplift",
+    outcomeDescription: "Measurable lift in conversion rate within the first quarter post-launch.",
+    demo: "https://example.com/project-1",
+    github: "https://github.com/niyamulhasannoyon/ecommerce-storefront",
+  },
+  {
+    title: "Operations Dashboard for a Growing Team",
+    category: "SaaS / Operations",
+    problem:
+      "The team needed a real-time view of inventory, sales, and stock movement without relying on scattered spreadsheets and separate tools.",
+    solution:
+      "Shipped a React + Node.js dashboard with role-based access, real-time reporting via WebSockets, and a Cloudflare-optimized delivery layer that cut page load times by over 60%.",
+    tech: ["React", "Node.js", "Cloudflare"],
+    outcome: "100% Core Web Vitals",
+    outcomeDescription: "Perfect Lighthouse scores across all dimensions on desktop and mobile.",
+    demo: "https://example.com/project-2",
+    github: "https://github.com/niyamulhasannoyon/ops-dashboard",
+  },
+  {
+    title: "Premium Niche Business Website",
+    category: "WordPress",
+    problem:
+      "A niche service business wanted a more trustworthy, high-end online presence that converted visitors into qualified leads rather than bouncing them.",
+    solution:
+      "Delivered a polished WordPress experience with Elementor and custom CSS — improving content hierarchy, credibility signals, and inquiry flow through strategic form placement and testimonial blocks.",
+    tech: ["WordPress", "Elementor", "Custom CSS"],
+    outcome: "35% lower bounce rate",
+    outcomeDescription: "Visitors stayed longer and engaged deeper with the new content structure.",
+    demo: "https://example.com/project-3",
+    github: null,
+  },
+];
+</file>
+
+<file path="src/content/blog/scaling-uk-saas-nextjs.mdx">
+---
+title: "Scaling a UK SaaS to 40k Users with Next.js & MongoDB"
+description: "How a performance rebuild cut load times 68% and lifted trial conversions for a London-based B2B SaaS."
+publishedAt: "2026-06-12"
+updatedAt: "2026-06-20"
+category: "SaaS"
+client: "Confidential (UK B2B SaaS)"
+industry: "B2B Software"
+services:
+  - "Next.js migration"
+  - "MongoDB schema optimization"
+  - "Core Web Vitals tuning"
+coverImage: "/case-studies/uk-saas-cover.png"
+techStack:
+  - "Next.js"
+  - "React"
+  - "Node.js"
+  - "MongoDB"
+  - "Tailwind CSS"
+results:
+  - metric: "Load time"
+    value: "-68%"
+  - metric: "Trial conversion"
+    value: "+23%"
+  - metric: "Lighthouse"
+    value: "98"
+featured: true
+draft: false
+---
+
+## The challenge
+
+The client's legacy React SPA was shipping 1.4MB of JavaScript on first paint,
+causing a 4.2s LCP and a high bounce rate from cold LinkedIn traffic.
+
+## What I built
+
+I re-platformed the marketing site and dashboard onto the **Next.js App Router**
+with server components, streaming, and a re-indexed MongoDB aggregation layer.
+Edge caching and image optimization removed the heaviest render paths.
+
+## Outcomes
+
+- Page load dropped from 4.2s to **1.3s**
+- Trial signups from paid cold traffic rose **23%**
+- Lighthouse performance scored **98** across key landing pages
+
+> "The rebuild paid for itself in the first month of ad spend." — Founder, UK SaaS
+</file>
+
+<file path="src/lib/analytics.tsx">
+/**
+ * Lightweight analytics loader. Add GA / PostHog IDs to .env to enable.
+ * Kept dependency-free to avoid blocking the main thread.
+ */
+export function Analytics() {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+
+  if (!gaId && !posthogKey) return null;
+
+  return (
+    <>
+      {gaId && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`,
+            }}
+          />
+        </>
+      )}
+      {posthogKey && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+              posthog.init('${posthogKey}', { api_host: '${process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com"}' });
+            `,
+          }}
+        />
+      )}
+    </>
+  );
+}
+</file>
+
+<file path="src/lib/person-schema.ts">
+import { siteConfig } from "@/lib/config";
+
+/** Site-wide Person schema injected in root layout. */
+export function personSchema(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: siteConfig.author,
+    url: siteConfig.url,
+    email: siteConfig.email,
+    jobTitle: "Full-Stack Developer",
+    image: new URL("/og/default.png", siteConfig.url).toString(),
+    sameAs: Object.values(siteConfig.social),
+    address: { "@type": "PostalAddress", addressCountry: "Remote" },
+    knowsAbout: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "WordPress",
+      "TypeScript",
+    ],
+  };
+}
+</file>
+
+<file path="src/lib/professional-service-schema.ts">
+import type { ProfessionalService, WithContext } from "schema-dts";
+import { siteConfig } from "@/lib/config";
+
+/**
+ * JSON-LD for a Professional Service / freelance developer. Helps Google rank
+ * the site for both local (US/UK) and international high-ticket queries.
+ * Inject via a <script type="application/ld+json"> in the root layout.
+ */
+export function professionalServiceSchema(): WithContext<ProfessionalService> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    email: siteConfig.email,
+    telephone: siteConfig.phone || undefined,
+    image: new URL("/og/default.png", siteConfig.url).toString(),
+    logo: new URL("/logo.png", siteConfig.url).toString(),
+    priceRange: "$$$",
+    slogan: "High-performance web apps that convert cold traffic into high-ticket clients.",
+    areaServed: [
+      { "@type": "Country", name: "United States" },
+      { "@type": "Country", name: "United Kingdom" },
+      { "@type": "Country", name: "Europe" },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "US",
+    },
+    founder: {
+      "@type": "Person",
+      name: siteConfig.author,
+      jobTitle: "Full-Stack Developer",
+      knowsAbout: [
+        "Next.js",
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "WordPress",
+        "TypeScript",
+      ],
+      sameAs: Object.values(siteConfig.social),
+    },
+    sameAs: Object.values(siteConfig.social),
+    makesOffer: [
+      {
+        "@type": "Offer",
+        name: "Landing Page",
+        description: "High-converting, lightning-fast single page.",
+        priceCurrency: "USD",
+        price: "200",
+        url: new URL("/services", siteConfig.url).toString(),
+      },
+      {
+        "@type": "Offer",
+        name: "Business Website",
+        description: "For local businesses: Dentists, Lawyers, Real Estate.",
+        priceCurrency: "USD",
+        price: "500",
+        url: new URL("/services", siteConfig.url).toString(),
+      },
+      {
+        "@type": "Offer",
+        name: "E-commerce Store",
+        description: "Full-stack or high-end custom storefronts.",
+        priceCurrency: "USD",
+        price: "1000",
+        url: new URL("/services", siteConfig.url).toString(),
+      },
+      {
+        "@type": "Offer",
+        name: "Custom Dashboard / SaaS",
+        description: "Scalable Node.js & MongoDB architectures.",
+        priceCurrency: "USD",
+        price: "2000",
+        url: new URL("/services", siteConfig.url).toString(),
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "1",
+    },
+  };
+}
+</file>
+
+<file path="src/lib/schema.ts">
+import type { Article, WithContext } from "schema-dts";
+import { siteConfig } from "@/lib/config";
+
+/** JSON-LD for an individual blog/case-study article (rich results eligible). */
+export function articleSchema(input: {
+  title: string;
+  description: string;
+  slug: string;
+  publishedTime: string;
+  modifiedTime: string;
+  image?: string;
+}): WithContext<Article> {
+  const url = new URL(`/blog/${input.slug}`, siteConfig.url).toString();
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: input.title,
+    description: input.description,
+    image: input.image ? new URL(input.image, siteConfig.url).toString() : undefined,
+    datePublished: input.publishedTime,
+    dateModified: input.modifiedTime,
+    author: { "@type": "Person", name: siteConfig.author, url: siteConfig.url },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.shortName,
+      logo: { "@type": "ImageObject", url: new URL("/logo.png", siteConfig.url).toString() },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  };
+}
+</file>
+
+<file path="src/lib/utils.ts">
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+/**
+ * Merge Tailwind class names with conflict resolution.
+ * Usage: cn("px-2", condition && "px-4", "py-1")
+ */
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+</file>
+
+<file path="src/types/mdx.d.ts">
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+declare module "*.mdx" {
+  let MDXComponent: (props: Record<string, unknown>) => JSX.Element;
+  export default MDXComponent;
+}
+</file>
+
+<file path=".env.example">
+# --- Site ---
+NEXT_PUBLIC_SITE_URL="https://yourdomain.com"
+NEXT_PUBLIC_SITE_NAME="Niyamul Hasan — Full-Stack Developer"
+NEXT_PUBLIC_TWITTER_HANDLE="@yourhandle"
+
+# --- Contact (server-only) ---
+CONTACT_TO_EMAIL="you@yourdomain.com"
+
+# --- Analytics (optional, server-only secrets) ---
+# NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX"
+# NEXT_PUBLIC_POSTHOG_KEY="phc_xxx"
+# NEXT_PUBLIC_POSTHOG_HOST="https://eu.i.posthog.com"
+
+# --- Forms (optional) ---
+# RESEND_API_KEY="re_xxx"
+# HUBSPOT_PORTAL_ID=""
+# HUBSPOT_FORM_ID=""
+</file>
+
+<file path=".eslintrc.json">
+{
+  "extends": "next/core-web-vitals"
+}
+</file>
+
+<file path=".gitignore">
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+/build
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+.env
+.env*.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# sitemap (generated)
+/public/robots.txt
+/public/sitemap*.xml
+</file>
+
+<file path="next-sitemap.config.js">
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com",
+  generateRobotsTxt: true,
+  exclude: ["/api/*"],
+  robotsTxtOptions: {
+    policies: [{ userAgent: "*", allow: "/" }],
+  },
+};
+</file>
+
+<file path="next.config.mjs">
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "cdn.sanity.io" },
+    ],
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react", "react"],
+  },
+};
+
+export default nextConfig;
+</file>
+
+<file path="postcss.config.mjs">
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="src/app/about/page.tsx">
+import type { Metadata } from "next";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { CtaSection } from "@/components/sections/cta-section";
+import { SocialLinks } from "@/components/layout/social-links";
+import { siteConfig } from "@/lib/config";
+import { buildMetadata } from "@/lib/seo";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+
+export const metadata: Metadata = buildMetadata({
+  title: "About",
+  description:
+    "Full-stack developer helping US, UK & European businesses ship fast, conversion-focused web products with Next.js and WordPress.",
+  path: "/about",
+  keywords: ["about full-stack developer", "freelance developer bio"],
+});
+
+const stack = ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "WordPress", "Vercel"];
+
+export default function AboutPage() {
+  return (
+    <Container className="py-16">
+      <div className="grid gap-12 lg:grid-cols-2">
+        <div>
+          <FadeInUp>
+            <SectionHeading
+              eyebrow="About"
+              title="I build web products that pay for themselves"
+              description="I'm a full-stack developer partnering with founders and agencies across the US, UK & Europe to ship high-performance, conversion-focused web apps."
+            />
+          </FadeInUp>
+          <FadeInUp delay={0.1}>
+            <p className="mt-6 text-ink-muted">
+              My focus is simple: turn your cold traffic from LinkedIn and email into qualified,
+              high-ticket leads. That means fast sites, clean SEO foundations, and landing pages
+              engineered around a single goal — the conversion.
+            </p>
+          </FadeInUp>
+          <FadeInUp delay={0.2}>
+            <div className="mt-8">
+              <p className="text-sm font-semibold text-ink">Tech I work with</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {stack.map((s) => (
+                  <span key={s} className="rounded-full border border-ink/10 bg-white px-3 py-1 text-sm text-ink-muted">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </FadeInUp>
+          <FadeInUp delay={0.3}>
+            <div className="mt-8 flex items-center gap-4">
+              <SocialLinks className="flex items-center gap-4" />
+            </div>
+          </FadeInUp>
+        </div>
+        <FadeInUp delay={0.15} y={40}>
+          <div className="rounded-2xl border border-ink/10 bg-white p-8 shadow-card">
+            <p className="text-sm font-semibold text-brand-600">At a glance</p>
+            <dl className="mt-4 space-y-4 text-sm">
+              <div className="flex justify-between border-b border-ink/5 pb-3">
+                <dt className="text-ink-muted">Location</dt>
+                <dd className="font-medium text-ink">{siteConfig.location}</dd>
+              </div>
+              <div className="flex justify-between border-b border-ink/5 pb-3">
+                <dt className="text-ink-muted">Availability</dt>
+                <dd className="font-medium text-ink">{siteConfig.availability}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-ink-muted">Focus</dt>
+                <dd className="font-medium text-ink">High-ticket lead gen</dd>
+              </div>
+            </dl>
+          </div>
+        </FadeInUp>
+      </div>
+      <CtaSection />
+    </Container>
+  );
+}
+</file>
+
+<file path="src/app/privacy/page.tsx">
+import type { Metadata } from "next";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Privacy Policy",
+  description: "How this site collects and handles your data.",
+  path: "/privacy",
+  noIndex: true,
+});
+
+export default function PrivacyPage() {
+  return (
+    <Container className="py-16">
+      <SectionHeading eyebrow="Legal" title="Privacy Policy" />
+      <div className="prose-ink mt-8 max-w-2xl">
+        <p>
+          This website collects minimal analytics and contact-form data to respond to inquiries.
+          We do not sell your data. Contact information submitted via the form is used solely to
+          reply to your message.
+        </p>
+        <p>
+          For questions, email{" "}
+          <a href={`mailto:hello@niyamuldev.com`}>hello@niyamuldev.com</a>.
+        </p>
+      </div>
+    </Container>
+  );
+}
+</file>
+
+<file path="src/app/services/page.tsx">
+import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
+import { ServicesSection } from "@/components/sections/services-section";
+import { CtaSection } from "@/components/sections/cta-section";
+import { PricingSection } from "@/components/pricing/pricing-section";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { buildMetadata } from "@/lib/seo";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Services",
+  description:
+    "Next.js, React, Node.js, MongoDB and WordPress development services engineered for performance and conversion.",
+  path: "/services",
+  keywords: ["Next.js developer", "React developer", "Node.js", "WordPress developer", "freelance full-stack"],
+});
+
+const process = [
+  { step: "01", title: "Discovery call", desc: "We map your goals, traffic sources and conversion blockers." },
+  { step: "02", title: "Strategy & scope", desc: "Fixed-scope plan with measurable outcomes and a timeline." },
+  { step: "03", title: "Build & ship", desc: "Weekly demos, performance-checked, SEO-ready from day one." },
+  { step: "04", title: "Optimize", desc: "Post-launch CRO and analytics to keep conversion climbing." },
+];
+
+export default function ServicesPage() {
+  return (
+    <div className="bg-[#030712] text-white">
+      <Container className="relative py-20 sm:py-24">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <FadeInUp>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">Services</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              How we’ll work together
+            </h1>
+            <p className="mt-5 text-lg leading-relaxed text-zinc-400 sm:text-xl">
+              A focused, transparent process built for high-ticket outcomes — from discovery to launch and continued optimization.
+            </p>
+          </div>
+        </FadeInUp>
+      </Container>
+
+      <div className="mx-auto h-px w-full max-w-6xl bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      <ServicesSection />
+
+      <Container className="py-20 sm:py-24">
+        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">What I do</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              A premium delivery experience from day one
+            </h2>
+          </div>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-300 transition hover:text-emerald-300"
+          >
+            Start your project <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {process.map((p, i) => (
+            <StaggerCard
+              key={p.step}
+              index={i}
+              className="flex h-full flex-col rounded-2xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02]"
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400">{p.step}</p>
+              <h3 className="mt-3 text-lg font-semibold text-white">{p.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{p.desc}</p>
+            </StaggerCard>
+          ))}
+        </div>
+      </Container>
+
+      <PricingSection />
+      <CtaSection />
+    </div>
+  );
+}
+</file>
+
+<file path="src/app/globals.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Sora", var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark-mode article typography */
+.prose-ink h2 {
+  @apply mt-10 scroll-mt-24 text-2xl font-semibold tracking-tight text-white;
+}
+.prose-ink h3 {
+  @apply mt-8 text-xl font-semibold tracking-tight text-white;
+}
+.prose-ink p {
+  @apply mt-4 leading-7 text-zinc-400;
+}
+.prose-ink ul {
+  @apply mt-4 list-disc space-y-2 pl-6 text-zinc-400;
+}
+.prose-ink a {
+  @apply font-medium text-emerald-400 underline-offset-4 hover:text-emerald-300 hover:underline;
+}
+.prose-ink blockquote {
+  @apply mt-6 border-l-2 border-emerald-500/50 pl-4 italic text-zinc-300;
+}
+.prose-ink code {
+  @apply rounded bg-white/5 px-1.5 py-0.5 font-mono text-sm text-zinc-200;
+}
+</file>
+
+<file path="src/app/manifest.ts">
+import { siteConfig } from "@/lib/config";
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: siteConfig.name,
+    short_name: siteConfig.shortName,
+    description: siteConfig.description,
+    start_url: "/",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#3366ff",
+    icons: [
+      { src: "/icon.svg", sizes: "any", type: "image/svg+xml" },
+      { src: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+    ],
+  };
+}
+</file>
+
+<file path="src/app/page.tsx">
+import { Hero } from "@/components/sections/hero";
+import { ServicesSection } from "@/components/sections/services-section";
+import { AboutPreview } from "@/components/sections/about-preview";
+import { CaseStudyGrid } from "@/components/sections/case-study-grid";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { CtaSection } from "@/components/sections/cta-section";
+import { getFeaturedCaseStudies } from "@/lib/content";
+
+export default function HomePage() {
+  const featured = getFeaturedCaseStudies(3);
+  return (
+    <>
+      <Hero />
+      <ServicesSection />
+      <AboutPreview />
+      <CaseStudyGrid items={featured} />
+      <TestimonialsSection />
+      <CtaSection />
+    </>
+  );
+}
+</file>
+
+<file path="src/components/layout/social-links.tsx">
+import { Mail, Linkedin, Github } from "lucide-react";
+import Link from "next/link";
+import { siteConfig } from "@/lib/config";
+
+export function SocialLinks({ className }: { className?: string }) {
+  const links = [
+    { href: `mailto:${siteConfig.email}`, label: "Email", icon: Mail, external: false },
+    { href: siteConfig.social.linkedin, label: "LinkedIn", icon: Linkedin, external: true },
+    { href: siteConfig.social.github, label: "GitHub", icon: Github, external: true },
+  ];
+  return (
+    <nav className={className} aria-label="Social media links">
+      {links.map((l) => {
+        const isMail = l.label === "Email";
+        const Comp = isMail ? "a" : Link;
+        const linkProps = isMail ? {} : l.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
+        const ariaLabel = l.external ? `${l.label} (opens in a new tab)` : l.label;
+        return (
+          <Comp
+            key={l.label}
+            href={l.href}
+            aria-label={ariaLabel}
+            {...linkProps}
+            className="text-ink-muted transition-all duration-200 hover:-translate-y-0.5 hover:text-brand-600"
+          >
+            <l.icon className="h-5 w-5" />
+          </Comp>
+        );
+      })}
+    </nav>
+  );
+}
+</file>
+
+<file path="src/components/pricing/pricing-card.tsx">
+import Link from "next/link";
+import { Check, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { type PricingTier, formatPrice } from "./pricing-data";
+import { StaggerCard } from "@/components/ui/stagger-card";
+
+export function PricingCard({ tier, index = 0 }: { tier: PricingTier; index?: number }) {
+  const priceLabel =
+    tier.priceTo && tier.priceTo > tier.priceFrom
+      ? `${formatPrice(tier.priceFrom)}–${formatPrice(tier.priceTo)}`
+      : formatPrice(tier.priceFrom);
+
+  return (
+    <StaggerCard
+      index={index}
+      className={cn(
+        "relative flex flex-col rounded-2xl border bg-white p-6 shadow-card",
+        tier.popular
+          ? "border-brand-500 shadow-glow lg:-mt-4 lg:mb-4"
+          : "border-ink/10 hover:shadow-glow",
+      )}
+    >
+      {tier.popular && (
+        <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+          <Star className="h-3.5 w-3.5 fill-white" /> Most Popular
+        </span>
+      )}
+
+      <h3 className="text-lg font-semibold text-ink">{tier.name}</h3>
+      <p className="mt-1 text-sm text-ink-muted">{tier.tagline}</p>
+
+      <div className="mt-5 flex items-end gap-1">
+        {tier.priceNote && (
+          <span className="mb-1 text-xs text-ink-muted">{tier.priceNote}</span>
+        )}
+        <span className="text-3xl font-bold tracking-tight text-ink">{priceLabel}</span>
+      </div>
+
+      <ul className="mt-6 space-y-3 text-sm">
+        {tier.features.map((feature) => (
+          <li key={feature} className="flex items-start gap-2 text-ink-muted">
+            <Check className="mt-0.5 h-4 w-4 flex-none text-brand-600" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-8 pt-2">
+        <Button
+          asChild
+          size="lg"
+          variant={tier.popular ? "primary" : "outline"}
+          className="w-full"
+        >
+          <Link href={tier.cta.href}>{tier.cta.label}</Link>
+        </Button>
+      </div>
+    </StaggerCard>
+  );
+}
+</file>
+
+<file path="src/components/pricing/pricing-section.tsx">
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { PricingCard } from "./pricing-card";
+import { pricingTiers } from "./pricing-data";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+
+export function PricingSection() {
+  return (
+    <section className="py-20 bg-ink/[0.02]">
+      <Container>
+        <FadeInUp>
+          <SectionHeading
+            eyebrow="Pricing & Services"
+            title="Packages built to fit your goals"
+            description="Transparent fixed-scope pricing. Every plan ships fast, ranks well, and is built to convert."
+            align="center"
+          />
+        </FadeInUp>
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {pricingTiers.map((tier, i) => (
+            <PricingCard key={tier.id} tier={tier} index={i} />
+          ))}
+        </div>
+
+        <FadeInUp delay={0.2}>
+          <p className="mt-10 text-center text-sm text-ink-muted">
+            Custom or retained work?{" "}
+            <a href="/contact" className="font-medium text-brand-600 hover:underline">
+              Let&apos;s talk
+            </a>{" "}
+            about a tailored scope.
+          </p>
+        </FadeInUp>
+      </Container>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/ui/fade-in-up.tsx">
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface FadeInUpProps {
+  children: React.ReactNode;
+  className?: string;
+  /** Delay in seconds before animation starts (default 0) */
+  delay?: number;
+  /** Distance in px to travel upward (default 30) */
+  y?: number;
+  /** Animate only once (default true) */
+  once?: boolean;
+}
+
+/**
+ * FadeInUp — spring-powered scroll reveal.
+ *
+ * Wraps any element and animates it into view with a smooth fade + translateY.
+ * Uses spring physics (stiffness: 100, damping: 20, mass: 0.8) for a premium feel.
+ * Respects `prefers-reduced-motion` via Framer Motion's useReducedMotion hook.
+ *
+ * @example
+ * <FadeInUp delay={0.15}>
+ *   <h2>Content that fades in on scroll</h2>
+ * </FadeInUp>
+ */
+export function FadeInUp({
+  children,
+  className,
+  delay = 0,
+  y = 30,
+  once = true,
+}: FadeInUpProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once, margin: "-50px" }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        mass: 0.8,
+        delay,
+      }}
+      className={cn(className)}
+    >
+      {children}
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/ui/section-heading.tsx">
+import { cn } from "@/lib/utils";
+
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  align = "left",
+  className,
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "max-w-2xl",
+        align === "center" && "mx-auto text-center",
+        className,
+      )}
+    >
+      {eyebrow && (
+        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-emerald-400">
+          {eyebrow}
+        </p>
+      )}
+      <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{title}</h2>
+      {description && <p className="mt-4 text-lg text-zinc-400">{description}</p>}
+    </div>
+  );
+}
+</file>
+
+<file path="src/lib/content.ts">
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
+import readingTime from "reading-time";
+
+export const POSTS_DIR = path.join(process.cwd(), "src", "content", "blog");
+
+export interface CaseStudyFrontmatter {
+  title: string;
+  description: string;
+  publishedAt: string;
+  updatedAt?: string;
+  category: "Web App" | "E-commerce" | "WordPress" | "Performance" | "SaaS";
+  client?: string;
+  industry?: string;
+  services: string[];
+  coverImage?: string;
+  techStack: string[];
+  results: { metric: string; value: string }[];
+  featured?: boolean;
+  draft?: boolean;
+  demoUrl?: string;
+  githubUrl?: string;
+}
+
+export interface CaseStudy extends CaseStudyFrontmatter {
+  slug: string;
+  readingMinutes: number;
+  content: string;
+}
+
+export interface CaseStudyMeta extends Omit<CaseStudy, "content"> {}
+
+function parseFile(slug: string): CaseStudy {
+  const fullPath = path.join(POSTS_DIR, `${slug}.mdx`);
+  const raw = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(raw);
+  const fm = data as CaseStudyFrontmatter;
+
+  return {
+    ...fm,
+    slug,
+    content,
+    readingMinutes: Math.ceil(readingTime(content).minutes),
+  };
+}
+
+export function getAllCaseStudies(): CaseStudyMeta[] {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  const slugs = fs
+    .readdirSync(POSTS_DIR)
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => f.replace(/\.mdx$/, ""));
+
+  return slugs
+    .map((slug) => {
+      const { content: _content, ...meta } = parseFile(slug);
+      return meta as CaseStudyMeta;
+    })
+    .filter((post) => !post.draft)
+    .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
+}
+
+export function getCaseStudyBySlug(slug: string): CaseStudy | null {
+  try {
+    const post = parseFile(slug);
+    if (post.draft) return null;
+    return post;
+  } catch {
+    return null;
+  }
+}
+
+export function getCaseStudySlugs(): string[] {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  return fs
+    .readdirSync(POSTS_DIR)
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => f.replace(/\.mdx$/, ""));
+}
+
+export function getFeaturedCaseStudies(limit = 3): CaseStudyMeta[] {
+  const all = getAllCaseStudies();
+  const featured = all.filter((p) => p.featured);
+  return (featured.length ? featured : all).slice(0, limit);
+}
+</file>
+
+<file path="src/lib/seo.ts">
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/config";
+
+interface SeoProps {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  noIndex?: boolean;
+  keywords?: string[];
+  category?: string;
+}
+
+/**
+ * Central SEO helper. Builds absolute URLs, Open Graph, Twitter, canonical,
+ * robots and hreflang metadata. Always call from page-level `generateMetadata`.
+ */
+export function buildMetadata({
+  title,
+  description = siteConfig.description,
+  path = "/",
+  image = "/og/default.png",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  noIndex = false,
+  keywords,
+  category,
+}: SeoProps = {}): Metadata {
+  const url = new URL(path, siteConfig.url).toString();
+  const ogImage = new URL(image, siteConfig.url).toString();
+  const fullTitle = title ? `${title} | ${siteConfig.shortName}` : siteConfig.name;
+
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title: fullTitle,
+    description,
+    keywords,
+    category,
+    applicationName: siteConfig.shortName,
+    alternates: {
+      canonical: url,
+      languages: siteConfig.languages,
+    },
+    robots: noIndex
+      ? { index: false, follow: false }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
+    openGraph: {
+      type,
+      url,
+      siteName: siteConfig.name,
+      title: fullTitle,
+      description,
+      locale: siteConfig.locale,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: fullTitle,
+          type: "image/png",
+        },
+      ],
+      ...(publishedTime ? { publishedTime } : {}),
+      ...(modifiedTime ? { modifiedTime } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      site: siteConfig.twitterHandle,
+      creator: siteConfig.twitterHandle,
+      images: [ogImage],
+    },
+    other: {
+      "geo.region": siteConfig.geo.region.join(","),
+      "geo.placename": siteConfig.geo.countryName,
+    },
+  };
+}
+</file>
+
+<file path="README.md">
+# Niyamul Hasan — High-Converting Freelance Portfolio
+
+A production-ready **Next.js (App Router) + TypeScript + Tailwind CSS** portfolio engineered to
+convert cold traffic (cold email / LinkedIn) into high-ticket leads. Built with SEO best practices,
+a dynamic MDX blog/case-study system, and a modular, performance-optimized component architecture.
+
+## Stack
+- **Next.js 15** (App Router, RSC, `generateStaticParams` for SSG)
+- **TypeScript** strict mode
+- **Tailwind CSS** with a custom brand design system
+- **MDX** case studies (`next-mdx-remote` + `gray-matter`)
+- **SEO**: metadata API, JSON-LD (`Person` + `Article`), `sitemap.ts`, `robots.ts`, Open Graph/Twitter
+
+## Getting started
+```bash
+cp .env.example .env.local   # set NEXT_PUBLIC_SITE_URL etc.
+npm install
+npm run dev                  # http://localhost:3000
+```
+
+## Scripts
+```bash
+npm run dev        # dev server
+npm run build      # production build
+npm run start      # serve production
+npm run lint       # eslint (next/core-web-vitals)
+npm run typecheck  # tsc --noEmit
+```
+
+## Folder structure
+```
+src/
+├─ app/                      # App Router routes (each route owns its metadata)
+│  ├─ layout.tsx             # Root layout: fonts, JSON-LD, Header/Footer, Analytics
+│  ├─ page.tsx               # Home (Hero + Services + Featured cases + CTA)
+│  ├─ services/page.tsx
+│  ├─ work/page.tsx          # All case studies
+│  ├─ about/page.tsx
+│  ├─ contact/page.tsx       # Lead-gen contact form
+│  ├─ blog/
+│  │  ├─ page.tsx            # Blog index
+│  │  └─ [slug]/page.tsx     # Dynamic SSG case study (MDX + Article JSON-LD)
+│  ├─ api/contact/route.ts   # Lead capture endpoint (wire to Resend/CRM)
+│  ├─ sitemap.ts             # Auto sitemap incl. all case studies
+│  ├─ robots.ts
+│  ├─ manifest.ts
+│  └─ not-found.tsx
+├─ components/
+│  ├─ ui/                    # Button, Badge, Container, SectionHeading, Reveal
+│  ├─ layout/                # Header, Footer, SocialLinks
+│  ├─ sections/              # Hero, ServicesSection, CaseStudyGrid, Testimonials, CTA
+│  ├─ forms/                 # ContactForm (client)
+│  └─ mdx/                   # Shared MDX component overrides
+├─ content/blog/             # MDX case studies (frontmatter-driven)
+├─ lib/
+│  ├─ config.ts              # siteConfig (central source of truth)
+│  ├─ seo.ts                 # buildMetadata() helper
+│  ├─ content.ts             # MDX read/parse/sort utilities
+│  ├─ schema.ts              # Article JSON-LD
+│  ├─ person-schema.ts       # Person JSON-LD
+│  ├─ analytics.tsx          # GA / PostHog loader
+│  └─ utils.ts               # cn() class merge
+└─ types/mdx.d.ts
+```
+
+## Adding a case study
+Create `src/content/blog/your-slug.mdx` with frontmatter:
+```mdx
+---
+title: "..."
+description: "..."
+publishedAt: "2026-06-12"
+category: "SaaS"            # Web App | E-commerce | WordPress | Performance | SaaS
+client: "..."
+industry: "..."
+services: ["Next.js migration"]
+techStack: ["Next.js", "MongoDB"]
+results: [{ metric: "Load time", value: "-68%" }]
+coverImage: "/case-studies/cover.png"
+featured: true
+draft: false
+---
+## The challenge
+...
+```
+It appears automatically on `/work`, `/blog`, the home grid, and the sitemap.
+
+## SEO checklist (done)
+- [x] Per-route `generateMetadata` with canonical + OG + Twitter
+- [x] `Person` + `Article` JSON-LD structured data
+- [x] Auto `sitemap.xml` (incl. posts) and `robots.txt`
+- [x] Semantic HTML, `next/font`, image optimization (avif/webp)
+- [x] Performance: RSC by default, `optimizePackageImports`, no layout shift
+
+## Conversion features
+- Hero with clear CTA + social proof
+- Case-study grid with quantified results
+- Persistent "Book a call" CTA in header + section-level CTAs
+- Contact form posting to `/api/contact` (integrate Resend/HubSpot)
+
+## Notes
+- Set real values in `.env.local` (`NEXT_PUBLIC_SITE_URL`, social links, analytics IDs).
+- Add public assets: `public/og/default.png`, `public/logo.png`, `public/icon-192.png`, `public/icon-512.png`.
+- `next-mdx-remote` is already included as a dependency for MDX rendering.
+</file>
+
+<file path="tailwind.config.ts">
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/app/**/*.{ts,tsx,md,mdx}",
+    "./src/components/**/*.{ts,tsx}",
+    "./src/content/**/*.{md,mdx}",
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: "1.5rem",
+      screens: { "2xl": "1280px" },
+    },
+    extend: {
+      colors: {
+        brand: {
+          50: "#eef4ff",
+          100: "#d9e6ff",
+          200: "#bcd2ff",
+          300: "#8eb4ff",
+          400: "#598bff",
+          500: "#3366ff",
+          600: "#1f47f5",
+          700: "#1735e1",
+          800: "#192db6",
+          900: "#1a2c8f",
+          950: "#141b57",
+        },
+        ink: {
+          DEFAULT: "#0b0f1a",
+          muted: "#5b6478",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
+      },
+      borderRadius: {
+        xl: "0.875rem",
+        "2xl": "1.25rem",
+      },
+      boxShadow: {
+        card: "0 1px 2px rgba(11,15,26,0.04), 0 8px 24px rgba(11,15,26,0.06)",
+        glow: "0 0 0 1px rgba(51,102,255,0.12), 0 12px 40px rgba(51,102,255,0.18)",
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.2)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.5s ease-out both",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "float": "float 4s ease-in-out infinite",
+      },
+    },
+  },
+  plugins: [],
+};
+</file>
+
+<file path="src/components/layout/footer.tsx">
+import Link from "next/link";
+import { siteConfig } from "@/lib/config";
+
+const footerNav = [
+  {
+    title: "Work",
+    links: [
+      { href: "/work", label: "Case Studies" },
+      { href: "/services", label: "Services" },
+      { href: "/blog", label: "Blog" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+      { href: "/privacy", label: "Privacy" },
+    ],
+  },
+];
+
+export function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="border-t border-white/[0.06] bg-[#09090b]">
+      <div className="container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
+        <div className="md:col-span-2">
+          <Link href="/" className="flex items-center gap-2 text-lg font-bold text-white transition-opacity hover:opacity-80">
+            <span className="relative flex h-8 w-8 items-center justify-center">
+              <span className="absolute inset-0 rounded-lg bg-emerald-500/20 blur-sm" />
+              <svg viewBox="0 0 64 64" className="relative h-5 w-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="64" height="64" rx="16" fill="#10B981" />
+                <path d="M18 18H28L32 28L36 18H46L34 36L46 54H36L32 44L28 54H18L30 36L18 18Z" fill="#09090B" />
+              </svg>
+            </span>
+            {siteConfig.shortName}
+          </Link>
+          <p className="mt-4 max-w-sm text-sm text-zinc-400">{siteConfig.description}</p>
+          <p className="mt-4 text-sm text-zinc-600">{siteConfig.location}</p>
+        </div>
+
+        {footerNav.map((col) => (
+          <div key={col.title}>
+            <h3 className="text-sm font-semibold text-zinc-200">{col.title}</h3>
+            <ul className="mt-4 space-y-2">
+              {col.links.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-zinc-500 transition-all duration-200 hover:text-emerald-400 hover:translate-x-0.5 inline-block">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div className="border-t border-white/[0.06]">
+        <div className="container flex flex-col items-center justify-between gap-2 py-6 text-xs text-zinc-600 sm:flex-row">
+          <p>© {year} {siteConfig.shortName}. All rights reserved.</p>
+          <p>Built with Next.js, TypeScript &amp; Tailwind CSS.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+</file>
+
+<file path="src/components/sections/about-preview.tsx">
+import Link from "next/link";
+import { ArrowRight, Code2, Sparkles, Zap } from "lucide-react";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+
+const highlights = [
+  "Next.js, React, Node.js, and MongoDB",
+  "Conversion-focused UX and clean front-end architecture",
+  "Performance tuning, SEO, and reliable launches",
+];
+
+export function AboutPreview() {
+  return (
+    <section className="bg-[#09090b] py-20">
+      <Container>
+        <div className="grid gap-8 rounded-2xl border border-white/[0.06] bg-zinc-900/60 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-sm sm:rounded-[2rem] sm:p-8 md:grid-cols-[1.1fr_0.9fr] lg:p-10">
+          <div>
+            <SectionHeading
+              eyebrow="About"
+              title="I build polished products that feel personal and perform like a business tool."
+              description="I’m Niyamul Dev — a full-stack developer focused on building fast, conversion-ready websites and web apps for founders, startups, and growing brands."
+              align="left"
+            />
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {highlights.map((item) => (
+                <span key={item} className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-sm text-zinc-300">
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:bg-emerald-400 hover:-translate-y-0.5 active:translate-y-0"
+              >
+                Let’s talk <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/work"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-200 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.06] hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+              >
+                See my work
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
+                <Code2 className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-white">Developer-first approach</h3>
+              <p className="mt-2 text-sm leading-7 text-zinc-400">
+                I care about clean architecture, maintainable code, and a strong foundation for growth.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
+                <Zap className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-white">Fast by default</h3>
+              <p className="mt-2 text-sm leading-7 text-zinc-400">
+                Lighthouse-ready builds, lighter pages, and better conversion paths from the start.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04] sm:col-span-2">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-white">Built for founders, startups, and modern brands</h3>
+              <p className="mt-2 text-sm leading-7 text-zinc-400">
+                Whether it’s a premium marketing site, a product dashboard, or an e-commerce storefront, I help turn your ideas into trustworthy digital experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/ui/stagger-card.tsx">
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import type { ElementType, HTMLAttributes } from "react";
+
+type ValidTag = "div" | "article" | "section" | "span" | "li" | "header" | "footer" | "nav" | "main" | "aside";
+
+interface StaggerCardProps extends HTMLAttributes<HTMLElement> {
+  children: React.ReactNode;
+  className?: string;
+  /** Zero-based index for stagger delay calculation (default 0) */
+  index?: number;
+  /** Scale factor on hover (default 1.02) */
+  hoverScale?: number;
+  /** Whether to apply the fade-in-up stagger on viewport entry (default true) */
+  animateOnMount?: boolean;
+  /**
+   * When true, inner content shifts up subtly on hover for a polished reveal effect.
+   * Works best on grids of project/case-study cards (default false).
+   */
+  hoverReveal?: boolean;
+  /** HTML element type to render as (default "div") */
+  as?: ValidTag;
+}
+
+/**
+ * StaggerCard — hover & staggered-reveal card wrapper.
+ *
+ * - Fades in and slides up on viewport entry with a stagger delay based on `index`.
+ * - On hover: subtle scale up, lift, and enhanced shadow.
+ * - With `hoverReveal`: inner content slides up slightly for a polished reveal effect.
+ * - Respects `prefers-reduced-motion` via Framer Motion's useReducedMotion hook.
+ *
+ * @example
+ * {items.map((item, i) => (
+ *   <StaggerCard key={item.id} index={i} hoverReveal className="...">
+ *     <h3>{item.title}</h3>
+ *     <p>{item.desc}</p>
+ *   </StaggerCard>
+ * ))}
+ */
+export function StaggerCard({
+  children,
+  className,
+  index = 0,
+  hoverScale = 1.02,
+  animateOnMount = true,
+  hoverReveal = false,
+  as = "div",
+}: StaggerCardProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const MotionTag = motion(as as ValidTag);
+  const Tag = as as ValidTag;
+
+  if (prefersReducedMotion) {
+    return <Tag className={cn(className)}>{children}</Tag>;
+  }
+
+  const mountAnim = animateOnMount
+    ? {
+        initial: { opacity: 0, y: 24 } as const,
+        whileInView: { opacity: 1, y: 0 } as const,
+        viewport: { once: true, margin: "-40px" as const },
+      }
+    : { initial: "rest" as const };
+
+  return (
+    <MotionTag
+      whileHover="hover"
+      {...mountAnim}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        mass: 0.8,
+        delay: index * 0.08,
+      }}
+      variants={{
+        rest: { y: 0, scale: 1 },
+        hover: {
+          y: -6,
+          scale: hoverScale,
+          transition: { type: "spring", stiffness: 300, damping: 15 },
+        },
+      }}
+      className={cn(
+        "transition-shadow duration-300 will-change-transform",
+        className,
+      )}
+    >
+      {hoverReveal ? (
+        <motion.div
+          variants={{
+            rest: { y: 0 },
+            hover: {
+              y: -3,
+              transition: { type: "spring", stiffness: 250, damping: 18 },
+            },
+          }}
+        >
+          {children}
+        </motion.div>
+      ) : (
+        children
+      )}
+    </MotionTag>
+  );
+}
+</file>
+
+<file path="src/lib/config.ts">
+export const siteConfig = {
+  name: process.env.NEXT_PUBLIC_SITE_NAME ?? "Niyamul Dev — Full-Stack Developer",
+  shortName: "Niyamul Dev",
+  description:
+    "Full-stack developer building high-performance web apps with Next.js, React, Node.js, MongoDB and WordPress. Trusted by US, UK & EU businesses.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://niyamul-dev.vercel.app",
+  locale: "en_US",
+  twitterHandle: process.env.NEXT_PUBLIC_TWITTER_HANDLE ?? "@niyamuldev",
+  author: "Niyamul Dev",
+  email: "hello@niyamuldev.com",
+  phone: "",
+  location: "Remote — serving US, UK & Europe",
+  availability: "Available for select high-ticket projects",
+  // Geo + international targeting for US/UK/EU high-ticket clients
+  geo: {
+    region: ["US", "GB", "EU"],
+    countryName: "United States, United Kingdom, Europe",
+  },
+  languages: {
+    en: "/",
+  },
+  social: {
+    linkedin: "https://www.linkedin.com/in/niyamulhasan",
+    github: "https://github.com/niyamulhasannoyon",
+    twitter: "https://twitter.com/niyamuldev",
+    upwork: "https://www.upwork.com/freelancers/~yourid",
+  },
+} as const;
+
+export type SiteConfig = typeof siteConfig;
+</file>
+
+<file path="package.json">
+{
+  "name": "niyamul-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "High-converting portfolio for a full-stack freelance agency targeting US/UK/EU clients.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.42.2",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.469.0",
+    "next": "^15.1.0",
+    "next-mdx-remote": "^6.0.0",
+    "next-sitemap": "^4.2.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "reading-time": "^1.5.0",
+    "schema-dts": "^1.1.5",
+    "tailwind-merge": "^2.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}
+</file>
+
+<file path="src/components/layout/header.tsx">
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Menu, X, Calendar } from "lucide-react";
+import { siteConfig } from "@/lib/config";
+import { cn } from "@/lib/utils";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Case Studies" },
+  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
+];
+
+export function Header() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className={cn(
+        "fixed top-0 z-50 w-full transition-all duration-500",
+        scrolled
+          ? "bg-zinc-950/80 backdrop-blur-xl shadow-[0_1px_0_0_rgba(255,255,255,0.06)]"
+          : "bg-transparent",
+      )}
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="group flex items-center gap-3"
+          aria-label="Niyamul Dev — Home"
+        >
+          <span className="relative flex h-9 w-9 items-center justify-center">
+            <span className="absolute inset-0 rounded-xl bg-emerald-500/20 blur-sm transition-all duration-300 group-hover:bg-emerald-500/30 group-hover:blur-md" />
+            <svg
+              viewBox="0 0 64 64"
+              className="relative h-7 w-7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="64" height="64" rx="16" fill="#10B981" />
+              <path
+                d="M18 18H28L32 28L36 18H46L34 36L46 54H36L32 44L28 54H18L30 36L18 18Z"
+                fill="#09090B"
+              />
+            </svg>
+          </span>
+          <span className="flex flex-col leading-none">
+            <span className="flex items-center gap-2 text-base font-semibold text-white">
+              {siteConfig.shortName}
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-pulse-glow rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
+              Full-Stack
+            </span>
+          </span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav
+          className="hidden items-center gap-1 md:flex"
+          aria-label="Main navigation"
+        >
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+                  isActive
+                    ? "text-white"
+                    : "text-zinc-400 hover:text-white",
+                )}
+              >
+                {isActive && (
+                  <span className="absolute inset-0 rounded-lg bg-white/5" />
+                )}
+                <span className="relative">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Desktop CTA */}
+        <div className="hidden md:block">
+          <Link
+            href="/contact"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-300 transition-all duration-300 hover:border-emerald-400/60 hover:bg-emerald-500/20 hover:text-emerald-200"
+          >
+            <Calendar className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-rotate-6" />
+            <span>Book a call</span>
+            <span className="absolute inset-0 -z-10 translate-y-full rounded-full bg-emerald-500/10 transition-transform duration-300 group-hover:translate-y-0" />
+          </Link>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="relative z-50 flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-all duration-200 hover:border-white/20 hover:text-white md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+        </button>
+      </div>
+
+      {/* Mobile Nav Overlay */}
+      {open && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-zinc-950/60 backdrop-blur-sm md:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="fixed inset-x-4 top-4 z-50 rounded-2xl border border-white/10 bg-zinc-900/95 backdrop-blur-xl md:hidden">
+            <nav
+              className="flex flex-col p-4"
+              aria-label="Mobile navigation"
+            >
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+                      isActive
+                        ? "bg-emerald-500/10 text-emerald-300"
+                        : "text-zinc-400 hover:bg-white/5 hover:text-white",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <div className="mt-2 border-t border-white/5 pt-2">
+                <Link
+                  href="/contact"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-zinc-950 transition-all duration-200 hover:bg-emerald-400"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Book a call
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </>
+      )}
+    </header>
+  );
+}
+</file>
+
+<file path="src/components/sections/cta-section.tsx">
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Container } from "@/components/ui/container";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+
+export function CtaSection({
+  title = "Ready to turn traffic into revenue?",
+  description = "Book a free 10-minute strategy call. I'll audit your site and show you exactly where the conversions are leaking.",
+}: {
+  title?: string;
+  description?: string;
+}) {
+  return (
+    <section className="bg-[#09090b] py-20">
+      <Container>
+        <FadeInUp>
+          <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/80 to-zinc-950/90 px-8 py-16 text-center text-white shadow-2xl shadow-black/40 backdrop-blur-sm sm:px-16">
+            {/* Subtle glow */}
+            <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[100px]" />
+
+            <h2 className="relative mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              {title}
+            </h2>
+            <p className="relative mx-auto mt-4 max-w-xl text-zinc-400">{description}</p>
+            <div className="relative mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
+              >
+                Book a free call{" "}
+                <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                href="/work"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-7 py-3.5 text-base font-semibold text-zinc-200 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.06] hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+              >
+                See results
+              </Link>
+            </div>
+          </div>
+        </FadeInUp>
+      </Container>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/services-section.tsx">
+import { Code2, ShoppingCart, Globe, Gauge, Database, Palette } from "lucide-react";
+import { Container } from "@/components/ui/container";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
+
+const services = [
+  {
+    icon: Code2,
+    title: "Next.js & React Apps",
+    desc: "Production-grade web apps and dashboards with the App Router, server components and edge rendering.",
+  },
+  {
+    icon: Database,
+    title: "Node.js & MongoDB",
+    desc: "Scalable APIs, auth, and data layers engineered for performance and maintainability.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "E-commerce & WordPress",
+    desc: "Headless WordPress, WooCommerce and custom storefronts that convert browsers to buyers.",
+  },
+  {
+    icon: Gauge,
+    title: "Performance & CRO",
+    desc: "Core Web Vitals tuning, A/B testing and landing pages built to convert cold traffic.",
+  },
+  {
+    icon: Globe,
+    title: "SEO-First Builds",
+    desc: "Technical SEO, structured data and content systems that rank and attract inbound leads.",
+  },
+  {
+    icon: Palette,
+    title: "Design-to-Code",
+    desc: "Pixel-perfect Tailwind CSS implementations from Figma with a polished design system.",
+  },
+];
+
+export function ServicesSection() {
+  return (
+    <section className="bg-[#030712] py-16 sm:py-20">
+      <Container>
+        <FadeInUp>
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">What I do</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Services built for conversion, not just code
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-zinc-400">
+              Every engagement is scoped to move a metric that matters to your business — speed, clarity, trust, or revenue.
+            </p>
+          </div>
+        </FadeInUp>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {services.map((s, i) => (
+            <StaggerCard
+              key={s.title}
+              index={i}
+              className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02]"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-900/20 text-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.12)] transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-400/40 group-hover:bg-emerald-500/15">
+                <s.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
+            </StaggerCard>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/testimonials-section.tsx">
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
+
+const testimonials = [
+  {
+    quote:
+      "Our cold LinkedIn traffic finally converts. The new site loads instantly and the booking rate doubled.",
+    name: "Sarah L.",
+    role: "Founder, UK SaaS",
+  },
+  {
+    quote:
+      "Reliable, fast, and obsessed with performance. The MongoDB rebuild saved us a fortune in infra.",
+    name: "Marcus T.",
+    role: "CTO, Berlin Fintech",
+  },
+  {
+    quote:
+      "Agency-quality work at freelance flexibility. The case-study content now ranks on page one.",
+    name: "Emily R.",
+    role: "Marketing Lead, US E-com",
+  },
+];
+
+export function TestimonialsSection() {
+  return (
+    <section className="bg-[#09090b] py-20">
+      <Container>
+        <FadeInUp>
+          <SectionHeading
+            eyebrow="Client love"
+            title="What founders & agencies say"
+            align="center"
+          />
+        </FadeInUp>
+        <div className="mt-12 grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <StaggerCard
+              key={t.name}
+              index={i}
+              className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.04]"
+            >
+              <blockquote className="text-sm leading-7 text-zinc-300">&#x201C;{t.quote}&#x201D;</blockquote>
+              <figcaption className="mt-5">
+                <p className="text-sm font-semibold text-white">{t.name}</p>
+                <p className="text-xs text-zinc-500">{t.role}</p>
+              </figcaption>
+            </StaggerCard>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+</file>
+
+<file path="src/app/layout.tsx">
+import type { Metadata } from "next";
+import { Inter, Sora } from "next/font/google";
+import "./globals.css";
+import { siteConfig } from "@/lib/config";
+import { personSchema } from "@/lib/person-schema";
+import { professionalServiceSchema } from "@/lib/professional-service-schema";
+import { buildMetadata } from "@/lib/seo";
+import { Analytics } from "@/lib/analytics";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { PageTransition } from "@/components/ui/page-transition";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const sora = Sora({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  ...buildMetadata(),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.shortName}`,
+  },
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: ["/favicon.svg"],
+    apple: ["/icon.svg"],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+      <body className="min-h-screen bg-[#09090b] font-sans text-zinc-100 antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema()) }}
+        />
+        <Header />
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
+        <Footer />
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+</file>
+
+<file path="src/components/sections/hero.tsx">
+import Link from "next/link";
+import {
+  ArrowRight,
+  Star,
+  Zap,
+  Target,
+  BarChart3,
+  Gauge,
+  Sparkles,
+} from "lucide-react";
+import { siteConfig } from "@/lib/config";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+
+const metrics = [
+  {
+    icon: Gauge,
+    title: "Faster site speed",
+    desc: "Reduce friction and keep visitors engaged.",
+  },
+  {
+    icon: Target,
+    title: "Clear conversion paths",
+    desc: "Guide each visitor toward the next best action.",
+  },
+  {
+    icon: BarChart3,
+    title: "Built to scale",
+    desc: "A strong foundation for landing pages, blogs, and product growth.",
+  },
+];
+
+export function Hero() {
+  return (
+    <section className="relative min-h-screen overflow-hidden bg-[#09090b] text-white">
+      {/* Subtle background effects */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Primary emerald glow */}
+        <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[120px]" />
+        {/* Secondary glow */}
+        <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-emerald-400/3 blur-[100px]" />
+
+        {/* Ultra-soft grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32 lg:px-12 lg:pb-32 lg:pt-40">
+        <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          {/* Left Column — Content */}
+          <div className="max-w-3xl">
+            {/* Availability badge */}
+            <FadeInUp delay={0.05} y={20}>
+              <div className="group relative inline-flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.04] px-4 py-1.5 text-xs font-medium text-emerald-300/90 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.07]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-pulse-glow rounded-full bg-emerald-400" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                {siteConfig.availability}
+              </div>
+            </FadeInUp>
+
+            {/* Headline */}
+            <FadeInUp delay={0.1} y={20}>
+              <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
+                I help businesses increase sales and{" "}
+                <span className="bg-gradient-to-r from-emerald-200 via-emerald-300 to-emerald-400 bg-clip-text text-transparent">
+                  build trust
+                </span>{" "}
+                with fast, modern websites that convert visitors into customers.
+              </h1>
+            </FadeInUp>
+
+            {/* Sub-headline with tech stack badges */}
+            <FadeInUp delay={0.16} y={20}>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg sm:leading-8">
+                Built with{" "}
+                <span className="mt-1.5 inline-flex flex-wrap gap-x-1.5 gap-y-1.5 sm:mt-0 sm:inline">
+                  {["Next.js", "React", "Node.js", "MongoDB"].map((tech, i) => (
+                    <span key={tech} className="inline-flex">
+                      <span className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/80 px-2.5 py-0.5 text-xs font-medium text-zinc-200 transition-colors duration-200 hover:border-emerald-500/30 hover:text-emerald-300 sm:text-sm">
+                        {tech}
+                      </span>
+                      {i < 3 ? <span className="hidden sm:inline">, </span> : ""}
+                    </span>
+                  ))}
+                </span>{" "}
+                to create sleek, scalable experiences that feel premium and
+                perform beautifully.
+              </p>
+            </FadeInUp>
+
+            {/* CTA Buttons */}
+            <FadeInUp delay={0.22} y={20}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Book a Free 10-Min Strategy Call
+                    <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                  </span>
+                  <span className="absolute inset-0 -z-0 translate-y-full rounded-full bg-emerald-400 transition-transform duration-300 group-hover:translate-y-0" />
+                </Link>
+                <Link
+                  href="/work"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700/60 bg-zinc-900/60 px-7 py-3.5 text-base font-semibold text-zinc-100 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-800/60 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  View Case Studies
+                </Link>
+              </div>
+            </FadeInUp>
+
+            {/* Trust badges */}
+            <FadeInUp delay={0.28} y={20}>
+              <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm">
+                  <div className="flex">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-3 w-3 fill-emerald-400 text-emerald-400 sm:h-3.5 sm:w-3.5"
+                      />
+                    ))}
+                  </div>
+                  <span>4.9/5 client rating</span>
+                </div>
+                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:px-3.5 sm:py-2 sm:text-sm">
+                  Fast launch<span className="hidden sm:inline"> timelines</span>
+                </span>
+                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:px-3.5 sm:py-2 sm:text-sm">
+                  SEO + CRO baked in
+                </span>
+              </div>
+            </FadeInUp>
+          </div>
+
+          {/* Right Column — Bento Grid Card */}
+          <FadeInUp delay={0.12} y={30}>
+            <div className="group relative">
+              {/* Glow behind card */}
+              <div className="absolute -inset-4 rounded-3xl bg-emerald-500/5 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/80 to-zinc-950/90 shadow-2xl shadow-black/40 backdrop-blur-xl transition-all duration-500 hover:border-white/[0.10] hover:shadow-[0_0_40px_-12px_rgba(16,185,129,0.3)]">
+                {/* Card header */}
+                <div className="border-b border-white/[0.06] px-6 py-5 sm:px-8">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/10">
+                          <Sparkles className="h-3.5 w-3.5 text-emerald-300" />
+                        </span>
+                        <p className="text-sm font-semibold text-white">
+                          Growth-first web design
+                        </p>
+                      </div>
+                      <p className="mt-1.5 text-sm text-zinc-500">
+                        Modern messaging, higher trust, better conversion.
+                      </p>
+                    </div>
+                    <span className="hidden shrink-0 rounded-full border border-emerald-500/20 bg-emerald-500/[0.06] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300/80 sm:inline-flex">
+                      Premium
+                    </span>
+                  </div>
+                </div>
+
+                {/* Metric cards */}
+                <div className="space-y-0.5 p-4 sm:p-6">
+                  {metrics.map((item) => (
+                    <div
+                      key={item.title}
+                      className="group/card rounded-xl border border-white/[0.04] bg-gradient-to-r from-white/[0.02] to-transparent p-4 transition-all duration-300 hover:border-white/[0.08] hover:from-emerald-500/[0.03] hover:to-transparent sm:p-5"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/60 transition-colors duration-300 group-hover/card:bg-emerald-500/10">
+                          <item.icon className="h-4 w-4 text-zinc-400 transition-colors duration-300 group-hover/card:text-emerald-300" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium text-white transition-colors duration-300 group-hover/card:text-emerald-100">
+                            {item.title}
+                          </p>
+                          <p className="mt-0.5 text-sm text-zinc-500">
+                            {item.desc}
+                          </p>
+                        </div>
+                        <Zap className="mt-1 h-3.5 w-3.5 shrink-0 text-zinc-700 transition-all duration-300 group-hover/card:text-emerald-500/50 group-hover/card:translate-x-0.5" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Card footer */}
+                <div className="border-t border-white/[0.06] px-6 py-4 sm:px-8">
+                  <div className="flex items-center justify-between text-xs text-zinc-600">
+                    <span>Optimized for conversion rate</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/60" />
+                      Live
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeInUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/case-study-grid.tsx">
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import type { CaseStudyMeta } from "@/lib/content";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { FadeInUp } from "@/components/ui/fade-in-up";
+import { StaggerCard } from "@/components/ui/stagger-card";
+import { projects, type ProjectItem } from "@/constants/projects";
+
+/** Map CaseStudyMeta to the grid display shape (enables the /work route). */
+function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
+  return meta.map((m) => ({
+    title: m.title,
+    category: m.category,
+    problem: m.description,
+    solution: m.description,
+    tech: m.techStack ?? [],
+    outcome: m.results?.map((r) => `${r.metric} ${r.value}`).join(" · ") || "Measurable results",
+    outcomeDescription: "Proven performance gains across key business metrics.",
+    demo: m.demoUrl ?? "https://example.com",
+    github: m.githubUrl ?? null,
+  }));
+}
+
+export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
+  const displayItems: ProjectItem[] = items.length > 0 ? toGridItems(items) : projects;
+
+  return (
+    <section className="bg-slate-950 py-24 text-slate-50">
+      <Container>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <FadeInUp>
+            <SectionHeading
+              eyebrow="Selected Work"
+              title="Case studies that drive measurable growth"
+              description="Each engagement is built around clarity, credibility, and conversion-focused design."
+            />
+          </FadeInUp>
+          <FadeInUp delay={0.15}>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1 text-sm font-medium text-emerald-300 transition hover:text-emerald-200"
+            >
+              View all <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </FadeInUp>
+        </div>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {displayItems.map((project, index) => (
+            <StaggerCard
+              key={project.title}
+              index={index}
+              hoverReveal
+              as="article"
+              className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 hover:border-emerald-400/40 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)]"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.12),transparent_32%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+              <div className="relative">
+                <div className="flex items-center justify-between gap-3">
+                  <Badge className="border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+                    {project.category}
+                  </Badge>
+                  <span className="rounded-full border border-slate-800 bg-slate-950/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.25em] text-slate-400" aria-hidden="true">
+                    0{index + 1}
+                  </span>
+                </div>
+
+                <h3 className="mt-5 text-xl font-semibold text-white">{project.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-400">{project.problem}</p>
+
+                <div className="mt-6 space-y-4 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Problem</p>
+                    <p className="mt-1 text-sm text-slate-300">{project.problem}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Solution</p>
+                    <p className="mt-1 text-sm text-slate-300">{project.solution}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Technologies</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="rounded-full border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-300">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-4">
+                  <p className="text-sm font-semibold text-emerald-300">{project.outcome}</p>
+                  <p className="mt-1 text-sm text-slate-300">{project.outcomeDescription}</p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View live demo of ${project.title} (opens in a new tab)`}
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-200 hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    Live Demo <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} source code on GitHub (opens in a new tab)`}
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-200 transition-all duration-300 hover:border-emerald-400/40 hover:text-emerald-200 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      GitHub <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </StaggerCard>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+</file>
+
+</files>

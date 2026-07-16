@@ -1,6 +1,5 @@
 import { Code2, ShoppingCart, Globe, Gauge, Database, Palette } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 import { StaggerCard } from "@/components/ui/stagger-card";
 
@@ -39,27 +38,32 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-20 bg-[#09090b]">
+    <section className="bg-[#030712] py-16 sm:py-20">
       <Container>
         <FadeInUp>
-          <SectionHeading
-            eyebrow="What I do"
-            title="Services built for conversion, not just code"
-            description="Every engagement is scoped to move a metric that matters to your business."
-          />
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-400">What I do</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Services built for conversion, not just code
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-zinc-400">
+              Every engagement is scoped to move a metric that matters to your business — speed, clarity, trust, or revenue.
+            </p>
+          </div>
         </FadeInUp>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {services.map((s, i) => (
             <StaggerCard
               key={s.title}
               index={i}
-              className="group rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 hover:border-emerald-500/20 hover:bg-emerald-500/[0.03] hover:-translate-y-1"
+              className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02]"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300 transition-all duration-300 group-hover:bg-emerald-500/20 group-hover:text-emerald-200">
-                <s.icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-900/20 text-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.12)] transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-400/40 group-hover:bg-emerald-500/15">
+                <s.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-white transition-colors duration-300 group-hover:text-emerald-100">{s.title}</h3>
-              <p className="mt-2 text-sm text-zinc-400">{s.desc}</p>
+              <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
             </StaggerCard>
           ))}
         </div>
