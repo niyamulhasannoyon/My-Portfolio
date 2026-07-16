@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { ServicesSection } from "@/components/sections/services-section";
+import { AboutPreview } from "@/components/sections/about-preview";
 import { CaseStudyGrid } from "@/components/sections/case-study-grid";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { CtaSection } from "@/components/sections/cta-section";
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <Hero />
       <ServicesSection />
+      <AboutPreview />
       <CaseStudyGrid items={featured} />
       <TestimonialsSection />
       <CtaSection />

@@ -1,0 +1,5 @@
+<svg width="320" height="96" viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="8" width="80" height="80" rx="20" fill="#0F172A"/>
+  <path d="M28 28h12l12 16 12-16h12l-18 24 18 24h-12l-12-16-12 16H28l18-24-18-24Z" fill="#10B981"/>
+  <text x="108" y="58" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700" fill="#0F172A">Niyamul Dev</text>
+</svg>

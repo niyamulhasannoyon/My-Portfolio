@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           For questions, email{" "}
-          <a href={`mailto:you@yourdomain.com`}>you@yourdomain.com</a>.
+          <a href={`mailto:hello@niyamuldev.com`}>hello@niyamuldev.com</a>.
         </p>
       </div>
     </Container>
