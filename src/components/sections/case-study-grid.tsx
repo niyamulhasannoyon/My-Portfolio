@@ -24,18 +24,35 @@ function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
   }));
 }
 
-export function CaseStudyGrid({ items, showViewAll = true }: { items: CaseStudyMeta[]; showViewAll?: boolean; }) {
+export function CaseStudyGrid({
+  items,
+  showViewAll = true,
+  eyebrow = "Selected Work",
+  title = "Case studies that drive measurable growth",
+  description = "Each engagement is built around clarity, credibility, and conversion-focused design.",
+  headerAlign = "left",
+  sectionClassName = "bg-slate-950 py-24 text-slate-50",
+}: {
+  items: CaseStudyMeta[];
+  showViewAll?: boolean;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  headerAlign?: "left" | "center";
+  sectionClassName?: string;
+}) {
   const displayItems: readonly ProjectItem[] = items.length > 0 ? toGridItems(items) : projects;
 
   return (
-    <section className="bg-slate-950 py-24 text-slate-50">
+    <section className={sectionClassName}>
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <FadeInUp>
             <SectionHeading
-              eyebrow="Selected Work"
-              title="Case studies that drive measurable growth"
-              description="Each engagement is built around clarity, credibility, and conversion-focused design."
+              eyebrow={eyebrow}
+              title={title}
+              description={description}
+              align={headerAlign}
             />
           </FadeInUp>
           {showViewAll ? (

@@ -25,8 +25,8 @@ export default function WorkPage() {
             <div className="mx-auto max-w-3xl text-center">
               <SectionHeading
                 eyebrow="Case Studies"
-                title="Work designed to capture more leads, conversions and revenue"
-                description="A showcase of modern product builds, high-converting landing pages, and performance-first sites for founders, agencies, and growth teams."
+                title="Premium web work built for trust, speed, and conversion"
+                description="A curated collection of modern sites, SaaS launches, and high-converting lead funnels created for growing businesses."
                 align="center"
               />
             </div>
@@ -35,25 +35,25 @@ export default function WorkPage() {
           <div className="mt-12 grid gap-5 sm:grid-cols-3">
             {[
               {
-                label: "Conversion-focused",
+                title: "Conversion clarity",
                 description:
-                  "Clear messaging, better trust signals, and focused user journeys for high-value bookings.",
+                  "Messaging, structure, and design that keep visitor attention on the next action.",
               },
               {
-                label: "Performance-led",
+                title: "Performance-ready",
                 description:
-                  "Fast, accessible builds that improve Core Web Vitals and keep visitors engaged.",
+                  "Fast-first builds that improve engagement, search signals, and launch confidence.",
               },
               {
-                label: "Built to scale",
+                title: "Scale-friendly",
                 description:
-                  "Reusable systems, clean code, and tight launch support for growing digital businesses.",
+                  "Reusable systems and clean architecture for long-term growth and easy updates.",
               },
             ].map((stat) => (
-              <FadeInUp key={stat.label}>
-                <div className="rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] backdrop-blur-md">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">
-                    {stat.label}
+              <FadeInUp key={stat.title}>
+                <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] backdrop-blur-md">
+                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300">
+                    {stat.title}
                   </p>
                   <p className="mt-4 text-sm leading-7 text-zinc-300">{stat.description}</p>
                 </div>
@@ -63,7 +63,15 @@ export default function WorkPage() {
         </Container>
       </section>
 
-      <CaseStudyGrid items={all} showViewAll={false} />
+      <CaseStudyGrid
+        items={all}
+        showViewAll={false}
+        eyebrow="Selected Work"
+        title="Case studies that drive measurable growth"
+        description="Each engagement is built around clarity, credibility, and conversion-focused design."
+        headerAlign="center"
+        sectionClassName="bg-slate-950 py-24 text-slate-50"
+      />
       <CtaSection
         title="Ready to launch your next high-performance website?"
         description="Book a free 10-minute strategy call and I’ll help you turn visiting traffic into qualified leads."
