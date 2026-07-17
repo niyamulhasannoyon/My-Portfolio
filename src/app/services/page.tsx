@@ -26,13 +26,14 @@ const process = [
 
 export default function ServicesPage() {
   return (
-    <div className="bg-brand-surface text-white">
+    <div className="relative overflow-hidden bg-brand-surface text-white">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.2),transparent_40%),radial-gradient(circle_at_top_right,rgba(129,140,248,0.14),transparent_35%)] blur-3xl" />
       <Container className="relative py-16 md:py-24 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
         <FadeInUp>
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-brand-wider text-emerald-400">Services</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              How we’ll work together
+              Production-grade web apps built to scale & convert.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-zinc-400 sm:text-xl">
               A focused, transparent process built for high-ticket outcomes — from discovery to launch and continued optimization.

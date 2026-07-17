@@ -1,21 +1,44 @@
-import { Code2, ShoppingCart, Globe, Gauge, Database, Palette } from "lucide-react";
+import { ShoppingCart, Globe, Gauge, Palette } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 import { StaggerCard } from "@/components/ui/stagger-card";
 
+const NextJsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 256 256" fill="none" {...props}>
+    <path d="M128 24L24 128L128 232L232 128L128 24Z" fill="currentColor" />
+    <path d="M128 56L56 128L128 200L200 128L128 56Z" fill="#000" />
+  </svg>
+);
+
+const NodeJsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 256 256" fill="none" {...props}>
+    <path d="M128 20.6L38.4 73.2V182.8L128 235.4L217.6 182.8V73.2L128 20.6Z" fill="currentColor" />
+    <path d="M88 176.7L128 197.6L168 176.7V127.5L128 148.5L88 127.5V176.7Z" fill="#fff" />
+  </svg>
+);
+
+const WordPressIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 256 256" fill="none" {...props}>
+    <circle cx="128" cy="128" r="104" fill="currentColor" />
+    <path d="M80 72L116 192" stroke="#fff" strokeWidth="18" strokeLinecap="round" />
+    <path d="M176 72L140 192" stroke="#fff" strokeWidth="18" strokeLinecap="round" />
+    <path d="M82 76H174" stroke="#fff" strokeWidth="18" strokeLinecap="round" />
+  </svg>
+);
+
 const services = [
   {
-    icon: Code2,
+    icon: NextJsIcon,
     title: "Next.js & React Apps",
     desc: "Production-grade web apps and dashboards with the App Router, server components and edge rendering.",
   },
   {
-    icon: Database,
+    icon: NodeJsIcon,
     title: "Node.js & MongoDB",
     desc: "Scalable APIs, auth, and data layers engineered for performance and maintainability.",
   },
   {
-    icon: ShoppingCart,
+    icon: WordPressIcon,
     title: "E-commerce & WordPress",
     desc: "Headless WordPress, WooCommerce and custom storefronts that convert browsers to buyers.",
   },
@@ -57,10 +80,10 @@ export function ServicesSection() {
             <li key={s.title}>
               <StaggerCard
                 index={i}
-                className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-[transform,colors,box-shadow] duration-300 ease-in-out hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.02] hover:shadow-xl"
+                className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.01] hover:border-emerald-500/50 hover:bg-white/[0.04] hover:shadow-[0_25px_80px_-35px_rgba(16,185,129,0.4)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-900/20 text-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.12)] transition-[transform,colors,box-shadow] duration-300 group-hover:scale-105 group-hover:border-emerald-400/40 group-hover:bg-emerald-500/15">
-                  <s.icon className="h-5 w-5" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-3xl border border-white/10 bg-zinc-950 text-white shadow-[0_0_24px_rgba(0,0,0,0.12)] transition duration-300 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 group-hover:text-emerald-200">
+                  <s.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
