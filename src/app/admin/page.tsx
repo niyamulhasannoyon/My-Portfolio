@@ -127,7 +127,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <QuickAction
           href="/admin/projects"
           label="Add Project"
@@ -137,6 +137,11 @@ export default function AdminDashboard() {
           href="/admin/timeline"
           label="Add Timeline Entry"
           icon={History}
+        />
+        <QuickAction
+          href="/admin/skills"
+          label="Add Skill"
+          icon={Code2}
         />
         <QuickAction
           href="/admin/messages"

@@ -8,6 +8,7 @@ import {
   FolderKanban,
   History,
   MessageSquare,
+  Code2,
   LogOut,
   Menu,
   X,
@@ -19,6 +20,7 @@ const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/timeline", label: "Timeline", icon: History },
+  { href: "/admin/skills", label: "Skills", icon: Code2 },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
 ];
 

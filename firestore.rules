@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public read access for the portfolio frontend
+    match /{document=**} {
+      allow read: if true;
+    }
+
+    // Write access restricted to admin only
+    // Replace YOUR_ADMIN_UID with your Firebase Auth user UID
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid == 'YOUR_ADMIN_UID';
+    }
+
+    // Admin-only collections
+    match /projects/{document} {
+      allow write: if isAdmin();
+    }
+
+    match /timeline/{document} {
+      allow write: if isAdmin();
+    }
+
+    match /skills/{document} {
+      allow write: if isAdmin();
+    }
+
+    // Messages: anyone can create, only admin can read/update/delete
+    match /messages/{document} {
+      allow create: if request.auth == null
+        || request.auth.uid != null; // allow anyone to submit the contact form
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Deny everything else
+    match /{document=**} {
+      allow write: if false;
+    }
+  }
+}
