@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { siteConfig } from "@/lib/config";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -12,7 +13,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PrivacyPage() {
   return (
-    <Container className="py-16">
+    <Container className="py-16 md:py-24 bg-brand-bg">
       <SectionHeading eyebrow="Legal" title="Privacy Policy" />
       <div className="prose-ink mt-8 max-w-2xl">
         <p>
@@ -22,7 +23,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           For questions, email{" "}
-          <a href={`mailto:hello@niyamuldev.com`}>hello@niyamuldev.com</a>.
+          <a href={`mailto:${siteConfig.email}`} className="text-emerald-300 hover:text-emerald-200 hover:underline">{siteConfig.email}</a>.
         </p>
       </div>
     </Container>

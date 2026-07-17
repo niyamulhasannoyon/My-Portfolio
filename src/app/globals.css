@@ -22,6 +22,9 @@ html {
 }
 
 /* Dark-mode article typography */
+.prose-ink {
+  @apply text-zinc-300;
+}
 .prose-ink h2 {
   @apply mt-10 scroll-mt-24 text-2xl font-semibold tracking-tight text-white;
 }
@@ -42,4 +45,13 @@ html {
 }
 .prose-ink code {
   @apply rounded bg-white/5 px-1.5 py-0.5 font-mono text-sm text-zinc-200;
+}
+.prose-ink pre {
+  @apply mt-6 overflow-x-auto rounded-xl border border-white/[0.06] bg-zinc-950/80 p-4 text-sm text-zinc-200;
+}
+.prose-ink img {
+  @apply mt-6 rounded-xl border border-white/[0.06];
+}
+.prose-ink hr {
+  @apply my-8 border-white/[0.06];
 }

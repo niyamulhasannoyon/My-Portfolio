@@ -6,7 +6,7 @@ import { FadeInUp } from "@/components/ui/fade-in-up";
 
 export function PricingSection() {
   return (
-    <section className="py-20 bg-ink/[0.02]">
+    <section className="py-20 bg-brand-bg">
       <Container>
         <FadeInUp>
           <SectionHeading
@@ -24,9 +24,9 @@ export function PricingSection() {
         </div>
 
         <FadeInUp delay={0.2}>
-          <p className="mt-10 text-center text-sm text-ink-muted">
+          <p className="mt-10 text-center text-sm text-zinc-400">
             Custom or retained work?{" "}
-            <a href="/contact" className="font-medium text-brand-600 hover:underline">
+            <a href="/contact" className="font-medium text-emerald-300 hover:text-emerald-200 hover:underline">
               Let&apos;s talk
             </a>{" "}
             about a tailored scope.

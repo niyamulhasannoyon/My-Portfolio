@@ -6,12 +6,14 @@ export function SectionHeading({
   description,
   align = "left",
   className,
+  eyebrowColor = "text-emerald-400",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
   className?: string;
+  eyebrowColor?: string;
 }) {
   return (
     <div
@@ -22,7 +24,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-emerald-400">
+        <p className={cn("mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowColor)}>
           {eyebrow}
         </p>
       )}

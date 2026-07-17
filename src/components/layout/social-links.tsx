@@ -24,7 +24,7 @@ export function SocialLinks({ className }: { className?: string }) {
             href={l.href}
             aria-label={ariaLabel}
             {...linkProps}
-            className="text-ink-muted transition-[transform,colors] duration-200 hover:-translate-y-0.5 hover:text-brand-600"
+            className="text-zinc-500 transition-[transform,colors] duration-200 hover:-translate-y-0.5 hover:text-emerald-300"
           >
             <l.icon className="h-5 w-5" />
           </Comp>

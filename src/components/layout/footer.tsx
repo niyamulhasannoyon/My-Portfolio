@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Mail, Linkedin, Github, Facebook, Instagram, Twitter } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 
 const footerNav = [
@@ -41,7 +42,27 @@ export function Footer() {
             {siteConfig.shortName}
           </Link>
           <p className="mt-4 max-w-sm text-sm text-zinc-400">{siteConfig.description}</p>
-          <p className="mt-4 text-sm text-zinc-600">{siteConfig.location}</p>
+          <p className="mt-4 text-sm text-zinc-500">{siteConfig.location}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            <a href={`mailto:${siteConfig.email}`} className="text-zinc-500 transition hover:text-emerald-300" aria-label="Email">
+              <Mail className="h-5 w-5" />
+            </a>
+            <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition hover:text-emerald-300" aria-label="LinkedIn">
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition hover:text-emerald-300" aria-label="GitHub">
+              <Github className="h-5 w-5" />
+            </a>
+            <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition hover:text-emerald-300" aria-label="Facebook">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition hover:text-emerald-300" aria-label="Instagram">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition hover:text-emerald-300" aria-label="X">
+              <Twitter className="h-5 w-5" />
+            </a>
+          </div>
         </div>
 
         {footerNav.map((col) => (

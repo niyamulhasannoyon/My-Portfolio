@@ -19,7 +19,7 @@ const stack = ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Tailwind
 
 export default function AboutPage() {
   return (
-    <Container className="py-16">
+    <Container className="py-16 md:py-24 bg-brand-bg">
       <div className="grid gap-12 lg:grid-cols-2">
         <div>
           <FadeInUp>
@@ -30,7 +30,7 @@ export default function AboutPage() {
             />
           </FadeInUp>
           <FadeInUp delay={0.1}>
-            <p className="mt-6 text-ink-muted">
+            <p className="mt-6 text-zinc-400">
               My focus is simple: turn your cold traffic from LinkedIn and email into qualified,
               high-ticket leads. That means fast sites, clean SEO foundations, and landing pages
               engineered around a single goal — the conversion.
@@ -38,10 +38,10 @@ export default function AboutPage() {
           </FadeInUp>
           <FadeInUp delay={0.2}>
             <div className="mt-8">
-              <p className="text-sm font-semibold text-ink">Tech I work with</p>
+              <p className="text-sm font-semibold text-white">Tech I work with</p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {stack.map((s) => (
-                  <li key={s} className="rounded-full border border-ink/10 bg-white px-3 py-1 text-sm text-ink-muted">
+                  <li key={s} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-sm text-zinc-300">
                     {s}
                   </li>
                 ))}
@@ -50,25 +50,25 @@ export default function AboutPage() {
           </FadeInUp>
           <FadeInUp delay={0.3}>
             <div className="mt-8 flex items-center gap-4">
-              <SocialLinks className="flex items-center gap-4" />
+              <SocialLinks className="flex items-center gap-4 text-zinc-400 hover:text-emerald-300" />
             </div>
           </FadeInUp>
         </div>
         <FadeInUp delay={0.15} y={40}>
-          <div className="rounded-2xl border border-ink/10 bg-white p-8 shadow-card">
-            <p className="text-sm font-semibold text-brand-600">At a glance</p>
+          <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/70 p-8 shadow-2xl shadow-black/20 backdrop-blur-sm">
+            <p className="text-sm font-semibold text-emerald-300">At a glance</p>
             <dl className="mt-4 space-y-4 text-sm">
-              <div className="flex justify-between border-b border-ink/5 pb-3">
-                <dt className="text-ink-muted">Location</dt>
-                <dd className="font-medium text-ink">{siteConfig.location}</dd>
+              <div className="flex justify-between border-b border-white/[0.06] pb-3">
+                <dt className="text-zinc-400">Location</dt>
+                <dd className="font-medium text-white">{siteConfig.location}</dd>
               </div>
-              <div className="flex justify-between border-b border-ink/5 pb-3">
-                <dt className="text-ink-muted">Availability</dt>
-                <dd className="font-medium text-ink">{siteConfig.availability}</dd>
+              <div className="flex justify-between border-b border-white/[0.06] pb-3">
+                <dt className="text-zinc-400">Availability</dt>
+                <dd className="font-medium text-white">{siteConfig.availability}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-ink-muted">Focus</dt>
-                <dd className="font-medium text-ink">High-ticket lead gen</dd>
+                <dt className="text-zinc-400">Focus</dt>
+                <dd className="font-medium text-white">High-ticket lead gen</dd>
               </div>
             </dl>
           </div>
