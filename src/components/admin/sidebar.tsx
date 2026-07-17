@@ -13,6 +13,7 @@ import {
   Menu,
   X,
   ChevronRight,
+  ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,7 +27,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -83,22 +84,38 @@ export function Sidebar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
+                className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                   isActive
                     ? "bg-emerald-500/10 text-emerald-300"
                     : "text-zinc-400 hover:bg-white/5 hover:text-white"
                 }`}
                 title={collapsed ? item.label : undefined}
               >
-                <item.icon className="h-5 w-5 shrink-0" />
+                {isActive && (
+                  <span className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r-full bg-emerald-400" />
+                )}
+                <item.icon className="h-5 w-5 shrink-0 transition group-hover:scale-110" />
                 {!collapsed && <span>{item.label}</span>}
               </Link>
             );
           })}
         </nav>
 
-        {/* Sign out */}
+        {/* User & Sign out */}
         <div className="border-t border-white/10 p-3">
+          {!collapsed && user && (
+            <div className="mb-3 flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-3 py-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-400" />
+              <div className="min-w-0">
+                <p className="truncate text-xs font-medium text-emerald-300">
+                  {user.email?.split("@")[0] ?? "User"}
+                </p>
+                <p className="truncate text-[10px] text-emerald-400/80">
+                  Verified Account
+                </p>
+              </div>
+            </div>
+          )}
           <button
             onClick={signOut}
             className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-400 transition hover:bg-red-500/10 hover:text-red-400"

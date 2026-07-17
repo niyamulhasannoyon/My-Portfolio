@@ -22,3 +22,10 @@ export default app;
 export function getFirebaseApp() {
   return app;
 }
+
+export function getFirestoreInstance() {
+  if (typeof window === "undefined") {
+    throw new Error("Firebase client SDK can only be used in the browser");
+  }
+  return db;
+}
