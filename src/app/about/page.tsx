@@ -19,62 +19,82 @@ const stack = ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Tailwind
 
 export default function AboutPage() {
   return (
-    <Container className="py-16 md:py-24 bg-brand-bg">
-      <div className="grid gap-12 lg:grid-cols-2">
-        <div>
-          <FadeInUp>
-            <SectionHeading
-              eyebrow="About"
-              title="I build web products that pay for themselves"
-              description="I'm a full-stack developer partnering with founders and agencies across the US, UK & Europe to ship high-performance, conversion-focused web apps."
-            />
-          </FadeInUp>
-          <FadeInUp delay={0.1}>
-            <p className="mt-6 text-zinc-400">
-              My focus is simple: turn your cold traffic from LinkedIn and email into qualified,
-              high-ticket leads. That means fast sites, clean SEO foundations, and landing pages
-              engineered around a single goal — the conversion.
-            </p>
-          </FadeInUp>
-          <FadeInUp delay={0.2}>
-            <div className="mt-8">
-              <p className="text-sm font-semibold text-white">Tech I work with</p>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {stack.map((s) => (
-                  <li key={s} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-sm text-zinc-300">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </FadeInUp>
-          <FadeInUp delay={0.3}>
-            <div className="mt-8 flex items-center gap-4">
-              <SocialLinks className="flex items-center gap-4 text-zinc-400 hover:text-emerald-300" />
+    <div className="bg-brand-surface text-white">
+      <Container className="py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <FadeInUp>
+              <SectionHeading
+                eyebrow="About"
+                title="I build web products that pay for themselves"
+                description="I help founders and agencies ship high-performance, conversion-focused web apps that feel premium and drive measurable results."
+              />
+            </FadeInUp>
+
+            <FadeInUp delay={0.1}>
+              <p className="mt-6 text-zinc-300">
+                My focus is simple: turn cold traffic from LinkedIn, email and paid ads into qualified,
+                high-ticket leads. That means fast, polished sites, strong SEO foundations, and
+                landing pages engineered around a single goal — the conversion.
+              </p>
+            </FadeInUp>
+
+            <FadeInUp delay={0.2}>
+              <p className="mt-6 text-zinc-300">
+                I partner with businesses that want a website that feels confident, reduces friction,
+                and works like the best salesperson on the team.
+              </p>
+            </FadeInUp>
+
+            <FadeInUp delay={0.25}>
+              <div className="mt-10">
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300">Tech I work with</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {stack.map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-zinc-200"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </FadeInUp>
+
+            <FadeInUp delay={0.3}>
+              <div className="mt-10 flex flex-wrap gap-4 text-zinc-400">
+                <SocialLinks className="flex items-center gap-4 text-zinc-400 hover:text-emerald-300" />
+              </div>
+            </FadeInUp>
+          </div>
+
+          <FadeInUp delay={0.15} y={40}>
+            <div className="rounded-[2rem] border border-white/10 bg-zinc-950/70 p-8 shadow-2xl shadow-black/30 backdrop-blur-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300">At a glance</p>
+              <dl className="mt-6 space-y-5 text-sm text-zinc-300">
+                <div className="rounded-3xl border border-white/5 bg-white/5 p-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">Location</dt>
+                  <dd className="mt-2 text-sm font-medium text-white">{siteConfig.location}</dd>
+                </div>
+                <div className="rounded-3xl border border-white/5 bg-white/5 p-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">Availability</dt>
+                  <dd className="mt-2 text-sm font-medium text-white">{siteConfig.availability}</dd>
+                </div>
+                <div className="rounded-3xl border border-white/5 bg-white/5 p-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">Focus</dt>
+                  <dd className="mt-2 text-sm font-medium text-white">High-ticket lead gen</dd>
+                </div>
+              </dl>
             </div>
           </FadeInUp>
         </div>
-        <FadeInUp delay={0.15} y={40}>
-          <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/70 p-8 shadow-2xl shadow-black/20 backdrop-blur-sm">
-            <p className="text-sm font-semibold text-emerald-300">At a glance</p>
-            <dl className="mt-4 space-y-4 text-sm">
-              <div className="flex justify-between border-b border-white/[0.06] pb-3">
-                <dt className="text-zinc-400">Location</dt>
-                <dd className="font-medium text-white">{siteConfig.location}</dd>
-              </div>
-              <div className="flex justify-between border-b border-white/[0.06] pb-3">
-                <dt className="text-zinc-400">Availability</dt>
-                <dd className="font-medium text-white">{siteConfig.availability}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-zinc-400">Focus</dt>
-                <dd className="font-medium text-white">High-ticket lead gen</dd>
-              </div>
-            </dl>
-          </div>
-        </FadeInUp>
-      </div>
-      <CtaSection />
-    </Container>
+      </Container>
+
+      <CtaSection
+        title="Want a site that earns trust and converts better?"
+        description="Book a free 10-minute strategy call and I’ll help you launch a website that looks premium and performs better than before."
+      />
+    </div>
   );
 }
