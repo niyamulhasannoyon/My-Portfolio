@@ -13,6 +13,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "react"],
   },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
 export default nextConfig;

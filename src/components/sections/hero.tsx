@@ -111,7 +111,7 @@ export function Hero() {
                   {/* Code Content */}
                   <div className="space-y-1.5">
                     <p className="text-zinc-600">
-                      <span className="text-zinc-500">//</span>{" "}
+                      <span className="text-zinc-500">{`//`}</span>{" "}
                       <span className="text-zinc-500">Optimizing Core Web Vitals</span>
                     </p>
                     <p>
