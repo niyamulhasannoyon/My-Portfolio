@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, Facebook, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
@@ -7,6 +7,9 @@ export function SocialLinks({ className }: { className?: string }) {
     { href: `mailto:${siteConfig.email}`, label: "Email", icon: Mail, external: false },
     { href: siteConfig.social.linkedin, label: "LinkedIn", icon: Linkedin, external: true },
     { href: siteConfig.social.github, label: "GitHub", icon: Github, external: true },
+    { href: siteConfig.social.facebook, label: "Facebook", icon: Facebook, external: true },
+    { href: siteConfig.social.instagram, label: "Instagram", icon: Instagram, external: true },
+    { href: siteConfig.social.twitter, label: "X", icon: Twitter, external: true },
   ];
   return (
     <nav className={className} aria-label="Social media links">

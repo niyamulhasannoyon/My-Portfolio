@@ -7,8 +7,8 @@ export const siteConfig = {
   locale: "en_US",
   twitterHandle: process.env.NEXT_PUBLIC_TWITTER_HANDLE ?? "@niyamuldev",
   author: "Niyamul Dev",
-  email: "hello@niyamuldev.com",
-  phone: "",
+  email: "niyamulhasan1089@gmail.com",
+  phone: "+8801568310284",
   location: "Remote — serving US, UK & Europe",
   availability: "Available for select high-ticket projects",
   // Geo + international targeting for US/UK/EU high-ticket clients
@@ -19,7 +19,9 @@ export const siteConfig = {
   social: {
     linkedin: "https://www.linkedin.com/in/niyamulhasan",
     github: "https://github.com/niyamulhasannoyon",
-    twitter: "https://twitter.com/niyamuldev",
+    twitter: "https://x.com/MDNiyamulHasan?t=W5mEYhqp1LWjreJQu2oR7g&s=09",
+    facebook: "https://www.facebook.com/niyamulhasanbd/",
+    instagram: "https://www.instagram.com/niyamulhasanbd/",
     upwork: "https://www.upwork.com/freelancers/~yourid",
   },
 } as const;
