@@ -1,7 +1,7 @@
-import { ShoppingCart, Globe, Gauge, Palette } from "lucide-react";
+import { Globe, Gauge, Palette } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { FadeInUp } from "@/components/ui/fade-in-up";
-import { StaggerCard } from "@/components/ui/stagger-card";
+import { BentoCard } from "@/components/ui/bento-card";
 
 const NextJsIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 256 256" fill="none" {...props}>
@@ -78,16 +78,15 @@ export function ServicesSection() {
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {services.map((s, i) => (
             <li key={s.title}>
-              <StaggerCard
-                index={i}
-                className="group flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.01] hover:border-emerald-500/50 hover:bg-white/[0.04] hover:shadow-[0_25px_80px_-35px_rgba(16,185,129,0.4)]"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-3xl border border-white/10 bg-zinc-950 text-white shadow-[0_0_24px_rgba(0,0,0,0.12)] transition duration-300 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 group-hover:text-emerald-200">
-                  <s.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
-              </StaggerCard>
+              <FadeInUp delay={0.04 * i}>
+                <BentoCard className="flex h-full flex-col">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-zinc-950 text-white shadow-[0_0_24px_rgba(0,0,0,0.12)] transition-colors duration-300 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 group-hover:text-emerald-200">
+                    <s.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
+                </BentoCard>
+              </FadeInUp>
             </li>
           ))}
         </ul>

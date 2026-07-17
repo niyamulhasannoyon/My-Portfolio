@@ -68,30 +68,16 @@ module.exports = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-6px)" },
         },
+        "marquee": {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out both",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "float": "float 4s ease-in-out infinite",
-        "marquee": "marquee 30s linear infinite",
-      },
-      keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(12px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "1", transform: "scale(1)" },
-          "50%": { opacity: "0.7", transform: "scale(1.2)" },
-        },
-        "float": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-6px)" },
-        },
-        "marquee": {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+        "marquee": "marquee 25s linear infinite",
       },
     },
   },
