@@ -7,13 +7,14 @@ import { useAuth } from "@/contexts/auth-context";
 import { Container } from "@/components/ui/container";
 import { Chrome } from "lucide-react";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [googleBusy, setGoogleBusy] = useState(false);
-  const { user, loading, signIn, signInWithGoogle } = useAuth();
+  const { user, loading, createAccount, signInWithGoogle } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -25,13 +26,24 @@ export default function LoginPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError("");
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     setBusy(true);
     try {
-      await signIn(email, password);
+      await createAccount(email, password);
       router.push("/admin");
     } catch (err: unknown) {
       const message =
-        err instanceof Error ? err.message : "Invalid email or password";
+        err instanceof Error ? err.message : "Failed to create account";
       setError(message);
     } finally {
       setBusy(false);
@@ -59,10 +71,10 @@ export default function LoginPage() {
         <div className="rounded-3xl border border-white/10 bg-zinc-900/70 p-8 shadow-2xl shadow-black/20 backdrop-blur-sm">
           <div className="mb-8 text-center">
             <h1 className="text-2xl font-bold tracking-tight text-white">
-              Admin Login
+              Create Admin Account
             </h1>
             <p className="mt-2 text-sm text-zinc-400">
-              Sign in to manage your portfolio
+              Set up your admin credentials
             </p>
           </div>
 
@@ -103,6 +115,24 @@ export default function LoginPage() {
               />
             </div>
 
+            <div>
+              <label
+                htmlFor="confirmPassword"
+                className="mb-1.5 block text-sm font-medium text-zinc-300"
+              >
+                Confirm Password
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full rounded-xl border border-white/10 bg-zinc-950/70 px-4 py-2.5 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20"
+                placeholder="••••••••"
+              />
+            </div>
+
             {error && (
               <p className="rounded-xl bg-red-500/10 px-4 py-2.5 text-sm text-red-400">
                 {error}
@@ -114,7 +144,7 @@ export default function LoginPage() {
               disabled={busy}
               className="inline-flex w-full items-center justify-center rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400 disabled:opacity-50"
             >
-              {busy ? "Signing in…" : "Sign in"}
+              {busy ? "Creating account…" : "Create Account"}
             </button>
           </form>
 
@@ -136,16 +166,16 @@ export default function LoginPage() {
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10 disabled:opacity-50"
           >
             <Chrome className="h-4 w-4" />
-            {googleBusy ? "Signing in with Google…" : "Sign in with Google"}
+            {googleBusy ? "Signing in with Google…" : "Sign up with Google"}
           </button>
 
           <p className="mt-6 text-center text-sm text-zinc-400">
-            Don&apos;t have an account?{" "}
+            Already have an account?{" "}
             <Link
-              href="/signup"
+              href="/login"
               className="font-medium text-emerald-300 hover:text-emerald-200"
             >
-              Create account
+              Sign in
             </Link>
           </p>
         </div>
