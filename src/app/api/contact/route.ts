@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { siteConfig } from "@/lib/config";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -9,15 +8,39 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, message } = body as { name?: string; email?: string; message?: string };
+  const { name, email, subject, message } = body as {
+    name?: string;
+    email?: string;
+    subject?: string;
+    message?: string;
+  };
 
   if (!name || !email || !message) {
-    return NextResponse.json({ ok: false, error: "Missing fields" }, { status: 422 });
+    return NextResponse.json(
+      { ok: false, error: "Missing required fields (name, email, message)" },
+      { status: 422 },
+    );
   }
 
-  // TODO: wire to Resend / HubSpot / your CRM using env vars.
-  // Example: await fetch("https://api.resend.com/emails", {...})
-  console.log("[contact] new lead", { name, email, to: siteConfig.email });
+  try {
+    // Lazy-import Firebase Admin only at runtime to avoid build-time resolution
+    const { getAdminDb } = await import("@/lib/firebase-admin");
+    const db = getAdminDb();
+    await db.collection("messages").add({
+      name,
+      email,
+      subject: subject ?? "",
+      message,
+      timestamp: new Date(),
+      unread: true,
+    });
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[contact] Firestore write failed", err);
+    return NextResponse.json(
+      { ok: false, error: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }
