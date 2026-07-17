@@ -18,8 +18,8 @@ export function PricingCard({ tier, index = 0 }: { tier: PricingTier; index?: nu
       className={cn(
         "relative flex flex-col rounded-2xl border bg-zinc-900/70 p-6 shadow-2xl shadow-black/20 backdrop-blur-sm transition-[transform,colors,box-shadow] duration-300 ease-in-out",
         tier.popular
-          ? "border-emerald-500/40 shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)] hover:-translate-y-1 lg:-translate-y-4"
-          : "border-white/[0.06] hover:border-emerald-500/30 hover:-translate-y-1 hover:shadow-glow",
+          ? "border-emerald-400/60 bg-slate-950/90 shadow-[0_32px_90px_-35px_rgba(16,185,129,0.45)] hover:-translate-y-1 hover:scale-[1.02]"
+          : "border-white/[0.06] hover:border-emerald-500/30 hover:-translate-y-1 hover:shadow-xl",
       )}
     >
       {tier.popular && (
