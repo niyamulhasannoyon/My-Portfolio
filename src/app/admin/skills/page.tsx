@@ -11,7 +11,7 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-import { getFirestoreInstance } from "@/config/firebase";
+import { db } from "@/config/firebase";
 import {
   Plus,
   X,
@@ -47,7 +47,6 @@ const CategoryIcon = ({ category, className = "h-5 w-5" }: { category: string; c
 };
 
 export default function AdminSkills() {
-  const db = getFirestoreInstance()!;
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);

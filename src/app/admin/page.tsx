@@ -9,7 +9,7 @@ import {
   limit,
   where,
 } from "firebase/firestore";
-import { getFirestoreInstance } from "@/config/firebase";
+import { db } from "@/config/firebase";
 import { useAuth } from "@/contexts/auth-context";
 import { StatCard } from "@/components/admin/stat-card";
 import {
@@ -51,9 +51,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const db = getFirestoreInstance();
-        if (!db) return;
-        const [projSnap, tlSnap, msgSnap, skillsSnap] = await Promise.all([
+              const [projSnap, tlSnap, msgSnap, skillsSnap] = await Promise.all([
           getDocs(collection(db, "projects")),
           getDocs(collection(db, "timeline")),
           getDocs(query(collection(db, "messages"), where("unread", "==", true))),

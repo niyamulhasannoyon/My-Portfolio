@@ -12,7 +12,7 @@ import {
   orderBy,
   Timestamp,
 } from "firebase/firestore";
-import { getFirestoreInstance } from "@/config/firebase";
+import { db } from "@/config/firebase";
 import { ProjectForm, type ProjectFormData } from "@/components/admin/project-form";
 import { Pencil, Trash2, Plus, X, Star } from "lucide-react";
 
@@ -29,7 +29,6 @@ interface Project {
 }
 
 export default function AdminProjects() {
-  const db = getFirestoreInstance()!;
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -44,8 +43,6 @@ export default function AdminProjects() {
 
   const fetchProjects = useCallback(async () => {
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       const snap = await getDocs(
         query(collection(db, "projects"), orderBy("createdAt", "desc")),
       );
@@ -66,8 +63,6 @@ export default function AdminProjects() {
   async function handleSave(data: ProjectFormData) {
     setBusy(true);
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       if (editing) {
         await updateDoc(doc(db, "projects", editing.id), { ...data });
         showToast("success", "Project updated");
@@ -91,8 +86,6 @@ export default function AdminProjects() {
   async function handleDelete(project: Project) {
     if (!confirm(`Delete "${project.title}"?`)) return;
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       await deleteDoc(doc(db, "projects", project.id));
       showToast("success", "Project deleted");
       fetchProjects();

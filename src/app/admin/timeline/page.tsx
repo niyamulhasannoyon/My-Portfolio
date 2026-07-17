@@ -11,7 +11,7 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-import { getFirestoreInstance } from "@/config/firebase";
+import { db } from "@/config/firebase";
 import {
   TimelineForm,
   type TimelineFormData,
@@ -29,7 +29,6 @@ interface TimelineItem {
 }
 
 export default function AdminTimeline() {
-  const db = getFirestoreInstance()!;
   const [items, setItems] = useState<TimelineItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -50,8 +49,6 @@ export default function AdminTimeline() {
 
   const fetchItems = useCallback(async () => {
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       const snap = await getDocs(
         query(collection(db, "timeline"), orderBy("order", "asc")),
       );
@@ -72,8 +69,6 @@ export default function AdminTimeline() {
   async function handleSave(data: TimelineFormData) {
     setBusy(true);
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       if (editing) {
         await updateDoc(doc(db, "timeline", editing.id), { ...data });
         showToast("success", "Timeline entry updated");
@@ -94,8 +89,6 @@ export default function AdminTimeline() {
   async function handleDelete(item: TimelineItem) {
     if (!confirm(`Delete "${item.role}" at ${item.company}?`)) return;
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       await deleteDoc(doc(db, "timeline", item.id));
       showToast("success", "Timeline entry deleted");
       fetchItems();

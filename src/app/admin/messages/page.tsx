@@ -11,7 +11,7 @@ import {
   orderBy,
   Timestamp,
 } from "firebase/firestore";
-import { getFirestoreInstance } from "@/config/firebase";
+import { db } from "@/config/firebase";
 import {
   Mail,
   MailOpen,
@@ -32,7 +32,6 @@ interface Message {
 }
 
 export default function AdminMessages() {
-  const db = getFirestoreInstance()!;
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -51,8 +50,6 @@ export default function AdminMessages() {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const db = getFirestoreInstance()!;
-      if (!db) return;
       const snap = await getDocs(
         query(collection(db, "messages"), orderBy("timestamp", "desc")),
       );
@@ -72,8 +69,6 @@ export default function AdminMessages() {
 
   async function toggleRead(msg: Message) {
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       await updateDoc(doc(db, "messages", msg.id), {
         unread: !msg.unread,
       });
@@ -91,8 +86,6 @@ export default function AdminMessages() {
   async function handleDelete(msg: Message) {
     if (!confirm(`Delete message from ${msg.name}?`)) return;
     try {
-      const db = getFirestoreInstance();
-      if (!db) return;
       await deleteDoc(doc(db, "messages", msg.id));
       setMessages((prev) => prev.filter((m) => m.id !== msg.id));
       showToast("success", "Message deleted");
