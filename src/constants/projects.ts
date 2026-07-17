@@ -5,7 +5,7 @@ export const projects: ProjectList = [
     title: "Deluxy Paint — High-Converting E-Commerce Infrastructure",
     category: "E-commerce",
     problem:
-      "A custom-built digital storefront optimized for rapid color browsing and seamless purchasing, with automated checkout flows and strict technical SEO indexing.",
+      "A custom-built, full-stack digital storefront optimized for rapid color browsing and seamless purchasing. Features advanced dynamic color swatches, automated checkout flows, and strict technical SEO indexing.",
     solution:
       "Built a full-stack WordPress storefront with enhanced product filtering, fast asset delivery, and conversion-optimized purchase flows.",
     tech: ["WordPress", "Elementor", "Rank Math SEO"],
@@ -18,7 +18,7 @@ export const projects: ProjectList = [
     title: "Sirah Fashion — Visual-First Apparel Digital Storefront",
     category: "E-commerce",
     problem:
-      "A fashion brand needed a modern storefront that displayed large media beautifully while keeping image load times fast and browsing effortless.",
+      "A blazing-fast, modern e-commerce platform designed for high-end fashion retail. Features highly optimized media delivery pipelines for instant image loading and fluid animations.",
     solution:
       "Delivered a blazing-fast Next.js storefront with optimized media pipelines, seamless product discovery, and premium brand styling.",
     tech: ["Next.js", "React", "Tailwind CSS", "Vercel"],
@@ -31,7 +31,7 @@ export const projects: ProjectList = [
     title: "Akhi POS — Custom Inventory & Point of Sale System",
     category: "Enterprise",
     problem:
-      "The operations team needed a reliable cloud dashboard for real-time sales entry and stock tracking, without the friction of legacy tools.",
+      "A high-reliability cloud operational dashboard tailored for real-time sales entries and stock tracking. Engineered with a secure database architecture and robust cloud network routing.",
     solution:
       "Built a secure React dashboard with Node.js, MongoDB, and cloud routing for fast sales updates and inventory accuracy.",
     tech: ["React", "Node.js", "MongoDB", "Cloudflare"],
@@ -44,7 +44,7 @@ export const projects: ProjectList = [
     title: "Dev Community BD — Collaborative Network Platform",
     category: "Community",
     problem:
-      "Local developers needed a community hub where they could connect, share resources, and collaborate in real time.",
+      "A full-stack community hub built to foster real-time interaction, networking, and resource sharing among local developers. Optimized for high engagement with modern information architecture.",
     solution:
       "Created a full-stack community platform with modern information architecture and high-engagement interaction flows.",
     tech: ["Next.js", "React", "Real-time DB", "Tailwind CSS"],
@@ -57,7 +57,7 @@ export const projects: ProjectList = [
     title: "Gorix Coral — Modern SaaS & Corporate Interface",
     category: "SaaS",
     problem:
-      "A SaaS brand wanted a conversion-focused landing experience with premium interactions and polished typographic hierarchy.",
+      "A premium, conversion-focused landing experience designed to drive product sign-ups. Built with micro-interactions, clean typographic hierarchy, and optimized performance scores.",
     solution:
       "Built a premium React landing experience with micro-interactions, fast performance scores, and clear sign-up pathways.",
     tech: ["React", "Tailwind CSS", "Framer Motion"],
@@ -70,7 +70,7 @@ export const projects: ProjectList = [
     title: "Pet Shop BD — Niche E-Commerce & Service Portal",
     category: "E-commerce",
     problem:
-      "A niche marketplace needed a scalable portal with advanced filtering, checkout flows, and admin inventory controls.",
+      "A scalable online marketplace featuring a streamlined multi-step checkout flow, complex product filtering, and an intuitive admin inventory control dashboard.",
     solution:
       "Developed a service-focused storefront with multi-step checkout, robust product search, and back-office inventory controls.",
     tech: ["Express", "MongoDB", "React", "Node.js"],
@@ -83,7 +83,7 @@ export const projects: ProjectList = [
     title: "Meal Management — Automated Operational Ledger",
     category: "Utility",
     problem:
-      "The team needed a lightweight operational app for tracking shared expenses, daily costs, and automated billing metrics.",
+      "A lightweight, data-driven utility application designed to track shared expenses, calculate daily operational costs, and automate mass billing metrics.",
     solution:
       "Built a clean utility interface for expense tracking, cost calculations, and billing automation.",
     tech: ["React", "Context API", "Tailwind CSS"],

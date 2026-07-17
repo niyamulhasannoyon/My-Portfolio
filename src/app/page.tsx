@@ -13,7 +13,7 @@ export default function HomePage() {
       <Hero />
       <ServicesSection />
       <AboutPreview />
-      <CaseStudyGrid items={featured} />
+      <CaseStudyGrid items={featured} useStaticProjects />
       <TestimonialsSection />
       <CtaSection />
     </>

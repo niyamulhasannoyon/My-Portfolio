@@ -65,6 +65,7 @@ export default function WorkPage() {
 
       <CaseStudyGrid
         items={all}
+        useStaticProjects
         showViewAll={false}
         eyebrow="Selected Work"
         title="Case studies that drive measurable growth"

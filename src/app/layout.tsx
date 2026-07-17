@@ -33,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="min-h-screen bg-brand-bg font-sans text-zinc-100 antialiased">
+    <html lang="en" className={`${inter.variable} ${sora.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen bg-brand-bg font-sans text-zinc-100 antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
