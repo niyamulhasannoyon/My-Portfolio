@@ -24,7 +24,7 @@ function toGridItems(meta: CaseStudyMeta[]): ProjectItem[] {
   }));
 }
 
-export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
+export function CaseStudyGrid({ items, showViewAll = true }: { items: CaseStudyMeta[]; showViewAll?: boolean; }) {
   const displayItems: readonly ProjectItem[] = items.length > 0 ? toGridItems(items) : projects;
 
   return (
@@ -38,14 +38,16 @@ export function CaseStudyGrid({ items }: { items: CaseStudyMeta[] }) {
               description="Each engagement is built around clarity, credibility, and conversion-focused design."
             />
           </FadeInUp>
-          <FadeInUp delay={0.15}>
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-1 text-sm font-medium text-emerald-300 transition hover:text-emerald-200"
-            >
-              View all <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </FadeInUp>
+          {showViewAll ? (
+            <FadeInUp delay={0.15}>
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-1 text-sm font-medium text-emerald-300 transition hover:text-emerald-200"
+              >
+                View all <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </FadeInUp>
+          ) : null}
         </div>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
