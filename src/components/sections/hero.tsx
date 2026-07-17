@@ -68,11 +68,7 @@ export function Hero() {
             {/* Headline */}
             <FadeInUp delay={0.1} y={20}>
               <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-                I help businesses increase sales and{" "}
-                <span className="bg-gradient-to-r from-emerald-200 via-emerald-300 to-emerald-400 bg-clip-text text-transparent">
-                  build trust
-                </span>{" "}
-                with fast, modern websites that convert visitors into customers.
+                Engineering high-performance web apps that drive revenue.
               </h1>
             </FadeInUp>
 
@@ -117,26 +113,22 @@ export function Hero() {
               </div>
             </FadeInUp>
 
-            {/* Trust badges */}
+            {/* Client logo marquee */}
             <FadeInUp delay={0.28} y={20}>
-              <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
-                <div className="flex items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm">
-                  <div className="flex">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-3 w-3 fill-emerald-400 text-emerald-400 sm:h-3.5 sm:w-3.5"
-                      />
-                    ))}
-                  </div>
-                  <span>4.9/5 client rating</span>
+              <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/70 p-5">
+                <div className="flex items-center justify-between gap-4 whitespace-nowrap text-sm text-zinc-400 sm:text-base">
+                  {[
+                    "INBOUND TECH",
+                    "LUMEN FINANCE",
+                    "ATLAS HEALTH",
+                    "SOLIS STUDIO",
+                    "VELOCITY LABS",
+                  ].map((name) => (
+                    <span key={name} className="inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                      {name}
+                    </span>
+                  ))}
                 </div>
-                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:px-3.5 sm:py-2 sm:text-sm">
-                  Fast launch<span className="hidden sm:inline"> timelines</span>
-                </span>
-                <span className="rounded-full border border-zinc-800/60 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-sm sm:px-3.5 sm:py-2 sm:text-sm">
-                  SEO + CRO baked in
-                </span>
               </div>
             </FadeInUp>
           </div>
