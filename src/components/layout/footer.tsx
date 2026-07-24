@@ -25,8 +25,14 @@ const footerNav = [
 ];
 
 export function Footer() {
-  const year = new Date().getFullYear();
   const pathname = usePathname();
+
+  // Hide main website footer on Admin Panel and Auth pages
+  if (pathname?.startsWith("/admin") || pathname === "/login" || pathname === "/signup") {
+    return null;
+  }
+
+  const year = new Date().getFullYear();
   return (
     <footer className="border-t border-white/[0.06] bg-brand-bg">
       <div className="container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">

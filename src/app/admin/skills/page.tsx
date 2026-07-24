@@ -72,7 +72,7 @@ export default function AdminSkills() {
     } finally {
       setLoading(false);
     }
-  }, [db]);
+  }, []);
 
   useEffect(() => {
     fetchSkills();

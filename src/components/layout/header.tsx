@@ -27,6 +27,11 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Hide main website header on Admin Panel and Auth pages
+  if (pathname?.startsWith("/admin") || pathname === "/login" || pathname === "/signup") {
+    return null;
+  }
+
   return (
     <header
       className={cn(

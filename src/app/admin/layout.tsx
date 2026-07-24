@@ -63,7 +63,7 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <AdminHeader user={user} />
       <main className={`transition-all duration-300 lg:pl-60`}>
-        <div className="p-6 pt-20 lg:pt-6">{children}</div>
+        <div className="p-6 pt-16 lg:pt-6">{children}</div>
       </main>
     </div>
   );
