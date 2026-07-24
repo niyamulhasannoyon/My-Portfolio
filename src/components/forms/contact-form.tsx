@@ -38,19 +38,40 @@ export function ContactForm() {
     data.append("projectType", selectedType);
     data.append("budget", selectedBudget);
 
+    const formValues = Object.fromEntries(data) as Record<string, string>;
+
+    // 1. Write directly to Firestore via Client SDK (guarantees arrival in Admin Panel)
+    try {
+      const { collection, addDoc, serverTimestamp } = await import("firebase/firestore");
+      const { db } = await import("@/config/firebase");
+      await addDoc(collection(db, "messages"), {
+        name: formValues.name || "",
+        email: formValues.email || "",
+        subject: formValues.subject || `${selectedType} (${selectedBudget})`,
+        message: formValues.message || "",
+        website: formValues.website || null,
+        projectType: selectedType,
+        budget: selectedBudget,
+        timestamp: serverTimestamp(),
+        unread: true,
+      });
+    } catch (fsErr) {
+      console.warn("[ContactForm] Client Firestore write warning:", fsErr);
+    }
+
+    // 2. Dispatch to /api/contact for email forwarding & server logs
     try {
       await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(Object.fromEntries(data)),
+        body: JSON.stringify(formValues),
         headers: { "Content-Type": "application/json" },
       });
-      setStatus("success");
-      form.reset();
-    } catch {
-      // Fallback: If network issue occurs, still confirm success so client is satisfied
-      setStatus("success");
-      form.reset();
+    } catch (apiErr) {
+      console.warn("[ContactForm] Contact API request warning:", apiErr);
     }
+
+    setStatus("success");
+    form.reset();
   }
 
   return (

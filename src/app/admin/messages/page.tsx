@@ -59,14 +59,28 @@ export default function AdminMessages() {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const snap = await getDocs(
-        query(collection(db, "messages"), orderBy("timestamp", "desc")),
-      );
-      setMessages(
-        snap.docs.map((d) => ({ id: d.id, ...d.data() } as Message)),
-      );
-    } catch {
-      // Firestore not set up yet
+      let snap;
+      try {
+        snap = await getDocs(
+          query(collection(db, "messages"), orderBy("timestamp", "desc")),
+        );
+      } catch {
+        // Fallback: If orderBy index query fails, fetch all documents directly
+        snap = await getDocs(collection(db, "messages"));
+      }
+
+      const list = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Message));
+
+      // Sort manually by timestamp (newest first)
+      list.sort((a, b) => {
+        const timeA = a.timestamp?.seconds || 0;
+        const timeB = b.timestamp?.seconds || 0;
+        return timeB - timeA;
+      });
+
+      setMessages(list);
+    } catch (err) {
+      console.warn("[AdminMessages] Failed to fetch messages:", err);
     } finally {
       setLoading(false);
     }
