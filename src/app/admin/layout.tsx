@@ -38,13 +38,17 @@ function AdminHeader({ user }: { user: { email?: string | null } | null }) {
   );
 }
 
+const ALLOWED_ADMIN_EMAIL = "niyamulhasanbd@gmail.com";
+
 function AdminGuard({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.replace("/login");
+    if (!loading) {
+      if (!user || user.email !== ALLOWED_ADMIN_EMAIL) {
+        router.replace("/login");
+      }
     }
   }, [user, loading, router]);
 

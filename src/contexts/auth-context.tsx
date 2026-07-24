@@ -30,29 +30,54 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
+export const ALLOWED_ADMIN_EMAIL = "niyamulhasanbd@gmail.com";
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
+      if (firebaseUser && firebaseUser.email !== ALLOWED_ADMIN_EMAIL) {
+        firebaseSignOut(auth);
+        setUser(null);
+      } else {
+        setUser(firebaseUser);
+      }
       setLoading(false);
     });
     return unsub;
   }, []);
 
   const signIn = useCallback(async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    if (email !== ALLOWED_ADMIN_EMAIL) {
+      throw new Error(`Access Denied: Only ${ALLOWED_ADMIN_EMAIL} is authorized.`);
+    }
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    if (res.user.email !== ALLOWED_ADMIN_EMAIL) {
+      await firebaseSignOut(auth);
+      throw new Error(`Access Denied: Only ${ALLOWED_ADMIN_EMAIL} is authorized.`);
+    }
   }, []);
 
   const createAccount = useCallback(async (email: string, password: string) => {
-    await createUserWithEmailAndPassword(auth, email, password);
+    if (email !== ALLOWED_ADMIN_EMAIL) {
+      throw new Error(`Public sign-up is disabled. Only ${ALLOWED_ADMIN_EMAIL} is authorized.`);
+    }
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    if (res.user.email !== ALLOWED_ADMIN_EMAIL) {
+      await firebaseSignOut(auth);
+      throw new Error(`Access Denied: Only ${ALLOWED_ADMIN_EMAIL} is authorized.`);
+    }
   }, []);
 
   const signInWithGoogle = useCallback(async () => {
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, provider);
+    if (result.user.email !== ALLOWED_ADMIN_EMAIL) {
+      await firebaseSignOut(auth);
+      throw new Error(`Access Denied: ${result.user.email} is not authorized. Only ${ALLOWED_ADMIN_EMAIL} can access the Admin Panel.`);
+    }
   }, []);
 
   const signOut = useCallback(async () => {
