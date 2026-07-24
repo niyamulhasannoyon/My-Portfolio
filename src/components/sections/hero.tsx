@@ -62,9 +62,8 @@ export function Hero() {
             </FadeInUp>
 
             <FadeInUp delay={0.16} y={20}>
-              <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
-                Production-grade architectures optimized for speed, clarity, and
-                exceptional UX. No templates. No clutter. Just pure performance.
+              <p className="max-w-xl text-lg leading-relaxed text-zinc-300">
+                I help startups, e-commerce brands, and growing businesses build fast, scalable websites and web applications that turn visitors into customers.
               </p>
             </FadeInUp>
 
@@ -75,7 +74,7 @@ export function Hero() {
                   className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-zinc-950 shadow-lg shadow-emerald-500/25 transition-[transform,colors,box-shadow] duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Book a Free Strategy Call
+                    Start a Project
                     <ArrowRight className="h-4 w-4 transition-[transform] duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                   </span>
                   <span className="absolute inset-0 -z-0 translate-y-full rounded-full bg-emerald-400 transition-transform duration-300 group-hover:translate-y-0" />
@@ -84,8 +83,22 @@ export function Hero() {
                   href="/work"
                   className="group inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700/60 bg-zinc-900/60 px-7 py-3.5 text-base font-semibold text-zinc-100 shadow-sm backdrop-blur-sm transition-[transform,colors] duration-300 hover:border-emerald-500/40 hover:bg-zinc-800/60 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
                 >
-                  View Case Studies
+                  View My Work
                 </Link>
+              </div>
+
+              {/* High-Trust Signals Bar */}
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-zinc-400">
+                <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  🌍 Remote — US, UK &amp; Europe
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  ⚡ Fast Communication &amp; English Fluency
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  🚀 10+ Projects Delivered
+                </span>
               </div>
             </FadeInUp>
           </div>

@@ -1,90 +1,110 @@
-import { Globe, Gauge, Palette } from "lucide-react";
+import Link from "next/link";
+import { Layout, ShoppingCart, Cpu, CheckCircle, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 import { BentoCard } from "@/components/ui/bento-card";
 
-const NextJsIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 256 256" fill="none" {...props}>
-    <path d="M128 24L24 128L128 232L232 128L128 24Z" fill="currentColor" />
-    <path d="M128 56L56 128L128 200L200 128L128 56Z" fill="#000" />
-  </svg>
-);
-
-const NodeJsIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 256 256" fill="none" {...props}>
-    <path d="M128 20.6L38.4 73.2V182.8L128 235.4L217.6 182.8V73.2L128 20.6Z" fill="currentColor" />
-    <path d="M88 176.7L128 197.6L168 176.7V127.5L128 148.5L88 127.5V176.7Z" fill="#fff" />
-  </svg>
-);
-
-const WordPressIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 256 256" fill="none" {...props}>
-    <circle cx="128" cy="128" r="104" fill="currentColor" />
-    <path d="M80 72L116 192" stroke="#fff" strokeWidth="18" strokeLinecap="round" />
-    <path d="M176 72L140 192" stroke="#fff" strokeWidth="18" strokeLinecap="round" />
-    <path d="M82 76H174" stroke="#fff" strokeWidth="18" strokeLinecap="round" />
-  </svg>
-);
-
-const services = [
+const servicePackages = [
   {
-    icon: NextJsIcon,
-    title: "Next.js & React Apps",
-    desc: "Production-grade web apps and dashboards with the App Router, server components and edge rendering.",
+    icon: Layout,
+    badge: "For Startups & Brands",
+    title: "🚀 Business Websites & Landing Pages",
+    description: "High-converting, sub-second marketing websites engineered to turn visitors into booked calls and paying customers.",
+    deliverables: [
+      "Custom responsive Next.js / React build",
+      "Pixel-perfect Figma-to-code implementation",
+      "Sub-second load speed & 95+ Lighthouse",
+      "Technical SEO & OpenGraph optimization",
+      "Integrated contact forms & booking triggers",
+    ],
+    cta: "Build a Marketing Site",
   },
   {
-    icon: NodeJsIcon,
-    title: "Node.js & MongoDB",
-    desc: "Scalable APIs, auth, and data layers engineered for performance and maintainability.",
+    icon: ShoppingCart,
+    badge: "For E-Commerce Brands",
+    title: "🛒 Custom E-Commerce & Storefronts",
+    description: "Scalable online storefronts designed for smooth product discovery, fast variant selection, and high checkout completion rates.",
+    deliverables: [
+      "Custom Next.js or Headless WordPress storefront",
+      "Dynamic product search, swatches & filters",
+      "Optimized multi-step cart & checkout flows",
+      "Stripe / PayPal / custom payment integration",
+      "Back-office inventory management dashboard",
+    ],
+    cta: "Launch E-Commerce Store",
   },
   {
-    icon: WordPressIcon,
-    title: "E-commerce & WordPress",
-    desc: "Headless WordPress, WooCommerce and custom storefronts that convert browsers to buyers.",
-  },
-  {
-    icon: Gauge,
-    title: "Performance & CRO",
-    desc: "Core Web Vitals tuning, A/B testing and landing pages built to convert cold traffic.",
-  },
-  {
-    icon: Globe,
-    title: "SEO-First Builds",
-    desc: "Technical SEO, structured data and content systems that rank and attract inbound leads.",
-  },
-  {
-    icon: Palette,
-    title: "Design-to-Code",
-    desc: "Pixel-perfect Tailwind CSS implementations from Figma with a polished design system.",
+    icon: Cpu,
+    badge: "For SaaS & Growing Tech",
+    title: "⚙️ Custom Web Applications & SaaS",
+    description: "Production-ready web applications, interactive admin dashboards, and robust API backends built for scale.",
+    deliverables: [
+      "Full-stack Next.js, Node.js & MongoDB architecture",
+      "Secure user authentication (JWT/OAuth)",
+      "Real-time analytics & data visualizations",
+      "Scalable RESTful / GraphQL API development",
+      "Cloud deployment on Vercel, AWS or Cloudflare",
+    ],
+    cta: "Develop Web App",
   },
 ];
 
 export function ServicesSection() {
   return (
-    <section className="bg-brand-surface py-16 md:py-24">
+    <section className="bg-brand-surface py-20 md:py-28">
       <Container>
         <FadeInUp>
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-brand-wider text-emerald-400">What I do</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Services built for conversion, not just code
+            <p className="text-sm font-semibold uppercase tracking-brand-wider text-emerald-400">Services &amp; Solutions</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              Solutions built to move metrics that matter
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-zinc-400">
-              Every engagement is scoped to move a metric that matters to your business — speed, clarity, trust, or revenue.
+              Clear, fixed-scope engineering packages tailored for founders, startups, and modern digital businesses.
             </p>
           </div>
         </FadeInUp>
 
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {services.map((s, i) => (
+        <ul className="mt-12 grid gap-8 lg:grid-cols-3">
+          {servicePackages.map((s, i) => (
             <li key={s.title}>
-              <FadeInUp delay={0.04 * i}>
-                <BentoCard className="flex h-full flex-col">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-zinc-950 text-white shadow-[0_0_24px_rgba(0,0,0,0.12)] transition-colors duration-300 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 group-hover:text-emerald-200">
-                    <s.icon className="h-6 w-6" />
+              <FadeInUp delay={0.08 * i}>
+                <BentoCard className="flex h-full flex-col justify-between p-6 sm:p-8">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
+                        <s.icon className="h-6 w-6" />
+                      </div>
+                      <span className="rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 text-[11px] font-semibold text-emerald-400">
+                        {s.badge}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-6 text-xl font-bold text-white">{s.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.description}</p>
+
+                    <div className="mt-6 border-t border-white/5 pt-6">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">What’s included:</p>
+                      <ul className="mt-3 space-y-2.5">
+                        {s.deliverables.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
+                            <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold text-white">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
+
+                  <div className="mt-8 pt-4 border-t border-white/5">
+                    <Link
+                      href="/contact"
+                      className="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3 text-xs font-semibold text-emerald-300 transition-all duration-300 hover:bg-emerald-500 hover:text-zinc-950"
+                    >
+                      {s.cta}
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
                 </BentoCard>
               </FadeInUp>
             </li>
