@@ -8,11 +8,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, subject, message } = body as {
+  const { name, email, subject, message, website, projectType, budget } = body as {
     name?: string;
     email?: string;
     subject?: string;
     message?: string;
+    website?: string;
+    projectType?: string;
+    budget?: string;
   };
 
   if (!name || !email || !message) {
@@ -26,11 +29,17 @@ export async function POST(request: Request) {
     // Lazy-import Firebase Admin only at runtime to avoid build-time resolution
     const { getAdminDb } = await import("@/lib/firebase-admin");
     const db = getAdminDb();
+    
+    const formattedSubject = subject || (projectType ? `${projectType} (${budget || 'Flexible'})` : "New Project Inquiry");
+
     await db.collection("messages").add({
       name,
       email,
-      subject: subject ?? "",
+      subject: formattedSubject,
       message,
+      website: website || null,
+      projectType: projectType || null,
+      budget: budget || null,
       timestamp: new Date(),
       unread: true,
     });
